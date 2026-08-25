@@ -1,0 +1,60 @@
+# 本文件为模板目录（PJdemo）自用 .gitignore；复制模板到新项目时改用 gitignore.example
+
+## Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+
+## 虚拟环境
+venv/
+.venv/
+env/
+
+## IDE
+.idea/
+.vscode/
+*.swp
+*~
+
+## 测试
+.pytest_cache/
+.coverage
+htmlcov/
+
+## 数据库
+*.db
+*.sqlite
+*.sqlite3
+
+## 日志
+*.log
+logs/
+
+## 敏感数据（永远不提交）
+data/settings.json
+.env
+.env.local
+*.key
+*.pem
+*.p12
+
+## 备份与临时文件
+*.tmp
+*.bak
+*.bak_*
+tmp/
+temp/
+
+## 各软件私有记忆目录（长期记忆不用它们，不纳入 git）
+.omc/
+.workbuddy/
+.chrome_dbg/
+.claude/settings.local.json
+
+## 只读保护校验脚本生成的快照记录（运行时产物）
+scripts/verify/*_hash_record.*

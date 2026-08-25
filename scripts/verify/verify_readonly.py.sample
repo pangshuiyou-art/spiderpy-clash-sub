@@ -1,0 +1,130 @@
+"""源项目只读保护校验脚本（模板，脱敏版）。
+
+在项目任何阶段开始前/结束后校验源项目 git 状态干净 + 核心文件哈希一致，
+确保重构过程对源项目零影响。
+
+用法:
+    python scripts/verify/verify_readonly.py --before  # 阶段开始前
+    python scripts/verify/verify_readonly.py --after   # 阶段结束后
+    python scripts/verify/verify_readonly.py --compare # 仅计算并打印哈希
+
+配置（复制到项目后必须修改）:
+    SOURCE_ROOT : 源项目绝对路径
+    HASH_RECORD : 哈希记录文件路径（连同文件名放 .gitignore）
+    CORE_FILES  : 源项目内需要哈希比对的核心文件相对路径清单
+"""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import subprocess
+import sys
+from pathlib import Path
+
+# ============ 复制到项目后修改以下三处 ============
+SOURCE_ROOT = Path(r'{{源项目绝对路径}}')           # 例: Path(r'E:\Users\...\SourceProj')
+HASH_RECORD = Path(__file__).parent / '{{源项目}}_hash_record.txt'
+CORE_FILES = [
+    # 例：
+    # 'common/config.py',
+    # 'functions/login_service.py',
+    # 'data/settings.json',
+]
+# ==================================================
+
+
+def get_source_git_status() -> str:
+    """获取源项目 git 状态（应为空）。"""
+    result = subprocess.run(
+        ['git', 'status', '--porcelain'],
+        cwd=SOURCE_ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    return result.stdout.strip()
+
+
+def compute_source_hash() -> str:
+    """计算源项目核心文件哈希（只读，不修改）。"""
+    hasher = hashlib.sha256()
+    for rel_path in CORE_FILES:
+        file_path = SOURCE_ROOT / rel_path
+        if file_path.exists():
+            hasher.update(rel_path.encode('utf-8'))
+            hasher.update(file_path.read_bytes())
+    return hasher.hexdigest()
+
+
+def verify_before() -> bool:
+    """阶段开始前校验源项目 git 状态干净。"""
+    print('[Before] 校验源项目 git 状态...')
+    status = get_source_git_status()
+    if status:
+        print(f'[FAIL] 源项目存在未提交修改:\n{status}')
+        print('请先处理源项目的修改后再开始本阶段')
+        return False
+    print('[OK] 源项目 git 状态干净')
+
+    current_hash = compute_source_hash()
+    if not CORE_FILES:
+        print('[WARN] CORE_FILES 为空，未做哈希比对')
+        return True
+    HASH_RECORD.write_text(current_hash, encoding='utf-8')
+    print(f'[OK] 源项目哈希已记录: {current_hash[:16]}...')
+    return True
+
+
+def verify_after() -> bool:
+    """阶段结束后校验源项目未被修改。"""
+    print('[After] 校验源项目未被修改...')
+    status = get_source_git_status()
+    if status:
+        print(f'[FAIL] 源项目被修改了:\n{status}')
+        print('严重违反源项目只读保护原则！')
+        return False
+    print('[OK] 源项目 git 状态仍干净')
+
+    if not HASH_RECORD.exists():
+        print('[WARN] 无前置哈希记录，跳过哈希对比')
+        return True
+
+    before_hash = HASH_RECORD.read_text(encoding='utf-8').strip()
+    current_hash = compute_source_hash()
+    if before_hash != current_hash:
+        print(f'[FAIL] 源项目核心文件哈希变化:')
+        print(f'  Before: {before_hash[:16]}...')
+        print(f'  After:  {current_hash[:16]}...')
+        print('严重违反源项目只读保护原则！')
+        return False
+    print(f'[OK] 源项目哈希一致: {current_hash[:16]}...')
+    return True
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description='源项目只读保护校验')
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument('--before', action='store_true', help='阶段开始前校验')
+    group.add_argument('--after', action='store_true', help='阶段结束后校验')
+    group.add_argument('--compare', action='store_true', help='仅计算并打印哈希')
+    args = parser.parse_args()
+
+    if not SOURCE_ROOT.exists():
+        print(f'[FAIL] 源项目目录不存在: {SOURCE_ROOT}')
+        print('请先修改脚本顶部 SOURCE_ROOT 配置')
+        return 1
+
+    if args.before:
+        return 0 if verify_before() else 1
+    if args.after:
+        return 0 if verify_after() else 1
+    if args.compare:
+        current_hash = compute_source_hash()
+        print(f'源项目核心文件哈希: {current_hash}')
+        return 0
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())

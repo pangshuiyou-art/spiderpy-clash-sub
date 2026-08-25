@@ -1,0 +1,101 @@
+# .gitignore 示例 —— 复制到项目根目录后改名 .gitignore，按实际调整
+
+## Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+## 虚拟环境
+venv/
+.venv/
+env/
+ENV/
+
+## IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+## 测试
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+.hypothesis/
+
+## 数据库
+*.db
+*.sqlite
+*.sqlite3
+
+## 日志
+*.log
+logs/
+
+## 敏感数据（永远不提交，按实际补充键名）
+data/settings.json
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+*.p12
+
+## 备份与临时文件
+*.tmp
+*.bak
+*.bak_before_*
+*.bak_*
+tmp/
+temp/
+
+## 前端（若为前后端分离项目）
+node_modules/
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/.next/
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+
+## 各软件私有记忆目录（长期记忆不用它们，不纳入 git）
+.omc/
+.workbuddy/
+.chrome_dbg/
+
+## 源项目只读保护（按实际填；源项目目录不纳入本项目 git）
+{{源项目名}}/
+../{{源项目名}}/
+# 只读保护校验脚本生成的哈希记录（运行时产物）
+scripts/verify/*_hash_record.txt
+
+## 说明
+# - `.memory/` 目录【不要】忽略：它是长期记忆唯一事实源，必须纳入 git 以便按条提交、回滚。
+# - `.claude/`：若含 `settings.local.json`（个人权限白名单）——加入忽略；`settings.json`（协议 hook）应保留跟踪。
+#   下列忽略针对本地个人配置：
+.claude/settings.local.json
+# - 若某软件私有目录为工具所需且你希望跟踪，请反向调整（去掉对应行）。
