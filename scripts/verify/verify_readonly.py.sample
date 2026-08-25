@@ -1,113 +1,142 @@
 """源项目只读保护校验脚本（模板，脱敏版）。
 
-在项目任何阶段开始前/结束后校验源项目 git 状态干净 + 核心文件哈希一致，
-确保重构过程对源项目零影响。
+在项目任何阶段开始前/结束后校验源项目未被改动：
+工作区状态干净 + HEAD 提交未变 + 全部被跟踪文件的联合哈希一致。
+三者任一变化（包括"改完又提交"的情况）都会暴露。
 
 用法:
-    python scripts/verify/verify_readonly.py --before  # 阶段开始前
-    python scripts/verify/verify_readonly.py --after   # 阶段结束后
-    python scripts/verify/verify_readonly.py --compare # 仅计算并打印哈希
+    python scripts/verify/verify_readonly.py --before  # 阶段开始前：校验并记录快照
+    python scripts/verify/verify_readonly.py --after   # 阶段结束后：与快照逐项比对
+    python scripts/verify/verify_readonly.py --compare # 仅打印当前状态摘要（排查用）
 
 配置（复制到项目后必须修改）:
     SOURCE_ROOT : 源项目绝对路径
-    HASH_RECORD : 哈希记录文件路径（连同文件名放 .gitignore）
-    CORE_FILES  : 源项目内需要哈希比对的核心文件相对路径清单
+    HASH_RECORD : 快照记录文件路径（JSON；连同文件名加入 .gitignore）
 """
 
 from __future__ import annotations
 
 import argparse
 import hashlib
+import json
 import subprocess
 import sys
+from datetime import datetime
 from pathlib import Path
+from typing import Any
 
-# ============ 复制到项目后修改以下三处 ============
+# ============ 复制到项目后修改以下两处 ============
 SOURCE_ROOT = Path(r'{{源项目绝对路径}}')           # 例: Path(r'E:\Users\...\SourceProj')
-HASH_RECORD = Path(__file__).parent / '{{源项目}}_hash_record.txt'
-CORE_FILES = [
-    # 例：
-    # 'common/config.py',
-    # 'functions/login_service.py',
-    # 'data/settings.json',
-]
+HASH_RECORD = Path(__file__).parent / '{{源项目}}_hash_record.json'
 # ==================================================
 
 
-def get_source_git_status() -> str:
-    """获取源项目 git 状态（应为空）。"""
+def run_git(args: list[str]) -> str:
+    """在源项目目录执行 git 命令并返回 stdout。
+
+    git 不可用或源项目不是 git 仓库时直接判失败退出，
+    防止"命令报错、stdout 为空"被误当成"状态干净"。
+    """
     result = subprocess.run(
-        ['git', 'status', '--porcelain'],
+        ['git', *args],
         cwd=SOURCE_ROOT,
         capture_output=True,
         text=True,
+        encoding='utf-8',
+        errors='replace',
         check=False,
     )
-    return result.stdout.strip()
+    if result.returncode != 0:
+        print(f'[FAIL] git {" ".join(args)} 执行失败（退出码 {result.returncode}）:')
+        print(result.stderr.strip() or '（无 stderr 输出）')
+        print('常见原因: 源项目不是 git 仓库 / 未安装 git / SOURCE_ROOT 路径配置错误')
+        sys.exit(1)
+    return result.stdout
 
 
-def compute_source_hash() -> str:
-    """计算源项目核心文件哈希（只读，不修改）。"""
+def capture_state() -> dict[str, Any]:
+    """采集源项目当前状态快照：HEAD、工作区状态、全部被跟踪文件的联合哈希。"""
+    head = run_git(['rev-parse', 'HEAD']).strip()
+    status = run_git(['status', '--porcelain']).strip()
+    tracked_files = sorted(run_git(['ls-files']).splitlines())
+
     hasher = hashlib.sha256()
-    for rel_path in CORE_FILES:
+    file_count = 0
+    for rel_path in tracked_files:
         file_path = SOURCE_ROOT / rel_path
-        if file_path.exists():
-            hasher.update(rel_path.encode('utf-8'))
-            hasher.update(file_path.read_bytes())
-    return hasher.hexdigest()
+        if not file_path.is_file():
+            continue  # 子模块/特殊对象跳过
+        hasher.update(rel_path.encode('utf-8'))
+        hasher.update(file_path.read_bytes())
+        file_count += 1
+
+    return {
+        'head': head,
+        'status_clean': not status,
+        'status': status,
+        'manifest_hash': hasher.hexdigest(),
+        'file_count': file_count,
+        'recorded_at': datetime.now().isoformat(timespec='seconds'),
+    }
 
 
 def verify_before() -> bool:
-    """阶段开始前校验源项目 git 状态干净。"""
+    """阶段开始前：确认源项目 git 状态干净，并记录 HEAD + 全量文件哈希快照。"""
     print('[Before] 校验源项目 git 状态...')
-    status = get_source_git_status()
-    if status:
-        print(f'[FAIL] 源项目存在未提交修改:\n{status}')
+    state = capture_state()
+    if not state['status_clean']:
+        print(f"[FAIL] 源项目存在未提交修改:\n{state['status']}")
         print('请先处理源项目的修改后再开始本阶段')
         return False
     print('[OK] 源项目 git 状态干净')
 
-    current_hash = compute_source_hash()
-    if not CORE_FILES:
-        print('[WARN] CORE_FILES 为空，未做哈希比对')
-        return True
-    HASH_RECORD.write_text(current_hash, encoding='utf-8')
-    print(f'[OK] 源项目哈希已记录: {current_hash[:16]}...')
+    HASH_RECORD.write_text(
+        json.dumps(state, ensure_ascii=False, indent=2), encoding='utf-8'
+    )
+    print(f"[OK] 快照已记录: HEAD={state['head'][:12]}..., "
+          f"被跟踪文件 {state['file_count']} 个, 哈希 {state['manifest_hash'][:16]}...")
     return True
 
 
 def verify_after() -> bool:
-    """阶段结束后校验源项目未被修改。"""
-    print('[After] 校验源项目未被修改...')
-    status = get_source_git_status()
-    if status:
-        print(f'[FAIL] 源项目被修改了:\n{status}')
-        print('严重违反源项目只读保护原则！')
-        return False
-    print('[OK] 源项目 git 状态仍干净')
-
+    """阶段结束后：确认源项目工作区、HEAD、全量文件哈希均与快照一致。"""
+    print('[After] 校验源项目未被改动...')
     if not HASH_RECORD.exists():
-        print('[WARN] 无前置哈希记录，跳过哈希对比')
-        return True
+        print('[WARN] 无前置快照记录，仅校验当前工作区状态')
+        state = capture_state()
+        return bool(state['status_clean'])
 
-    before_hash = HASH_RECORD.read_text(encoding='utf-8').strip()
-    current_hash = compute_source_hash()
-    if before_hash != current_hash:
-        print(f'[FAIL] 源项目核心文件哈希变化:')
-        print(f'  Before: {before_hash[:16]}...')
-        print(f'  After:  {current_hash[:16]}...')
-        print('严重违反源项目只读保护原则！')
+    before = json.loads(HASH_RECORD.read_text(encoding='utf-8'))
+    current = capture_state()
+
+    failures: list[str] = []
+    if not current['status_clean']:
+        failures.append(f"工作区出现未提交修改:\n{current['status']}")
+    if current['head'] != before['head']:
+        failures.append(f"HEAD 变化: {before['head'][:12]}... -> {current['head'][:12]}...")
+    if current['manifest_hash'] != before['manifest_hash']:
+        failures.append(
+            f"被跟踪文件哈希变化: {before['manifest_hash'][:16]}... -> "
+            f"{current['manifest_hash'][:16]}...（文件数 {before['file_count']} -> {current['file_count']}）"
+        )
+
+    if failures:
+        print('[FAIL] 源项目被改动，严重违反只读保护原则:')
+        for item in failures:
+            print(f'  - {item}')
         return False
-    print(f'[OK] 源项目哈希一致: {current_hash[:16]}...')
+
+    print(f"[OK] 源项目零改动: HEAD={current['head'][:12]}..., "
+          f"哈希 {current['manifest_hash'][:16]}... 与快照一致")
     return True
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description='源项目只读保护校验')
     group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument('--before', action='store_true', help='阶段开始前校验')
-    group.add_argument('--after', action='store_true', help='阶段结束后校验')
-    group.add_argument('--compare', action='store_true', help='仅计算并打印哈希')
+    group.add_argument('--before', action='store_true', help='阶段开始前校验并记录快照')
+    group.add_argument('--after', action='store_true', help='阶段结束后与快照比对')
+    group.add_argument('--compare', action='store_true', help='仅打印当前状态摘要')
     args = parser.parse_args()
 
     if not SOURCE_ROOT.exists():
@@ -119,10 +148,11 @@ def main() -> int:
         return 0 if verify_before() else 1
     if args.after:
         return 0 if verify_after() else 1
-    if args.compare:
-        current_hash = compute_source_hash()
-        print(f'源项目核心文件哈希: {current_hash}')
-        return 0
+
+    state = capture_state()
+    print(f"HEAD: {state['head']}")
+    print(f"工作区状态: {'干净' if state['status_clean'] else '存在未提交修改'}")
+    print(f"被跟踪文件 {state['file_count']} 个, 联合哈希: {state['manifest_hash']}")
     return 0
 
 

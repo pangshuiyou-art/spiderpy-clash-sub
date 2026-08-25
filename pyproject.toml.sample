@@ -1,0 +1,25 @@
+# 工具链配置模板 —— 复制到项目根目录后改名 pyproject.toml，按实际增删
+# 作用：把 CLAUDE.md §4.1 的「行长 ≤ 120、单引号优先」落到工具层，
+#       避免文档规则与工具默认行为打架（black 默认双引号 + 行长 88 会反向改掉单引号代码）。
+
+[project]
+# name = "{{包名}}"
+# version = "0.1.0"
+# requires-python = ">=3.12"
+# dependencies = []
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+# E/F：pycodestyle+pyflakes；I：导入排序；B：bugbear 常见坑；UP：新版本语法提示
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.black]
+line-length = 120
+# 保留作者的单引号写法，与 CLAUDE.md §4.1「单引号优先」一致（black 默认会统一成双引号）
+skip-string-normalization = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

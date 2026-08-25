@@ -44,10 +44,10 @@ updated: 2026-08-24
 ## 四、写入与提交纪律
 
 1. 有可沉淀记忆时，新建条目文件到对应目录。
-2. 更新 `MEMORY.md` 的"最近条目"与"分类索引"两处。
+2. 更新 `MEMORY.md` 的"最近条目"与"分类索引"两处——**只允许追加自己条目对应的行，禁止改动他人行**。
 3. `git add <条目文件和 MEMORY.md>` + `git commit -m "docs(memory): <one-line>"`。
-4. commit 前先 `git pull --rebase`，防多 agent 冲突。
-5. `MEMORY.md` 索引由**单一维护者**编辑，其余 agent 只增不改索引；条目文件则可各自新增。
+4. commit 前先 `git pull --rebase`，防多 agent 冲突；若索引提交冲突，rebase 后重试追加。
+5. `MEMORY.md` 索引采用"**各自追加、互不改动他人行**"规则；条目重排、清理、去重由**单一维护者**定期执行，其余 agent 不得代做。
 
 ## 五、保密红线
 

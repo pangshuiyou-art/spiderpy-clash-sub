@@ -20,22 +20,22 @@ AI 在重构复刻类项目中最常犯的错是：把源项目文件**直接改
 ## 三、启用步骤（每项目一次）
 
 1. 复制 `scripts/verify/verify_readonly.py.sample` 到新项目 `scripts/verify/verify_readonly.py`（去 `.sample` 后缀）。
-2. 编辑脚本顶部配置：
-   - `SOURCE_ROOT`：{{源项目}}绝对路径
-   - `HASH_RECORD`：哈希记录文件路径（默认 `scripts/verify/{{源项目}}_hash_record.txt`）
-   - `CORE_FILES`：需要哈希比对的核心文件相对路径清单（源项目内）
-3. 在 `CLAUDE.md` 项目专属红线节，把「5.X 源项目只读保护」示例骨架替换为实际内容。
+2. 编辑脚本顶部配置（仅两处）：
+   - `SOURCE_ROOT`：{{源项目}}绝对路径（必须是 git 仓库，否则脚本会直接判失败）
+   - `HASH_RECORD`：快照记录文件路径（默认 `scripts/verify/{{源项目}}_hash_record.json`）
+3. 在 `CLAUDE.md` 项目专属红线节，把「5.1 源项目只读保护」示例骨架替换为实际内容。
 4. 在 `AGENTS.md`「禁止事项」「核心约束」「修改前自检」「每 5 轮自查」等节的 `{{只读目录}}` 占位替换为 {{源项目}} 目录。
 
 ## 四、阶段校验（每次开发阶段开始/结束必跑）
 
 ```bash
-python scripts/verify/verify_readonly.py --before   # 阶段开始前：确认源项目 git 干净 + 记录哈希
-python scripts/verify/verify_readonly.py --after    # 阶段结束后：确认源项目未被改动 + 哈希一致
-python scripts/verify/verify_readonly.py --compare  # 仅计算并打印当前哈希（排查用）
+python scripts/verify/verify_readonly.py --before   # 阶段开始前：确认源项目 git 干净 + 记录 HEAD/全量文件哈希快照
+python scripts/verify/verify_readonly.py --after    # 阶段结束后：工作区、HEAD、文件哈希三项与快照比对
+python scripts/verify/verify_readonly.py --compare  # 仅打印当前状态摘要（排查用）
 ```
 
-- 脚本退出码：0=通过，1=失败。`--before` 会更新哈希记录文件；`--after` 与记录比对。
+- 脚本退出码：0=通过，1=失败。`--before` 覆盖写入快照；`--after` 逐项比对，**"改完又提交"（HEAD 变化）同样会暴露**。
+- 源项目不是 git 仓库 / git 不可用时脚本直接判失败，不会误报"干净"。
 - 失败即终止阶段，查明并恢复后再继续。
 
 ## 五、职责分工小结
@@ -44,6 +44,6 @@ python scripts/verify/verify_readonly.py --compare  # 仅计算并打印当前�
 |------|------|
 | `docs/附录A_源项目只读保护.md` | 本说明（写规则 + 启用步骤） |
 | `scripts/verify/verify_readonly.py.sample` | 校验脚本模板（复制后改名 `verify_readonly.py` 并配置） |
-| `scripts/verify/{{源项目}}_hash_record.txt` | 运行时生成的哈希记录（纳入 .gitignore） |
+| `scripts/verify/{{源项目}}_hash_record.json` | 运行时生成的快照记录（HEAD + 全量被跟踪文件哈希；纳入 .gitignore） |
 
-> 哈希记录文件按 `.gitignore` 中 `{{源项目}}_hash_record.txt` 建议忽略，不入库；如需审计留痕可反选跟踪。
+> 快照记录按 `.gitignore` 中 `scripts/verify/*_hash_record.*` 建议忽略，不入库；如需审计留痕可反选跟踪。
