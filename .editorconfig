@@ -17,3 +17,13 @@ trim_trailing_whitespace = false
 
 [*.{yml,yaml,json,toml}]
 indent_size = 2
+
+# Makefile 语法要求 recipe 必须用 Tab，用 4 空格会直接报错
+[Makefile]
+indent_style = tab
+indent_size = 4
+
+# Shell 脚本：与 Linux 运行环境保持一致，避免 Windows 写入的 CRLF 在 bash/zsh 上报错
+[*.{sh,bash}]
+indent_size = 4
+end_of_line = lf

@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python -c \"import os,sys; root=os.environ.get('CLAUDE_PROJECT_DIR') or os.getcwd(); sys.stdout.write(open(os.path.join(root,'.memory','MEMORY.md'),encoding='utf-8').read())\"",
+            "command": "python -c \"import os,sys; root=os.environ.get('CLAUDE_PROJECT_DIR') or os.getcwd(); p=os.path.join(root,'.memory','MEMORY.md');\ntry:\n  sys.stdout.write(open(p,encoding='utf-8').read())\nexcept FileNotFoundError:\n  sys.stdout.write('[提示] .memory/MEMORY.md 不存在，请按模板启用说明初始化记忆目录。')\"",
             "timeout": 10
           }
         ]

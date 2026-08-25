@@ -23,3 +23,34 @@ skip-string-normalization = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+# -ra: 摘要显示跳过/失败原因；--strict-markers: 未注册的 marker 直接报错
+addopts = "-ra --strict-markers"
+
+# ===== 覆盖率（pytest-cov，与 AGENTS.md「覆盖率≥70%」对应）=====
+# 启用时取消注释，把 {{包名}} 替换为实际的 Python 包目录名
+# [tool.coverage.run]
+# source = ["{{包名}}"]
+# omit = [
+#     "{{包名}}/*_test.py",
+#     "tests/*",
+# ]
+#
+# [tool.coverage.report]
+# show_missing = true
+# skip_covered = false
+# # 覆盖率阈值（与用户规则「≥70%」一致，不达标时 pytest 退出码非 0，强制阻塞提交）
+# fail_under = 70
+# exclude_lines = [
+#     "pragma: no cover",
+#     "if TYPE_CHECKING:",
+#     "raise NotImplementedError",
+# ]
+
+# ===== 可选：静态类型检查（mypy，按项目需要启用）=====
+# [tool.mypy]
+# python_version = "3.12"
+# strict = true
+# warn_return_any = true
+# warn_unused_configs = true
+# disallow_untyped_defs = true
+# ignore_missing_imports = false

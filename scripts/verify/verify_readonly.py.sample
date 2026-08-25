@@ -31,6 +31,15 @@ HASH_RECORD = Path(__file__).parent / '{{源项目}}_hash_record.json'
 # ==================================================
 
 
+def _config_unset() -> bool:
+    """检测脚本顶部的 SOURCE_ROOT / HASH_RECORD 是否仍是 {{...}} 占位符。
+
+    用户复制模板后常忘记改这两处，若未改则给出精准提示，避免把
+    「配置未改」误报成「目录不存在」。
+    """
+    return '{{' in str(SOURCE_ROOT) or '{{' in str(HASH_RECORD)
+
+
 def run_git(args: list[str]) -> str:
     """在源项目目录执行 git 命令并返回 stdout。
 
@@ -138,6 +147,11 @@ def main() -> int:
     group.add_argument('--after', action='store_true', help='阶段结束后与快照比对')
     group.add_argument('--compare', action='store_true', help='仅打印当前状态摘要')
     args = parser.parse_args()
+
+    if _config_unset():
+        print('[FAIL] 脚本顶部 SOURCE_ROOT / HASH_RECORD 仍是 {{...}} 占位符。')
+        print('请先编辑脚本顶部两处配置（复制为 verify_readonly.py 后再修改）。')
+        return 1
 
     if not SOURCE_ROOT.exists():
         print(f'[FAIL] 源项目目录不存在: {SOURCE_ROOT}')

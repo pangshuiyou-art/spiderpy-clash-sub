@@ -1,0 +1,12 @@
+# Python 依赖管理示例 —— 复制后改名 requirements.txt，按实际增删
+# 规则：严格 包名==版本号；提交前执行 pip freeze > requirements.txt 更新
+# ===== 核心依赖（按项目替换，示例：固定 Python 3.12.10、DrissionPage 4.1.0.3）=====
+# drissionpage==4.1.0.3
+# requests==2.32.3
+# pydantic==2.9.2
+
+# ===== 开发/测试依赖（格式化/检查/测试/覆盖率）=====
+ruff==0.6.8
+black==24.8.0
+pytest==8.3.3
+pytest-cov==5.0.0
