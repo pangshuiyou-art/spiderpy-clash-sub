@@ -54,6 +54,7 @@ temp/
 .omc/
 .workbuddy/
 .chrome_dbg/
+.zcode/
 .claude/settings.local.json
 
 ## 只读保护校验脚本生成的快照记录（运行时产物）

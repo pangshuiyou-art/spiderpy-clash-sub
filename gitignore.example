@@ -86,6 +86,7 @@ frontend/yarn-error.log*
 .omc/
 .workbuddy/
 .chrome_dbg/
+.zcode/
 
 ## 源项目只读保护（按实际填；源项目目录不纳入本项目 git）
 {{源项目名}}/

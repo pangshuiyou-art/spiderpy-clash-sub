@@ -329,6 +329,7 @@ logger.info(f"登录成功, cookie={mask_sensitive(cookie)}")
 
 - **编码标准**：[CLAUDE.md - 编码标准](./CLAUDE.md)
 - **记忆协议全文**：[.memory/README.md](./.memory/README.md)
+- **模板启用 / 升级**：[docs/启用与升级提示词.md](./docs/启用与升级提示词.md)（AGENT 自助手册：进新目录按决策树自动判定场景；发现模板有新版本时按其场景四执行升级）
 - **(可选附录) 源项目只读保护**：[docs/附录A_源项目只读保护.md](./docs/附录A_源项目只读保护.md)
 
 ---
