@@ -138,7 +138,6 @@ def build_config(proxy_list: list[str]) -> dict:
     """依据去重后的代理列表构建完整 Clash 配置。"""
     names: list[str] = []
     proxies: list[dict] = []
-    seen: dict[str, int] = {}
     country_map: dict[str, str] = {}
     with httpx.Client() as client:
         # 先收集所有公网 host，再一次性批量查询归属
@@ -146,15 +145,15 @@ def build_config(proxy_list: list[str]) -> dict:
         if public_hosts:
             country_map = resolve_countries_batch(public_hosts, client)
 
-        for address in dict.fromkeys(proxy_list):
+        # 全局序号（跨所有节点递增），保证同国家多 IP、同 IP 多端口下名称唯一
+        for index, address in enumerate(dict.fromkeys(proxy_list), start=1):
             if ':' not in address:
                 continue
             host, port_str = address.rsplit(':', 1)
             if not port_str.isdigit():
                 continue
             port = int(port_str)
-            seen[host] = seen.get(host, 0) + 1
-            name = node_name(host, port, seen[host], country_map.get(host, ''))
+            name = node_name(host, port, index, country_map.get(host, ''))
             names.append(name)
             proxies.append(
                 {
