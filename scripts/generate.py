@@ -140,8 +140,15 @@ def build_config(proxy_list: list[str]) -> dict:
     proxies: list[dict] = []
     country_map: dict[str, str] = {}
     with httpx.Client() as client:
-        # 先收集所有公网 host，再一次性批量查询归属
-        public_hosts = [host for host in dict.fromkeys(proxy_list) if _is_public_host(host)]
+        # 先拆分 ip:port 取纯 host，再判断公网并收集（避免解析失败导致全部被跳过）
+        unique_hosts: list[str] = []
+        for address in dict.fromkeys(proxy_list):
+            if ':' not in address:
+                continue
+            pure_host, _ = address.rsplit(':', 1)
+            if pure_host not in unique_hosts:
+                unique_hosts.append(pure_host)
+        public_hosts = [host for host in unique_hosts if _is_public_host(host)]
         if public_hosts:
             country_map = resolve_countries_batch(public_hosts, client)
 
