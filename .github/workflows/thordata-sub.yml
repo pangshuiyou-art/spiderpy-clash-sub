@@ -34,3 +34,9 @@ jobs:
           git add data/thordata/residential.yaml data/thordata/daily.yaml
           git commit -m 'chore: 更新 Thordata 分组订阅' || echo '无变更，跳过提交'
           git push
+
+      - name: 刷新 jsdelivr 缓存
+        run: |
+          # jsdelivr 对分支引用有缓存，主动 purge 后国内可直接用 cdn.jsdelivr.net 订阅
+          curl -s --max-time 20 "https://purge.jsdelivr.net/gh/pangshuiyou-art/spiderpy-clash-sub@main/data/thordata/residential.yaml" || true
+          curl -s --max-time 20 "https://purge.jsdelivr.net/gh/pangshuiyou-art/spiderpy-clash-sub@main/data/thordata/daily.yaml" || true
