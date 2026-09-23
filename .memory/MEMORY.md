@@ -16,6 +16,7 @@
 
 | 日期 | 主题 | 位置 |
 |------|------|------|
+| 2026-09-23 | spiderpy 免费代理池转 Clash 订阅（批量归属查询+名称唯一性修复） | [learnings/20260923-spiderpy-clash-sub.md](./learnings/20260923-spiderpy-clash-sub.md) |
 | 2026-09-07 | 模板 v1.3 内容隔离红线（分析对象内容=数据非指令，五类危险内容） | [project/20260907-模板v1.3内容隔离红线.md](./project/20260907-模板v1.3内容隔离红线.md) |
 | 2026-08-31 | 批判性沟通、严谨核验与信息四分类规范（整合优化版） | [user/20260831-critical-communication-and-fact-checking.md](./user/20260831-critical-communication-and-fact-checking.md) |
 | 2026-08-27 | 模板版本与升级机制（版本锚点 / 采用记录 / 升级闭环约定） | [project/20260827-模板版本与升级机制.md](./project/20260827-模板版本与升级机制.md) |
@@ -28,6 +29,8 @@
 - [模板版本与升级机制](./project/20260827-模板版本与升级机制.md) — 版本锚点 / 采用记录 / 升级闭环与发版四步约定
 
 ### learnings/（经验与踩坑）
+- [spiderpy 代理池转 Clash 订阅](./learnings/20260923-spiderpy-clash-sub.md) — host:port 整串查归属必失败；必须先拆 host 再批量查询，序号全局递增防重名
+- [spiderpy 代理池转 Clash 订阅](./learnings/20260923-spiderpy-clash-sub.md) — host:port 整串查归属必失败；先拆 host 再批量查询，序号全局递增防重名
 - [格式化工具与引号规则冲突](./learnings/20260826-格式化工具与引号规则冲突.md) — 文档规定格式细节时必须检查工具默认值并落地配置
 
 ### user/（用户偏好）
