@@ -19,8 +19,20 @@
     - name: 安装 Python 依赖
       script: |
         set -e
-        pip install --no-cache-dir -r scripts/v2ray_merger/requirements.txt \
-          -i https://pypi.tuna.tsinghua.edu.cn/simple
+        # 多源兜底：清华源曾对构建机返回 403，故改用腾讯云内网源优先
+        for PIP_INDEX in \
+          "https://mirrors.cloud.tencent.com/pypi/simple/" \
+          "https://mirrors.aliyun.com/pypi/simple/" \
+          "https://pypi.org/simple/"
+        do
+          echo "尝试 pip 源: ${PIP_INDEX}"
+          if pip install --no-cache-dir -r scripts/v2ray_merger/requirements.txt -i "${PIP_INDEX}"; then
+            echo "依赖安装成功（源: ${PIP_INDEX}）"
+            break
+          fi
+          echo "该源不可用，切换下一个"
+        done
+        python -c "import httpx, yaml; print('依赖导入校验通过')"
     - name: 下载 mihomo 内核
       script: |
         set -e
