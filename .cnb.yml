@@ -1,0 +1,70 @@
+# =============================================================================
+# CNB（腾讯云原生构建）流水线：国内机房跑 v2ray 订阅合并 + mihomo 真实测活
+#
+# 触发方式：
+#   1. push 到 main 分支自动触发（国内出口测活，视角 = 国内 → 节点）
+#   2. 产物默认落在容器内 data/clash/；如需回写仓库，配置 CNB_TOKEN
+#      （项目环境变量），脚本会自动 git push（https://cnb:$CNB_TOKEN@...）
+#
+# 依赖已锁定见 scripts/v2ray_merger/requirements.txt（httpx / pyyaml）
+# =============================================================================
+
+main:
+  push:
+    - name: merge-v2ray-sub
+      runner:
+        tags: coding:public   # 腾讯云公共构建节点，国内机房
+      docker:
+        image: python:3.12-slim
+      stages:
+        - name: 准备
+          jobs:
+            - name: 安装依赖
+              script: |
+                set -e
+                apt-get update && apt-get install -y --no-install-recommends curl gzip file git
+                pip install --no-cache-dir -r scripts/v2ray_merger/requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+        - name: 测活合并
+          jobs:
+            - name: 下载 mihomo 内核
+              script: |
+                set -e
+                # 固定版本号（已验证可用），避免未认证 API 动态取版本被限流导致 URL 404
+                MIHOMO_VERSION="v1.19.10"
+                echo "mihomo 版本: ${MIHOMO_VERSION}"
+                curl -sL -f -o mihomo.gz \
+                  "https://github.com/MetaCubeX/mihomo/releases/download/${MIHOMO_VERSION}/mihomo-linux-amd64-${MIHOMO_VERSION}.gz" \
+                  || { echo "下载失败"; exit 1; }
+                file mihomo.gz | grep -q "gzip" || { echo "下载内容非 gzip，中止"; exit 1; }
+                gunzip -f mihomo.gz || { echo "解压失败"; exit 1; }
+                chmod +x mihomo || exit 1
+                ./mihomo -v || exit 1
+            - name: 合并订阅并真实测活
+              script: |
+                set -e
+                python scripts/v2ray_merger/merge_v2ray_subs.py --mihomo ./mihomo
+                # 统计与延迟抽样（便于在构建日志直接确认测活生效）
+                python - <<'PY'
+                import re
+                from pathlib import Path
+                text = Path('data/clash/clash_merged.yaml').read_text(encoding='utf-8')
+                delays = [int(m) for m in re.findall(r'delay=(\d+)ms', text)]
+                print(f"存活节点数: {len(delays)}")
+                if delays:
+                    delays.sort()
+                    print(f"延迟 最小/中位/最大: {delays[0]}/{delays[len(delays)//2]}/{delays[-1]} ms")
+                PY
+            - name: 回写产物到仓库（可选，需 CNB_TOKEN）
+              script: |
+                set -e
+                if [ -z "$CNB_TOKEN" ]; then
+                  echo "未设置 CNB_TOKEN，跳过产物回写（产物保留在本地容器）"
+                  exit 0
+                fi
+                git config user.name 'cnb-bot'
+                git config user.email 'cnb-bot@cnb.cool'
+                git remote remove cnb 2>/dev/null || true
+                git remote add cnb "https://cnb:${CNB_TOKEN}@cnb.cool/clash_v2rayN/clash_v2rayN.git"
+                git add data/clash/clash_merged.yaml data/clash/v2ray_merged.txt
+                git commit -m 'chore: 更新合并代理订阅（国内测活）' || echo '无变更，跳过提交'
+                git push cnb main
