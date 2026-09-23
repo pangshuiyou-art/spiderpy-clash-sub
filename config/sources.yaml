@@ -1,0 +1,7 @@
+# 订阅源配置：新增一个源只需在此追加一项 (name/url)，无需改动代码
+# 自动识别格式：base64整文件 / base64每行 / 明文链接 / Clash YAML / v2rayN JSON
+sources:
+  - name: daily_free_vpn
+    url: https://raw.githubusercontent.com/cbusifabcap/daily_free_vpn/refs/heads/main/sub/V2Ray.yml
+  - name: free_v2ray_configs
+    url: https://raw.githubusercontent.com/0xRadikal/Free-v2ray-Configs/main/verified/configs_base64.txt
