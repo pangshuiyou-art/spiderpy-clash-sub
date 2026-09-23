@@ -196,7 +196,7 @@ def parse_ss(line: str) -> Optional[dict]:
         'cipher': method,
         'password': password,
     }
-    if not _is_valid_ss_key(method, password):
+    if not _is_valid_ss_config(method, password):
         return None
     params = dict(urllib.parse.parse_qsl(query_text)) if '@' in body else {}
     if params.get('plugin'):
@@ -204,15 +204,29 @@ def parse_ss(line: str) -> Optional[dict]:
     return result
 
 
+# 2022 系列 cipher 及其要求的密钥字节长度
 _SS_2022_CIPHERS = {
     '2022-blake3-aes-128-gcm': 16,
     '2022-blake3-aes-256-gcm': 32,
     '2022-blake3-chacha20-poly1305': 32,
 }
 
+# mihomo 支持的 ss 加密方法；源站常出现乱码/错位的 cipher，一旦写进配置会让内核
+# 启动即报 "unknown method" 整体退出（测活随之失效），故必须提前剔除
+_SS_VALID_CIPHERS = frozenset({
+    'aes-128-gcm', 'aes-192-gcm', 'aes-256-gcm',
+    'aes-128-cfb', 'aes-192-cfb', 'aes-256-cfb',
+    'aes-128-ctr', 'aes-192-ctr', 'aes-256-ctr',
+    'rc4-md5', 'chacha20', 'chacha20-ietf', 'xchacha20',
+    'chacha20-ietf-poly1305', 'xchacha20-ietf-poly1305',
+    'none',
+}) | frozenset(_SS_2022_CIPHERS)
 
-def _is_valid_ss_key(cipher: str, password: str) -> bool:
-    """校验 ss 密码与 cipher 匹配：2022 系列要求密码为指定长度的 base64 密钥"""
+
+def _is_valid_ss_config(cipher: str, password: str) -> bool:
+    """校验 ss 节点合法性：cipher 须在支持列表；2022 系列密码须为定长 base64 密钥"""
+    if cipher not in _SS_VALID_CIPHERS:
+        return False
     if cipher not in _SS_2022_CIPHERS:
         return True  # 传统 cipher 允许任意密码
     try:

@@ -10,12 +10,16 @@
 - 访问 127.0.0.1 controller 必须直连（禁环境代理），否则经代理访问本地会超时/404；
 - 启动前端口预检：被残留 mihomo 占用则强制回收；被非 mihomo 占用则直接报错；
 - 启动后归属校验：controller 应答者必须包含本次新进程 PID，防旧实例顶包"假活"；
+- 启动前用 `mihomo -t` 预校验配置，逐个剔除内核不接受的节点（源站曾出现乱码 cipher），
+  避免"一颗坏节点让内核启动即退出、整轮测活被跳过"；
+- 内核运行输出落盘（mihomo_runtime.log），启动失败时把日志尾部带入异常信息便于定位；
 - 停止按"句柄 → pid 文件 → 端口监听反查"三层清理，杜绝僵尸进程残留。
 
 依赖：mihomo 二进制（由调用方下载/传入路径），本模块不负责下载。
 """
 
 import platform
+import re
 import shutil
 import socket
 import subprocess
@@ -34,6 +38,8 @@ _READY_MAX_WAIT_SEC = 90
 _TEST_CONCURRENCY = 8
 _PORT_PROBE_BASE = 20000
 _PORT_PROBE_SPAN = 2048
+_CONFIG_TEST_TIMEOUT_SEC = 120
+_MAX_CONFIG_REPAIRS = 10
 
 _IS_WINDOWS = platform.system().lower().startswith('win')
 
@@ -189,6 +195,64 @@ def _wait_controller_ready(client: httpx.Client, controller_base: str) -> bool:
     return False
 
 
+def _run_config_test(mihomo_bin: str, working_dir: Path) -> Optional[str]:
+    """用 mihomo -t 预校验配置：通过返回 None，失败返回内核错误输出"""
+    try:
+        result = subprocess.run(
+            [mihomo_bin, '-t', '-d', str(working_dir)],
+            capture_output=True,
+            text=True,
+            timeout=_CONFIG_TEST_TIMEOUT_SEC,
+        )
+    except (OSError, subprocess.SubprocessError) as exc:
+        return f'配置校验执行失败: {exc}'
+    if result.returncode == 0:
+        return None
+    return (result.stdout or '') + (result.stderr or '')
+
+
+def _read_log_tail(log_path: Path, max_chars: int = 400) -> str:
+    """读取内核运行日志尾部，用于诊断启动失败原因"""
+    try:
+        text = log_path.read_text(encoding='utf-8', errors='replace')
+    except OSError:
+        return '(无法读取内核日志)'
+    lines = [line.strip() for line in text.splitlines() if line.strip()]
+    return ' | '.join(lines[-5:])[:max_chars] or '(内核无输出)'
+
+
+def _drop_invalid_node(candidates: list[dict], error_output: str) -> Optional[dict]:
+    """按内核报错里的 server:port 剔除不被接受的节点，返回被剔除的节点"""
+    match = re.search(r'proxy \d+: \S+ ([\w.\-]+:\d+)', error_output)
+    if match is None:
+        return None
+    target = match.group(1)
+    for index, node in enumerate(candidates):
+        if f"{node.get('server')}:{node.get('port')}" == target:
+            return candidates.pop(index)
+    return None
+
+
+def _prepare_valid_config(mihomo_bin: str, working_dir: Path,
+                          candidates: list[dict], controller_addr: str) -> Optional[str]:
+    """循环预校验配置并剔除内核不接受的节点，返回最终错误信息（通过为 None）
+
+    源站节点质量不可控（曾出现乱码 cipher 导致内核启动即退出），故在内核启动前
+    先做一次 -t 校验，逐个剔除问题节点，避免"一颗坏节点废掉整轮测活"。
+    """
+    for _ in range(_MAX_CONFIG_REPAIRS + 1):
+        _build_temp_config(working_dir, candidates, controller_addr)
+        error_output = _run_config_test(mihomo_bin, working_dir)
+        if error_output is None:
+            return None
+        dropped = _drop_invalid_node(candidates, error_output)
+        if dropped is None:
+            return error_output.strip()[-400:]
+        print(f"[!] 剔除内核不接受的节点: {dropped.get('name')} "
+              f"({dropped.get('server')}:{dropped.get('port')})")
+    return f'连续剔除 {_MAX_CONFIG_REPAIRS} 个节点后配置仍不合法'
+
+
 def _test_one(client: httpx.Client, controller_base: str, name: str) -> Optional[int]:
     """触发单个节点延迟测试，返回延迟毫秒；失败返回 None"""
     encoded = urllib.parse.quote(name, safe='')
@@ -209,8 +273,10 @@ def _test_one(client: httpx.Client, controller_base: str, name: str) -> Optional
 def test_nodes(nodes: list[dict], mihomo_bin: str, working_dir: Path) -> dict[str, int]:
     """对节点列表做真实测活，返回 {节点名: 延迟ms}（仅含通过的节点）
 
-    流程：随机端口 → 端口预检 → 写配置 → 启动内核 → 等就绪 + 归属校验
-    → 并发测活 → 三层清理。
+    流程：随机端口 → 端口预检 → 配置预校验（剔除内核不接受的节点）
+    → 启动内核 → 等就绪 + 归属校验 → 并发测活 → 三层清理。
+
+    被剔除的节点没有延迟值，调用方按"无 delay"自然过滤，不进入产物。
     """
     controller_port = _pick_free_port()
     controller_addr = f'127.0.0.1:{controller_port}'
@@ -220,24 +286,34 @@ def test_nodes(nodes: list[dict], mihomo_bin: str, working_dir: Path) -> dict[st
     if port_error:
         raise RuntimeError(port_error)
 
-    _build_temp_config(working_dir, nodes, controller_addr)
-
-    process = subprocess.Popen(
-        [mihomo_bin, '-d', str(working_dir)],
-        stdout=subprocess.DEVNULL,
-        stderr=subprocess.DEVNULL,
-    )
+    log_path = working_dir / 'mihomo_runtime.log'
+    log_handle = open(log_path, 'w', encoding='utf-8', errors='replace')
+    process: Optional[subprocess.Popen] = None
     try:
+        candidates = list(nodes)
+        config_error = _prepare_valid_config(mihomo_bin, working_dir, candidates, controller_addr)
+        if config_error is not None:
+            raise RuntimeError(f'mihomo 配置校验未通过: {config_error}')
+
+        process = subprocess.Popen(
+            [mihomo_bin, '-d', str(working_dir)],
+            stdout=log_handle,
+            stderr=subprocess.STDOUT,
+        )
         with _direct_client(controller_base) as client:
             if not _wait_controller_ready(client, controller_base):
-                raise RuntimeError('mihomo controller 未在限定时间内就绪')
+                log_handle.flush()
+                raise RuntimeError(
+                    f'mihomo controller 未在限定时间内就绪'
+                    f'（内核输出: {_read_log_tail(log_path)}）'
+                )
             if not _listener_includes(controller_port, process.pid):
                 raise RuntimeError('controller 端口被旧 mihomo 实例顶包应答（假活）')
 
             alive: dict[str, int] = {}
             with ThreadPoolExecutor(max_workers=_TEST_CONCURRENCY) as executor:
                 futures = {executor.submit(_test_one, client, controller_base, node['name']): node['name']
-                           for node in nodes}
+                           for node in candidates}
                 for future in as_completed(futures):
                     name = futures[future]
                     delay = future.result()
@@ -246,17 +322,19 @@ def test_nodes(nodes: list[dict], mihomo_bin: str, working_dir: Path) -> dict[st
             return alive
     finally:
         # 三层清理：进程句柄 → 端口监听反查 → 配置文件目录
-        if process.poll() is None:
-            try:
-                process.terminate()
-                process.wait(timeout=5)
-            except Exception:
+        log_handle.close()
+        if process is not None:
+            if process.poll() is None:
                 try:
-                    process.kill()
-                    process.wait(timeout=2)
+                    process.terminate()
+                    process.wait(timeout=5)
                 except Exception:
-                    pass
-        _reclaim_port_pid(process.pid, controller_port)
+                    try:
+                        process.kill()
+                        process.wait(timeout=2)
+                    except Exception:
+                        pass
+            _reclaim_port_pid(process.pid, controller_port)
         shutil.rmtree(working_dir, ignore_errors=True)
 
 
