@@ -25,14 +25,17 @@ jobs:
 
       - name: 下载 mihomo 内核（真实测活用）
         run: |
-          # 取最新 release 的 linux-amd64 版本号（避免版本写死失效）
-          LATEST=$(curl -s https://api.github.com/repos/MetaCubeX/mihomo/releases/latest \
-            | grep -oP '"tag_name":\s*"\K[^"]+')
-          echo "mihomo 版本: $LATEST"
-          curl -sL -o mihomo.gz "https://github.com/MetaCubeX/mihomo/releases/download/${LATEST}/mihomo-linux-amd64-${LATEST}.gz"
-          gunzip -f mihomo.gz
-          chmod +x mihomo
-          ./mihomo -v
+          # 固定版本号（已验证可用），避免未认证 API 动态取版本被限流导致 URL 404
+          MIHOMO_VERSION="v1.19.10"
+          echo "mihomo 版本: $MIHOMO_VERSION"
+          curl -sL -f -o mihomo.gz \
+            "https://github.com/MetaCubeX/mihomo/releases/download/${MIHOMO_VERSION}/mihomo-linux-amd64-${MIHOMO_VERSION}.gz" \
+            || { echo "下载失败"; exit 1; }
+          # 校验 gzip 头（1f 8b），404 页面 / 截断文件都会在此暴露
+          file mihomo.gz | grep -q "gzip compressed" || { echo "下载内容非 gzip，中止"; exit 1; }
+          gunzip -f mihomo.gz || { echo "解压失败"; exit 1; }
+          chmod +x mihomo || exit 1
+          ./mihomo -v || exit 1
 
       - name: 合并订阅并真实测活
         run: python scripts/v2ray_merger/merge_v2ray_subs.py --mihomo ./mihomo

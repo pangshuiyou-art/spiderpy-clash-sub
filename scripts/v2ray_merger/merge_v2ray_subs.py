@@ -280,8 +280,8 @@ def main(argv: Optional[list[str]] = None) -> int:
     print(f'[OK] v2rayN: {out_v2ray}')
 
     if not all_nodes:
-        print('[!] 最终无存活节点，请检查上游订阅源', file=sys.stderr)
-        return 1
+        print('[!] 全部节点测活失败，产物为空。免费源质量波动属正常，可稍后重试或换源。',
+              file=sys.stderr)
     return 0
 
 
