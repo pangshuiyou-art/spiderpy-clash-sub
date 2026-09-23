@@ -1,0 +1,43 @@
+# Thordata 免费代理列表 → 分组 Clash 订阅 配置
+#
+# 修改本文件即可调整产物，无需改代码：
+#   require 下的每个字段都是「允许值列表」，全部满足才命中（AND 关系）
+#   min_streak 为「连续存活天数下限」，数字越小命中越多
+#   tag 会写进节点名前缀（如 [R]US-http-1.2.3.4:80），供下游按正则筛选用途
+
+# 源数据（含国家、延迟档位、匿名度、连续存活天数、IP 类型等元数据）
+source_url: https://raw.githubusercontent.com/Thordata/awesome-free-proxy-list/main/proxies/all.csv
+
+groups:
+  # 住宅组：给对注册 IP 有要求的场景用（Clash 手动切换 / any-auto-register 注册任务）
+  residential:
+    title: 住宅节点
+    output: data/thordata/residential.yaml
+    group_name: 🚀 住宅
+    tag: R
+    require:
+      ip_type:
+        - residential
+      type:
+        - http
+        - https
+        - socks5
+
+  # 日常组：高匿 + 源侧延迟达标（放宽档，不含连续存活天数要求）
+  # 想更稳可把 min_streak 调到 2（约 27 个）或 3（约 7 个）
+  daily:
+    title: 日常节点
+    output: data/thordata/daily.yaml
+    group_name: 🚀 日常
+    tag: D
+    require:
+      type:
+        - http
+        - https
+        - socks5
+      tier:
+        - fast
+        - medium
+      anonymity:
+        - elite
+      min_streak: 1
