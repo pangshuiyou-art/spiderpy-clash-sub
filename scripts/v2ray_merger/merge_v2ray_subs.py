@@ -119,6 +119,32 @@ def make_unique_names(nodes: list[dict]) -> list[dict]:
     return nodes
 
 
+def _to_clash_proxy(node: dict) -> dict:
+    """把内部节点模型转换为 mihomo/Clash 可解析的 proxy 表述
+
+    关键点（来自 mihomo 实测报错）：
+    - vmess 必须输出 alterId（0 也要输出），键名是 alterId 而非 alter_id；
+    - 剔除内部字段（country/country_code/raw_link/delay/name 原样保留），
+      防止把解析中间态直接喂给 mihomo 配置导致 Parse config error。
+    """
+    proxy_item = {
+        'name': node['name'],
+        'type': node.get('type', ''),
+        'server': node['server'],
+        'port': node['port'],
+    }
+    # vmess：alterId 必须存在（0 也要输出），键名用 mihomo 期望的 alterId
+    if proxy_item['type'] == 'vmess':
+        proxy_item['alterId'] = int(node.get('alter_id') or 0)
+        proxy_item['cipher'] = node.get('cipher') or 'auto'
+    for key in ('uuid', 'cipher', 'password', 'network', 'tls', 'servername',
+                'sni', 'flow', 'skip-cert-verify', 'ws-opts', 'grpc-opts',
+                'h2-opts', 'reality-opts', 'plugin'):
+        if node.get(key):
+            proxy_item[key] = node[key]
+    return proxy_item
+
+
 def build_clash_yaml(nodes: list[dict]) -> str:
     """生成 Clash 配置文本（proxies + 汇总策略组 + 规则）"""
     lines = [
@@ -135,23 +161,10 @@ def build_clash_yaml(nodes: list[dict]) -> str:
         'proxies:',
     ]
     for node in nodes:
-        proxy_item = {
-            'name': node['name'],
-            'type': node.get('type', ''),
-            'server': node['server'],
-            'port': node['port'],
-        }
-        # vmess：alterId 必须存在（0 也要输出），键名用 mihomo 期望的 alterId
-        if proxy_item['type'] == 'vmess':
-            proxy_item['alterId'] = int(node.get('alter_id') or 0)
-            proxy_item['cipher'] = node.get('cipher') or 'auto'
-        for key in ('uuid', 'cipher', 'password', 'network', 'tls', 'servername',
-                    'sni', 'flow', 'skip-cert-verify', 'ws-opts', 'grpc-opts',
-                    'h2-opts', 'reality-opts', 'plugin'):
-            if node.get(key):
-                proxy_item[key] = node[key]
+        proxy_item = _to_clash_proxy(node)
         delay = node.get('delay')
-        comment = f'  # {node["country"]} {node["server"]}:{node["port"]}'
+        country = node.get('country', '')
+        comment = f'  # {country} {node["server"]}:{node["port"]}'
         if delay is not None:
             comment += f' | delay={delay}ms'
         lines.append('  - ' + yaml.safe_dump(proxy_item, allow_unicode=True,
@@ -233,6 +246,10 @@ def main(argv: Optional[list[str]] = None) -> int:
         except httpx.HTTPError as exc:
             print(f'[!] 归属地查询整体失败，降级为未知: {exc}', file=sys.stderr)
 
+    # 测活前必须：先唯一命名（避免 mihomo duplicate name fatal），
+    # 再转成 Clash proxy 格式（vmess 需 alterId）——否则 mihomo 解析配置失败。
+    all_nodes = make_unique_names(all_nodes)
+
     # 测活（可选）
     if args.mihomo:
         if not args.temp_dir:
@@ -240,16 +257,18 @@ def main(argv: Optional[list[str]] = None) -> int:
             temp_dir_base = Path(tempfile.mkdtemp(prefix='mihomo_'))
         else:
             temp_dir_base = Path(args.temp_dir)
+        proxy_nodes = [_to_clash_proxy(node) for node in all_nodes]
         print(f'[*] 开始 mihomo 真实测活 (n={len(all_nodes)}) ...')
         try:
             import tester
-            kept = tester.filter_alive(all_nodes, args.mihomo, temp_dir_base, args.max_delay)
+            kept = tester.filter_alive(proxy_nodes, args.mihomo, temp_dir_base, args.max_delay)
             print(f'[*] 测活完成: {len(kept)}/{len(all_nodes)} 存活（最大延迟 {args.max_delay}ms）')
-            all_nodes = kept
+            delay_map = {node['name']: node.get('delay') for node in kept}
+            all_nodes = [node for node in all_nodes if node['name'] in delay_map]
+            for node in all_nodes:
+                node['delay'] = delay_map[node['name']]
         except Exception as exc:
             print(f'[!] mihomo 测活失败，保留未测活节点: {exc}', file=sys.stderr)
-
-    all_nodes = make_unique_names(all_nodes)
 
     out_clash = Path(args.out_clash)
     out_v2ray = Path(args.out_v2ray)
