@@ -141,9 +141,13 @@ def build_clash_yaml(nodes: list[dict]) -> str:
             'server': node['server'],
             'port': node['port'],
         }
-        for key in ('uuid', 'alter_id', 'cipher', 'password', 'network', 'tls',
-                    'servername', 'sni', 'flow', 'skip-cert-verify', 'ws-opts',
-                    'grpc-opts', 'h2-opts', 'reality-opts', 'plugin'):
+        # vmess：alterId 必须存在（0 也要输出），键名用 mihomo 期望的 alterId
+        if proxy_item['type'] == 'vmess':
+            proxy_item['alterId'] = int(node.get('alter_id') or 0)
+            proxy_item['cipher'] = node.get('cipher') or 'auto'
+        for key in ('uuid', 'cipher', 'password', 'network', 'tls', 'servername',
+                    'sni', 'flow', 'skip-cert-verify', 'ws-opts', 'grpc-opts',
+                    'h2-opts', 'reality-opts', 'plugin'):
             if node.get(key):
                 proxy_item[key] = node[key]
         delay = node.get('delay')

@@ -58,8 +58,8 @@ def parse_vmess(line: str) -> Optional[dict]:
     if network == 'ws':
         result['network'] = 'ws'
         result['ws-opts'] = {
-            'path': str(info.get('path', '/')),
-            'headers': {'Host': str(info.get('host', ''))},
+            'path': _clean_ws_path(str(info.get('path', '/'))),
+            'headers': _ws_headers(str(info.get('host', ''))),
         }
     elif network == 'grpc':
         result['network'] = 'grpc'
@@ -120,16 +120,29 @@ def parse_vless(line: str) -> Optional[dict]:
     if network == 'ws':
         result['network'] = 'ws'
         result['ws-opts'] = {
-            'path': params.get('path', '/'),
-            'headers': {'Host': params.get('host', '')},
+            'path': _clean_ws_path(params.get('path', '/')),
+            'headers': _ws_headers(params.get('host', '')),
         }
     elif network == 'grpc':
         result['network'] = 'grpc'
         result['grpc-opts'] = {'grpc-service-name': params.get('serviceName', '')}
     elif network in ('http', 'h2'):
         result['network'] = 'h2'
-        result['h2-opts'] = {'path': params.get('path', '/'), 'host': [params.get('host', '')]}
+        result['h2-opts'] = {'path': _clean_ws_path(params.get('path', '/')),
+                             'host': [params.get('host', '')]}
     return result
+
+
+def _clean_ws_path(raw_path: str) -> str:
+    """净化 ws path：源链接常把 query 参数误拼进 path（如 /xx?ed=2560），截取问号前部分"""
+    return raw_path.split('?', 1)[0] or '/'
+
+
+def _ws_headers(host: str) -> dict[str, str]:
+    """构造 ws headers；空 Host 省略，避免 Clash 校验失败"""
+    if not host:
+        return {}
+    return {'Host': host}
 
 
 def _decode_userinfo(userinfo: str) -> tuple[str, str]:
@@ -183,10 +196,30 @@ def parse_ss(line: str) -> Optional[dict]:
         'cipher': method,
         'password': password,
     }
+    if not _is_valid_ss_key(method, password):
+        return None
     params = dict(urllib.parse.parse_qsl(query_text)) if '@' in body else {}
     if params.get('plugin'):
         result['plugin'] = params['plugin']
     return result
+
+
+_SS_2022_CIPHERS = {
+    '2022-blake3-aes-128-gcm': 16,
+    '2022-blake3-aes-256-gcm': 32,
+    '2022-blake3-chacha20-poly1305': 32,
+}
+
+
+def _is_valid_ss_key(cipher: str, password: str) -> bool:
+    """校验 ss 密码与 cipher 匹配：2022 系列要求密码为指定长度的 base64 密钥"""
+    if cipher not in _SS_2022_CIPHERS:
+        return True  # 传统 cipher 允许任意密码
+    try:
+        raw = base64.b64decode(password, validate=True)
+    except (ValueError, TypeError):
+        return False
+    return len(raw) == _SS_2022_CIPHERS[cipher]
 
 
 def parse_trojan(line: str) -> Optional[dict]:
