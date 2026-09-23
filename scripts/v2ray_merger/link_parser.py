@@ -12,6 +12,7 @@ Clash 节点模型 dict（可被 tester 与最终输出直接使用）。
 
 import base64
 import json
+import re
 import urllib.parse
 from typing import Optional
 
@@ -78,6 +79,20 @@ def parse_vmess(line: str) -> Optional[dict]:
     return result
 
 
+# REALITY short-id 规则（实测 mihomo）：空，或偶数长度的十六进制（≤16 位）
+_REALITY_SHORT_ID_PATTERN = re.compile(r'^[0-9a-fA-F]{0,16}$')
+
+
+def _normalize_reality_short_id(raw: str) -> Optional[str]:
+    """校验 REALITY short-id，非法返回 None（该节点将被丢弃）"""
+    candidate = raw.strip()
+    if len(candidate) % 2 != 0:
+        return None
+    if _REALITY_SHORT_ID_PATTERN.fullmatch(candidate) is None:
+        return None
+    return candidate
+
+
 def parse_vless(line: str) -> Optional[dict]:
     """vless://uuid@host:port?query[#name]（含 reality/ws 等）"""
     body, fragment = _split_fragment(line[len('vless://'):])
@@ -105,12 +120,15 @@ def parse_vless(line: str) -> Optional[dict]:
     }
     security = params.get('security', 'none')
     if security == 'reality':
+        short_id = _normalize_reality_short_id(params.get('sid', ''))
+        if short_id is None:
+            return None
         result['tls'] = True
         result['servername'] = params.get('sni') or host
         result['flow'] = params.get('flow', '')
         result['reality-opts'] = {
             'public-key': params.get('pbk', ''),
-            'short-id': params.get('sid', ''),
+            'short-id': short_id,
         }
         result['client-fingerprint'] = params.get('fp', 'chrome')
     elif security == 'tls':

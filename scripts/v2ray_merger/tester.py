@@ -31,6 +31,8 @@ from typing import Optional
 
 import httpx
 
+import yaml_dumper
+
 TEST_URL = 'https://www.gstatic.com/generate_204'
 DELAY_TIMEOUT_MS = 5000
 _READY_POLL_SEC = 0.5
@@ -40,6 +42,16 @@ _PORT_PROBE_BASE = 20000
 _PORT_PROBE_SPAN = 2048
 _CONFIG_TEST_TIMEOUT_SEC = 120
 _MAX_CONFIG_REPAIRS = 10
+
+# 延迟分桶（左闭右开），用于日志输出分布、辅助人工确定存活阈值
+_DELAY_BUCKETS: tuple[tuple[str, int, int], ...] = (
+    ('<500ms', 0, 500),
+    ('500-1000ms', 500, 1000),
+    ('1000-1500ms', 1000, 1500),
+    ('1500-2000ms', 1500, 2000),
+    ('2000-3000ms', 2000, 3000),
+    ('3000-5000ms', 3000, 5000),
+)
 
 _IS_WINDOWS = platform.system().lower().startswith('win')
 
@@ -175,9 +187,8 @@ def _build_temp_config(working_dir: Path, nodes: list[dict], controller_addr: st
         'proxy-groups': [{'name': 'ALL', 'type': 'select', 'proxies': [n['name'] for n in nodes]}],
         'rules': ['MATCH,ALL'],
     }
-    import yaml
     config_path = working_dir / 'config.yaml'
-    config_path.write_text(yaml.safe_dump(config, allow_unicode=True), encoding='utf-8')
+    config_path.write_text(yaml_dumper.dump_yaml(config), encoding='utf-8')
     return config_path
 
 
@@ -222,14 +233,26 @@ def _read_log_tail(log_path: Path, max_chars: int = 400) -> str:
 
 
 def _drop_invalid_node(candidates: list[dict], error_output: str) -> Optional[dict]:
-    """按内核报错里的 server:port 剔除不被接受的节点，返回被剔除的节点"""
-    match = re.search(r'proxy \d+: \S+ ([\w.\-]+:\d+)', error_output)
-    if match is None:
+    """依据内核报错剔除不被接受的节点，返回被剔除的节点
+
+    优先用报错里的 server:port 精确定位；报错不含地址时（如
+    `proxy 758: invalid REALITY short ID`）退回用编号定位，
+    该编号实测为 proxies 列表的 0 基索引。
+    """
+    server_port = re.search(r'proxy \d+: \S+ ([\w.\-]+:\d+)', error_output)
+    if server_port is not None:
+        target = server_port.group(1)
+        for index, node in enumerate(candidates):
+            if f"{node.get('server')}:{node.get('port')}" == target:
+                return candidates.pop(index)
         return None
-    target = match.group(1)
-    for index, node in enumerate(candidates):
-        if f"{node.get('server')}:{node.get('port')}" == target:
-            return candidates.pop(index)
+
+    index_match = re.search(r'proxy (\d+):', error_output)
+    if index_match is None:
+        return None
+    index = int(index_match.group(1))
+    if 0 <= index < len(candidates):
+        return candidates.pop(index)
     return None
 
 
@@ -338,10 +361,24 @@ def test_nodes(nodes: list[dict], mihomo_bin: str, working_dir: Path) -> dict[st
         shutil.rmtree(working_dir, ignore_errors=True)
 
 
+def _format_delay_distribution(alive_map: dict[str, int], total: int) -> str:
+    """生成延迟分桶统计文本，便于人工判断阈值该取多少"""
+    counts = [0] * len(_DELAY_BUCKETS)
+    for delay in alive_map.values():
+        for index, (_, low, high) in enumerate(_DELAY_BUCKETS):
+            if low <= delay < high:
+                counts[index] += 1
+                break
+    parts = [f'{name}: {count}' for (name, _, _), count in zip(_DELAY_BUCKETS, counts)]
+    parts.append(f'未测出(超时/失败): {total - len(alive_map)}')
+    return ' | '.join(parts)
+
+
 def filter_alive(nodes: list[dict], mihomo_bin: str, working_dir: Path,
                  max_delay_ms: Optional[int]) -> list[dict]:
     """测活并按最大延迟过滤，返回存活节点（附带 delay 字段）"""
     alive_map = test_nodes(nodes, mihomo_bin, working_dir)
+    print(f'[*] 延迟分布: {_format_delay_distribution(alive_map, len(nodes))}')
     kept: list[dict] = []
     for node in nodes:
         delay = alive_map.get(node['name'])

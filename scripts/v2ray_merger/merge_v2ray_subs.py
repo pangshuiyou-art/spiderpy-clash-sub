@@ -27,6 +27,7 @@ import config_parser
 import format_detector
 import geo_lookup
 import link_parser
+import yaml_dumper
 
 # 项目根 = scripts/v2ray_merger 的上三级
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
@@ -167,8 +168,8 @@ def build_clash_yaml(nodes: list[dict]) -> str:
         comment = f'  # {country} {node["server"]}:{node["port"]}'
         if delay is not None:
             comment += f' | delay={delay}ms'
-        lines.append('  - ' + yaml.safe_dump(proxy_item, allow_unicode=True,
-                                             sort_keys=False).strip().replace('\n', '\n    ') + comment)
+        lines.append('  - ' + yaml_dumper.dump_yaml(proxy_item, sort_keys=False
+                                                 ).strip().replace('\n', '\n    ') + comment)
     lines.extend([
         '',
         'proxy-groups:',

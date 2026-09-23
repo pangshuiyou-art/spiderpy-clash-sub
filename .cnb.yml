@@ -56,7 +56,8 @@
     - name: 合并订阅并真实测活
       script: |
         set -e
-        python scripts/v2ray_merger/merge_v2ray_subs.py --mihomo ./mihomo
+        # 国内出口存活率低，阈值放宽到 3000ms（测量上限 5000ms，留足余量）
+        python scripts/v2ray_merger/merge_v2ray_subs.py --mihomo ./mihomo --max-delay 3000
         python - <<'PY'
         import re
         from pathlib import Path
