@@ -1,64 +1,56 @@
 # 住宅节点（源: Thordata/awesome-free-proxy-list）
-# 生成时间: 2026-09-23 19:06:09 UTC
+# 生成时间: 2026-09-23 19:10:52 UTC
 # 节点数: 7
 # 筛选条件: {'ip_type': ['residential'], 'type': ['http', 'https', 'socks5']}
-"mixed-port": 7890
-"allow-lan": false
-"mode": "rule"
-"log-level": "warning"
-"proxies":
-- "name": "[R]US-http-12.50.107.220:80"
-  "type": "http"
-  "server": "12.50.107.220"
-  "port": 80
-  "udp": false
-- "name": "[R]CN-http-115.239.234.43:7302"
-  "type": "http"
-  "server": "115.239.234.43"
-  "port": 7302
-  "udp": false
-- "name": "[R]KR-http-1.231.81.166:3128"
-  "type": "http"
-  "server": "1.231.81.166"
-  "port": 3128
-  "udp": false
-- "name": "[R]UZ-http-195.158.8.123:3128"
-  "type": "http"
-  "server": "195.158.8.123"
-  "port": 3128
-  "udp": false
-- "name": "[R]US-socks5-174.75.211.193:4145"
-  "type": "socks5"
-  "server": "174.75.211.193"
-  "port": 4145
-  "udp": false
-- "name": "[R]US-socks5-174.75.211.222:4145"
-  "type": "socks5"
-  "server": "174.75.211.222"
-  "port": 4145
-  "udp": false
-- "name": "[R]CN-socks5-125.123.187.70:10800"
-  "type": "socks5"
-  "server": "125.123.187.70"
-  "port": 10800
-  "udp": false
-"proxy-groups":
-- "name": "\U0001F680 住宅"
-  "type": "url-test"
-  "url": "http://www.gstatic.com/generate_204"
-  "interval": 300
-  "tolerance": 200
-  "proxies": &id001
-  - "[R]US-http-12.50.107.220:80"
-  - "[R]CN-http-115.239.234.43:7302"
-  - "[R]KR-http-1.231.81.166:3128"
-  - "[R]UZ-http-195.158.8.123:3128"
-  - "[R]US-socks5-174.75.211.193:4145"
-  - "[R]US-socks5-174.75.211.222:4145"
-  - "[R]CN-socks5-125.123.187.70:10800"
-- "name": "\U0001F680 住宅-手动"
-  "type": "select"
-  "proxies": *id001
-"rules":
-- "GEOIP,CN,DIRECT"
-- "MATCH,\U0001F680 住宅"
+mixed-port: 7890
+allow-lan: false
+mode: rule
+log-level: warning
+proxies:
+- name: '[R]US-http-12.50.107.220:80'
+  type: http
+  server: 12.50.107.220
+  port: 80
+- name: '[R]CN-http-115.239.234.43:7302'
+  type: http
+  server: 115.239.234.43
+  port: 7302
+- name: '[R]KR-http-1.231.81.166:3128'
+  type: http
+  server: 1.231.81.166
+  port: 3128
+- name: '[R]UZ-http-195.158.8.123:3128'
+  type: http
+  server: 195.158.8.123
+  port: 3128
+- name: '[R]US-socks5-174.75.211.193:4145'
+  type: socks5
+  server: 174.75.211.193
+  port: 4145
+- name: '[R]US-socks5-174.75.211.222:4145'
+  type: socks5
+  server: 174.75.211.222
+  port: 4145
+- name: '[R]CN-socks5-125.123.187.70:10800'
+  type: socks5
+  server: 125.123.187.70
+  port: 10800
+proxy-groups:
+- name: 住宅
+  type: url-test
+  url: http://www.gstatic.com/generate_204
+  interval: 300
+  tolerance: 200
+  proxies: &id001
+  - '[R]US-http-12.50.107.220:80'
+  - '[R]CN-http-115.239.234.43:7302'
+  - '[R]KR-http-1.231.81.166:3128'
+  - '[R]UZ-http-195.158.8.123:3128'
+  - '[R]US-socks5-174.75.211.193:4145'
+  - '[R]US-socks5-174.75.211.222:4145'
+  - '[R]CN-socks5-125.123.187.70:10800'
+- name: 住宅-手动
+  type: select
+  proxies: *id001
+rules:
+- MATCH,住宅

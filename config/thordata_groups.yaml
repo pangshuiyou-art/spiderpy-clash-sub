@@ -13,7 +13,7 @@ groups:
   residential:
     title: 住宅节点
     output: data/thordata/residential.yaml
-    group_name: 🚀 住宅
+    group_name: 住宅
     tag: R
     require:
       ip_type:
@@ -28,7 +28,7 @@ groups:
   daily:
     title: 日常节点
     output: data/thordata/daily.yaml
-    group_name: 🚀 日常
+    group_name: 日常
     tag: D
     require:
       type:

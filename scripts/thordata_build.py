@@ -38,20 +38,9 @@ SOURCE_TYPE_TO_CLASH = {
 TEST_URL = 'http://www.gstatic.com/generate_204'
 
 
-class _QuotedDumper(yaml.SafeDumper):
-    """字符串一律加引号的 dumper：节点名含 IP:端口，避免被 YAML 误判为其它类型"""
-
-    def represent_str(self, data: str) -> Any:
-        return self.represent_scalar('tag:yaml.org,2002:str', data, style='"')
-
-
-_QuotedDumper.add_representer(str, _QuotedDumper.represent_str)
-
-
 def dump_yaml(data: Any) -> str:
-    """输出 Clash 兼容的 YAML 文本"""
-    return yaml.dump(data, Dumper=_QuotedDumper, allow_unicode=True,
-                     sort_keys=False, default_flow_style=False)
+    """输出 Clash 兼容的 YAML 文本（交给 PyYAML 默认行为：需要引号的字符串会自动加引号）"""
+    return yaml.dump(data, allow_unicode=True, sort_keys=False, default_flow_style=False)
 
 
 def fetch_source_text(source: str, timeout: float) -> str:
@@ -109,14 +98,16 @@ def matches(row: dict, require: dict) -> bool:
 
 
 def to_clash_proxy(row: dict, tag: str) -> dict:
-    """源 CSV 行 → Clash proxy（名称带用途标记，便于下游正则筛选）"""
+    """源 CSV 行 → Clash proxy（名称带用途标记，便于下游正则筛选）
+
+    字段只保留 name/type/server/port，与已验证可订阅的产物形态一致，降低客户端兼容风险。
+    """
     clash_type = SOURCE_TYPE_TO_CLASH[row['type'].strip().lower()]
     return {
         'name': f"[{tag}]{row['country_code']}-{clash_type}-{row['ip']}:{row['port']}",
         'type': clash_type,
         'server': row['ip'].strip(),
         'port': _to_int(row['port']),
-        'udp': False,
     }
 
 
@@ -144,7 +135,8 @@ def build_payload(proxies: list[dict], group_name: str) -> dict:
                 'proxies': names,
             },
         ],
-        'rules': ['GEOIP,CN,DIRECT', f'MATCH,{group_name}'],
+        # 只保留 MATCH：不写 GEOIP 规则，避免客户端缺少 GeoIP 数据库时整份配置校验失败
+        'rules': [f'MATCH,{group_name}'],
     }
 
 
