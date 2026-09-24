@@ -1,6 +1,6 @@
 # 住宅节点（源: Thordata/awesome-free-proxy-list）
-# 生成时间: 2026-09-23 19:14:34 UTC
-# 节点数: 7
+# 生成时间: 2026-09-24 02:51:58 UTC
+# 节点数: 17
 # 筛选条件: {'ip_type': ['residential'], 'type': ['http', 'https', 'socks5']}
 mixed-port: 7890
 allow-lan: false
@@ -19,22 +19,62 @@ proxies:
   type: http
   server: 1.231.81.166
   port: 3128
-- name: '[R]UZ-http-195.158.8.123:3128'
+- name: '[R]JP-http-133.232.90.156:80'
   type: http
-  server: 195.158.8.123
+  server: 133.232.90.156
+  port: 80
+- name: '[R]ID-http-103.177.176.62:8080'
+  type: http
+  server: 103.177.176.62
+  port: 8080
+- name: '[R]IN-http-115.248.66.131:3129'
+  type: http
+  server: 115.248.66.131
+  port: 3129
+- name: '[R]ID-http-103.177.8.119:10263'
+  type: http
+  server: 103.177.8.119
+  port: 10263
+- name: '[R]EG-http-154.236.179.229:1981'
+  type: http
+  server: 154.236.179.229
+  port: 1981
+- name: '[R]ID-http-103.177.8.119:10083'
+  type: http
+  server: 103.177.8.119
+  port: 10083
+- name: '[R]JP-http-140.227.61.201:3128'
+  type: http
+  server: 140.227.61.201
   port: 3128
-- name: '[R]US-socks5-174.75.211.193:4145'
+- name: '[R]ID-http-103.156.96.129:8080'
+  type: http
+  server: 103.156.96.129
+  port: 8080
+- name: '[R]JP-http-160.248.7.177:80'
+  type: http
+  server: 160.248.7.177
+  port: 80
+- name: '[R]ID-http-118.97.164.19:8080'
+  type: http
+  server: 118.97.164.19
+  port: 8080
+- name: '[R]IN-http-125.20.128.196:3129'
+  type: http
+  server: 125.20.128.196
+  port: 3129
+- name: '[R]US-http-12.218.209.130:53281'
+  type: http
+  server: 12.218.209.130
+  port: 53281
+- name: '[R]PH-http-180.191.14.210:8081'
+  type: http
+  server: 180.191.14.210
+  port: 8081
+- name: '[R]BD-socks5-103.151.74.29:2025'
   type: socks5
-  server: 174.75.211.193
-  port: 4145
-- name: '[R]US-socks5-174.75.211.222:4145'
-  type: socks5
-  server: 174.75.211.222
-  port: 4145
-- name: '[R]CN-socks5-125.123.187.70:10800'
-  type: socks5
-  server: 125.123.187.70
-  port: 10800
+  server: 103.151.74.29
+  port: 2025
 proxy-groups:
 - name: 住宅
   type: url-test
@@ -45,10 +85,20 @@ proxy-groups:
   - '[R]US-http-12.50.107.220:80'
   - '[R]CN-http-115.239.234.43:7302'
   - '[R]KR-http-1.231.81.166:3128'
-  - '[R]UZ-http-195.158.8.123:3128'
-  - '[R]US-socks5-174.75.211.193:4145'
-  - '[R]US-socks5-174.75.211.222:4145'
-  - '[R]CN-socks5-125.123.187.70:10800'
+  - '[R]JP-http-133.232.90.156:80'
+  - '[R]ID-http-103.177.176.62:8080'
+  - '[R]IN-http-115.248.66.131:3129'
+  - '[R]ID-http-103.177.8.119:10263'
+  - '[R]EG-http-154.236.179.229:1981'
+  - '[R]ID-http-103.177.8.119:10083'
+  - '[R]JP-http-140.227.61.201:3128'
+  - '[R]ID-http-103.156.96.129:8080'
+  - '[R]JP-http-160.248.7.177:80'
+  - '[R]ID-http-118.97.164.19:8080'
+  - '[R]IN-http-125.20.128.196:3129'
+  - '[R]US-http-12.218.209.130:53281'
+  - '[R]PH-http-180.191.14.210:8081'
+  - '[R]BD-socks5-103.151.74.29:2025'
 - name: 住宅-手动
   type: select
   proxies: *id001
