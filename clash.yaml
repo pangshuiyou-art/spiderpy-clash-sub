@@ -12,26 +12,26 @@ proxies:
   type: http
   server: 8.134.140.146
   port: 8080
-- name: China 🇨🇳-03
+- name: Cambodia 🇰🇭-03
+  type: http
+  server: 203.176.139.172
+  port: 8080
+- name: China 🇨🇳-04
   type: http
   server: 121.40.228.65
   port: 80
-- name: China 🇨🇳-04
+- name: China 🇨🇳-05
   type: http
   server: 120.26.201.73
   port: 80
-- name: China 🇨🇳-05
-  type: http
-  server: 47.92.194.235
-  port: 8008
 - name: China 🇨🇳-06
+  type: http
+  server: 36.25.247.27
+  port: 6256
+- name: China 🇨🇳-07
   type: http
   server: 120.26.14.131
   port: 80
-- name: China 🇨🇳-07
-  type: http
-  server: 120.25.189.254
-  port: 9098
 - name: China 🇨🇳-08
   type: http
   server: 121.40.52.74
@@ -44,214 +44,214 @@ proxies:
   type: http
   server: 116.62.136.190
   port: 80
-- name: Thailand 🇹🇭-11
-  type: http
-  server: 8.213.222.157
-  port: 3129
-- name: China 🇨🇳-12
+- name: China 🇨🇳-11
   type: http
   server: 101.37.16.52
   port: 80
-- name: China 🇨🇳-13
+- name: China 🇨🇳-12
   type: http
   server: 47.101.153.1
   port: 80
-- name: China 🇨🇳-14
+- name: China 🇨🇳-13
   type: http
   server: 120.26.93.254
   port: 80
-- name: China 🇨🇳-15
+- name: China 🇨🇳-14
   type: http
   server: 121.41.59.152
   port: 80
-- name: China 🇨🇳-16
-  type: http
-  server: 14.103.201.137
-  port: 3128
-- name: China 🇨🇳-17
+- name: China 🇨🇳-15
   type: http
   server: 47.97.114.99
   port: 13357
-- name: China 🇨🇳-18
+- name: China 🇨🇳-16
   type: http
   server: 116.196.150.180
   port: 17981
-- name: China 🇨🇳-19
+- name: China 🇨🇳-17
   type: http
   server: 120.55.14.64
   port: 80
-- name: China 🇨🇳-20
+- name: China 🇨🇳-18
   type: http
   server: 61.158.175.38
   port: 9002
-- name: China 🇨🇳-21
+- name: China 🇨🇳-19
   type: http
   server: 121.41.78.72
   port: 80
-- name: China 🇨🇳-22
+- name: The Netherlands 🇳🇱-20
   type: http
-  server: 180.167.238.98
-  port: 7302
-- name: China 🇨🇳-23
+  server: 144.124.251.24
+  port: 10829
+- name: China 🇨🇳-21
+  type: http
+  server: 101.206.186.99
+  port: 8080
+- name: China 🇨🇳-22
   type: http
   server: 114.55.176.250
   port: 80
-- name: China 🇨🇳-24
+- name: China 🇨🇳-23
   type: http
   server: 120.26.15.28
   port: 80
-- name: China 🇨🇳-25
+- name: China 🇨🇳-24
   type: http
   server: 112.124.33.122
   port: 80
-- name: Hong Kong 🇭🇰-26
-  type: http
-  server: 18.163.182.106
-  port: 8090
-- name: China 🇨🇳-27
+- name: China 🇨🇳-25
   type: http
   server: 47.96.252.117
   port: 80
-- name: Philippines 🇵🇭-28
-  type: http
-  server: 8.212.168.170
-  port: 9080
-- name: Taiwan 🇹🇼-29
+- name: Taiwan 🇹🇼-26
   type: http
   server: 118.163.254.16
   port: 80
-- name: China 🇨🇳-30
+- name: China 🇨🇳-27
   type: http
   server: 121.41.87.128
   port: 80
-- name: China 🇨🇳-31
+- name: China 🇨🇳-28
   type: http
   server: 101.37.18.160
   port: 80
-- name: China 🇨🇳-32
+- name: Ecuador 🇪🇨-29
+  type: http
+  server: 190.12.150.244
+  port: 999
+- name: China 🇨🇳-30
   type: http
   server: 101.37.18.127
   port: 80
-- name: China 🇨🇳-33
+- name: China 🇨🇳-31
   type: http
   server: 121.40.101.174
   port: 80
-- name: China 🇨🇳-34
+- name: China 🇨🇳-32
   type: http
   server: 39.106.170.168
   port: 8080
-- name: China 🇨🇳-35
+- name: China 🇨🇳-33
   type: http
   server: 114.55.176.241
   port: 80
-- name: China 🇨🇳-36
+- name: China 🇨🇳-34
   type: http
   server: 47.101.41.163
   port: 8080
-- name: China 🇨🇳-37
+- name: China 🇨🇳-35
   type: http
   server: 47.99.139.203
   port: 80
-- name: China 🇨🇳-38
+- name: China 🇨🇳-36
   type: http
   server: 101.200.158.109
   port: 6379
-- name: China 🇨🇳-39
+- name: China 🇨🇳-37
   type: http
   server: 47.99.73.126
   port: 80
-- name: China 🇨🇳-40
+- name: Kyrgyzstan 🇰🇬-38
+  type: http
+  server: 178.217.168.164
+  port: 55443
+- name: China 🇨🇳-39
   type: http
   server: 121.40.160.199
   port: 80
-- name: China 🇨🇳-41
+- name: China 🇨🇳-40
   type: http
   server: 101.200.158.109
   port: 8800
-- name: China 🇨🇳-42
+- name: China 🇨🇳-41
   type: http
   server: 121.40.142.117
   port: 80
-- name: United Arab Emirates 🇦🇪-43
+- name: United Arab Emirates 🇦🇪-42
   type: http
   server: 47.91.104.88
   port: 3128
-- name: India 🇮🇳-44
+- name: India 🇮🇳-43
   type: http
   server: 45.195.159.160
   port: 80
-- name: Hong Kong 🇭🇰-45
+- name: Hong Kong 🇭🇰-44
   type: http
   server: 38.22.92.75
   port: 808
-- name: China 🇨🇳-46
+- name: China 🇨🇳-45
   type: http
   server: 121.40.160.78
   port: 80
-- name: China 🇨🇳-47
+- name: China 🇨🇳-46
   type: http
   server: 47.98.100.134
   port: 80
-- name: China 🇨🇳-48
-  type: http
-  server: 8.148.20.126
-  port: 8080
-- name: China 🇨🇳-49
+- name: China 🇨🇳-47
   type: http
   server: 47.99.71.210
   port: 80
-- name: Vietnam 🇻🇳-50
+- name: Vietnam 🇻🇳-48
   type: http
   server: 103.9.86.146
   port: 8080
-- name: France 🇫🇷-51
-  type: http
-  server: 207.180.254.198
-  port: 8080
-- name: Hong Kong 🇭🇰-52
+- name: Hong Kong 🇭🇰-49
   type: http
   server: 23.102.239.119
   port: 80
-- name: Hong Kong 🇭🇰-53
+- name: Hong Kong 🇭🇰-50
   type: http
   server: 34.92.138.16
   port: 80
-- name: China 🇨🇳-54
+- name: China 🇨🇳-51
   type: http
   server: 47.98.120.253
   port: 80
-- name: China 🇨🇳-55
+- name: China 🇨🇳-52
   type: http
   server: 122.246.3.12
   port: 17981
-- name: Hong Kong 🇭🇰-56
+- name: Rwanda 🇷🇼-53
+  type: http
+  server: 154.68.64.6
+  port: 80
+- name: China 🇨🇳-54
+  type: http
+  server: 113.46.227.104
+  port: 2388
+- name: Hong Kong 🇭🇰-55
   type: http
   server: 43.199.3.39
   port: 8080
-- name: China 🇨🇳-57
+- name: China 🇨🇳-56
   type: http
   server: 47.99.149.163
   port: 80
-- name: China 🇨🇳-58
+- name: China 🇨🇳-57
   type: http
   server: 47.96.150.116
   port: 80
-- name: Czechia 🇨🇿-59
-  type: http
-  server: 95.129.101.73
-  port: 80
-- name: China 🇨🇳-60
+- name: China 🇨🇳-58
   type: http
   server: 120.55.240.71
   port: 8647
-- name: China 🇨🇳-61
+- name: China 🇨🇳-59
   type: http
   server: 121.40.170.78
   port: 80
-- name: Taiwan 🇹🇼-62
+- name: China 🇨🇳-60
+  type: http
+  server: 139.196.46.164
+  port: 8888
+- name: Taiwan 🇹🇼-61
   type: http
   server: 34.80.86.90
   port: 8080
+- name: United States 🇺🇸-62
+  type: http
+  server: 45.91.248.107
+  port: 80
 - name: China 🇨🇳-63
   type: http
   server: 112.126.68.55
@@ -260,46 +260,46 @@ proxies:
   type: http
   server: 47.97.10.6
   port: 80
-- name: China 🇨🇳-65
+- name: Colombia 🇨🇴-65
+  type: http
+  server: 190.107.23.150
+  port: 8080
+- name: China 🇨🇳-66
   type: http
   server: 121.194.3.168
   port: 80
-- name: China 🇨🇳-66
+- name: China 🇨🇳-67
   type: http
   server: 103.213.97.78
   port: 80
-- name: China 🇨🇳-67
+- name: China 🇨🇳-68
   type: http
   server: 183.215.23.242
   port: 9091
-- name: China 🇨🇳-68
+- name: China 🇨🇳-69
   type: http
   server: 106.14.104.209
   port: 8080
-- name: China 🇨🇳-69
+- name: China 🇨🇳-70
   type: http
   server: 36.137.204.11
   port: 8002
-- name: The Netherlands 🇳🇱-70
+- name: The Netherlands 🇳🇱-71
   type: http
   server: 213.111.146.36
   port: 18080
-- name: China 🇨🇳-71
+- name: China 🇨🇳-72
   type: http
   server: 116.62.34.88
   port: 80
-- name: China 🇨🇳-72
+- name: China 🇨🇳-73
   type: http
   server: 120.78.6.98
   port: 8080
-- name: China 🇨🇳-73
+- name: China 🇨🇳-74
   type: http
   server: 219.148.171.178
   port: 9445
-- name: United States 🇺🇸-74
-  type: http
-  server: 67.203.23.79
-  port: 8081
 - name: China 🇨🇳-75
   type: http
   server: 118.31.43.236
@@ -348,365 +348,317 @@ proxies:
   type: http
   server: 121.41.99.161
   port: 80
-- name: Singapore 🇸🇬-87
-  type: http
-  server: 8.219.97.248
-  port: 80
-- name: China 🇨🇳-88
+- name: China 🇨🇳-87
   type: http
   server: 47.96.36.239
   port: 80
-- name: China 🇨🇳-89
+- name: China 🇨🇳-88
   type: http
   server: 47.97.18.112
   port: 80
-- name: South Korea 🇰🇷-90
-  type: http
-  server: 47.80.60.84
-  port: 3128
-- name: China 🇨🇳-91
+- name: China 🇨🇳-89
   type: http
   server: 120.232.115.170
   port: 17981
-- name: China 🇨🇳-92
+- name: China 🇨🇳-90
   type: http
   server: 106.15.93.22
   port: 8080
-- name: Pakistan 🇵🇰-93
-  type: http
-  server: 202.141.230.146
-  port: 8080
-- name: China 🇨🇳-94
+- name: China 🇨🇳-91
   type: http
   server: 118.31.169.137
   port: 80
-- name: China 🇨🇳-95
-  type: http
-  server: 8.134.133.57
-  port: 2345
-- name: China 🇨🇳-96
+- name: China 🇨🇳-92
   type: http
   server: 101.37.31.191
   port: 80
-- name: China 🇨🇳-97
+- name: China 🇨🇳-93
   type: http
   server: 120.55.37.254
   port: 80
-- name: China 🇨🇳-98
+- name: China 🇨🇳-94
   type: http
   server: 118.31.105.4
   port: 80
-- name: China 🇨🇳-99
+- name: China 🇨🇳-95
   type: http
   server: 47.99.86.198
   port: 80
-- name: China 🇨🇳-100
+- name: China 🇨🇳-96
   type: http
   server: 122.246.4.30
   port: 17981
-- name: China 🇨🇳-101
-  type: http
-  server: 47.106.198.144
-  port: 1080
-- name: China 🇨🇳-102
-  type: http
-  server: 223.85.21.195
-  port: 8080
-- name: China 🇨🇳-103
+- name: China 🇨🇳-97
   type: http
   server: 60.188.49.161
   port: 80
-- name: Singapore 🇸🇬-104
+- name: Japan 🇯🇵-98
+  type: http
+  server: 61.118.38.234
+  port: 60808
+- name: Singapore 🇸🇬-99
   type: http
   server: 97.74.87.226
   port: 80
-- name: China 🇨🇳-105
+- name: China 🇨🇳-100
   type: http
   server: 111.230.27.213
   port: 3128
-- name: United States 🇺🇸-106
+- name: United States 🇺🇸-101
   type: http
   server: 203.161.52.193
   port: 80
-- name: Hong Kong 🇭🇰-107
+- name: Hong Kong 🇭🇰-102
   type: http
   server: 203.19.38.114
   port: 1080
-- name: China 🇨🇳-108
+- name: China 🇨🇳-103
   type: http
   server: 27.185.218.213
   port: 17981
-- name: United States 🇺🇸-109
+- name: Rwanda 🇷🇼-104
+  type: http
+  server: 154.68.64.5
+  port: 80
+- name: United States 🇺🇸-105
   type: http
   server: 137.66.1.45
   port: 80
-- name: Hong Kong 🇭🇰-110
+- name: Hong Kong 🇭🇰-106
   type: http
   server: 18.163.99.118
   port: 80
-- name: China 🇨🇳-111
+- name: China 🇨🇳-107
   type: http
   server: 118.31.105.240
   port: 80
-- name: China 🇨🇳-112
+- name: Hong Kong 🇭🇰-108
+  type: http
+  server: 8.210.93.183
+  port: 8213
+- name: China 🇨🇳-109
   type: http
   server: 121.43.101.121
   port: 80
-- name: United States 🇺🇸-113
+- name: United States 🇺🇸-110
   type: http
   server: 107.150.41.226
   port: 18080
-- name: China 🇨🇳-114
+- name: China 🇨🇳-111
   type: http
   server: 101.37.30.185
   port: 80
-- name: China 🇨🇳-115
+- name: China 🇨🇳-112
   type: http
   server: 139.196.196.74
   port: 80
-- name: China 🇨🇳-116
+- name: China 🇨🇳-113
   type: http
   server: 111.206.4.163
   port: 18888
-- name: China 🇨🇳-117
+- name: China 🇨🇳-114
   type: http
   server: 121.40.251.185
   port: 80
-- name: United States 🇺🇸-118
+- name: United States 🇺🇸-115
   type: http
   server: 34.120.166.23
   port: 8080
-- name: Hong Kong 🇭🇰-119
+- name: Hong Kong 🇭🇰-116
   type: http
   server: 16.163.88.228
   port: 80
-- name: Hong Kong 🇭🇰-120
+- name: Hong Kong 🇭🇰-117
   type: http
   server: 38.147.171.14
   port: 80
-- name: China 🇨🇳-121
+- name: China 🇨🇳-118
   type: http
   server: 119.188.131.55
   port: 17981
-- name: Türkiye 🇹🇷-122
-  type: http
-  server: 107.181.155.86
-  port: 80
-- name: China 🇨🇳-123
+- name: China 🇨🇳-119
   type: http
   server: 120.26.12.158
   port: 80
-- name: China 🇨🇳-124
+- name: China 🇨🇳-120
   type: http
   server: 47.98.106.240
   port: 80
-- name: China 🇨🇳-125
+- name: China 🇨🇳-121
   type: http
   server: 121.40.118.92
   port: 80
-- name: France 🇫🇷-126
-  type: http
-  server: 37.59.125.131
-  port: 8888
-- name: China 🇨🇳-127
+- name: China 🇨🇳-122
   type: http
   server: 121.43.234.89
   port: 80
-- name: Germany 🇩🇪-128
-  type: http
-  server: 193.135.9.36
-  port: 3128
-- name: China 🇨🇳-129
-  type: http
-  server: 47.115.187.208
-  port: 10086
-- name: China 🇨🇳-130
+- name: China 🇨🇳-123
   type: http
   server: 120.26.12.211
   port: 80
-- name: China 🇨🇳-131
+- name: China 🇨🇳-124
   type: http
   server: 112.124.33.235
   port: 80
-- name: China 🇨🇳-132
+- name: China 🇨🇳-125
   type: http
   server: 39.106.192.29
   port: 8443
-- name: South Korea 🇰🇷-133
-  type: http
-  server: 8.220.204.215
-  port: 8008
-- name: Hong Kong 🇭🇰-134
+- name: Hong Kong 🇭🇰-126
   type: http
   server: 18.162.158.218
   port: 80
-- name: China 🇨🇳-135
+- name: China 🇨🇳-127
   type: http
   server: 106.75.171.235
   port: 8080
-- name: China 🇨🇳-136
-  type: http
-  server: 47.99.133.254
-  port: 8888
-- name: China 🇨🇳-137
-  type: http
-  server: 123.57.0.163
-  port: 8888
-- name: China 🇨🇳-138
+- name: China 🇨🇳-128
   type: http
   server: 121.40.156.125
   port: 80
-- name: China 🇨🇳-139
+- name: China 🇨🇳-129
   type: http
   server: 121.40.119.213
   port: 80
-- name: China 🇨🇳-140
+- name: China 🇨🇳-130
   type: http
   server: 113.204.79.230
   port: 9091
-- name: China 🇨🇳-141
+- name: China 🇨🇳-131
   type: http
   server: 47.96.252.171
   port: 80
-- name: Taiwan 🇹🇼-142
+- name: Taiwan 🇹🇼-132
   type: http
   server: 1.32.214.122
   port: 80
-- name: China 🇨🇳-143
+- name: China 🇨🇳-133
   type: http
   server: 112.124.4.201
   port: 80
-- name: China 🇨🇳-144
+- name: China 🇨🇳-134
+  type: http
+  server: 120.26.0.11
+  port: 8880
+- name: China 🇨🇳-135
   type: http
   server: 120.55.87.91
   port: 80
-- name: China 🇨🇳-145
+- name: China 🇨🇳-136
   type: http
   server: 121.43.232.142
   port: 80
-- name: China 🇨🇳-146
+- name: China 🇨🇳-137
   type: http
   server: 42.192.51.151
   port: 80
-- name: China 🇨🇳-147
+- name: China 🇨🇳-138
   type: http
   server: 8.134.140.146
   port: 8081
-- name: China 🇨🇳-148
-  type: http
-  server: 39.104.59.56
-  port: 9080
-- name: Singapore 🇸🇬-149
+- name: Singapore 🇸🇬-139
   type: http
   server: 129.226.93.232
   port: 80
-- name: Hong Kong 🇭🇰-150
+- name: Hong Kong 🇭🇰-140
   type: http
   server: 16.162.88.123
   port: 8080
-- name: China 🇨🇳-151
+- name: China 🇨🇳-141
   type: http
   server: 202.61.89.138
   port: 800
-- name: China 🇨🇳-152
+- name: China 🇨🇳-142
   type: http
   server: 101.37.26.136
   port: 80
-- name: China 🇨🇳-153
+- name: China 🇨🇳-143
   type: http
   server: 124.163.236.54
   port: 7302
-- name: China 🇨🇳-154
+- name: China 🇨🇳-144
   type: http
   server: 120.55.73.165
   port: 80
-- name: Taiwan 🇹🇼-155
+- name: Taiwan 🇹🇼-145
   type: http
   server: 114.34.48.209
   port: 80
-- name: China 🇨🇳-156
+- name: China 🇨🇳-146
   type: http
   server: 120.232.115.57
   port: 17981
-- name: China 🇨🇳-157
+- name: China 🇨🇳-147
   type: http
   server: 121.40.89.41
   port: 80
-- name: China 🇨🇳-158
+- name: China 🇨🇳-148
   type: http
   server: 47.98.232.41
   port: 80
-- name: United States 🇺🇸-159
-  type: http
-  server: 67.203.23.88
-  port: 8081
-- name: United States 🇺🇸-160
+- name: United States 🇺🇸-149
   type: http
   server: 107.167.18.122
   port: 443
-- name: China 🇨🇳-161
+- name: China 🇨🇳-150
   type: http
   server: 153.0.171.163
   port: 8085
-- name: China 🇨🇳-162
+- name: China 🇨🇳-151
   type: http
   server: 121.43.150.92
   port: 80
-- name: China 🇨🇳-163
-  type: http
-  server: 39.102.209.128
-  port: 80
-- name: China 🇨🇳-164
+- name: China 🇨🇳-152
   type: http
   server: 39.101.132.59
   port: 8443
-- name: China 🇨🇳-165
+- name: China 🇨🇳-153
   type: http
   server: 120.26.192.248
   port: 80
-- name: China 🇨🇳-166
+- name: China 🇨🇳-154
   type: http
   server: 120.55.74.80
   port: 80
-- name: China 🇨🇳-167
+- name: China 🇨🇳-155
   type: http
   server: 183.6.115.212
   port: 19450
-- name: China 🇨🇳-168
+- name: China 🇨🇳-156
   type: http
   server: 121.40.98.50
   port: 80
-- name: China 🇨🇳-169
+- name: Germany 🇩🇪-157
+  type: http
+  server: 103.237.102.191
+  port: 11111
+- name: China 🇨🇳-158
   type: http
   server: 101.37.18.10
   port: 80
-- name: China 🇨🇳-170
+- name: China 🇨🇳-159
   type: http
-  server: 39.102.213.50
-  port: 3129
-- name: China 🇨🇳-171
+  server: 39.106.165.196
+  port: 8080
+- name: China 🇨🇳-160
   type: http
   server: 101.200.158.109
   port: 59394
-- name: China 🇨🇳-172
+- name: China 🇨🇳-161
   type: http
   server: 120.27.224.64
   port: 3129
-- name: China 🇨🇳-173
+- name: China 🇨🇳-162
   type: http
   server: 47.97.10.190
   port: 80
-- name: South Korea 🇰🇷-174
-  type: http
-  server: 140.238.14.161
-  port: 8080
 proxy-groups:
 - name: PROXY
   type: select
   proxies:
   - China 🇨🇳-01
   - China 🇨🇳-02
-  - China 🇨🇳-03
+  - Cambodia 🇰🇭-03
   - China 🇨🇳-04
   - China 🇨🇳-05
   - China 🇨🇳-06
@@ -714,7 +666,7 @@ proxy-groups:
   - China 🇨🇳-08
   - China 🇨🇳-09
   - China 🇨🇳-10
-  - Thailand 🇹🇭-11
+  - China 🇨🇳-11
   - China 🇨🇳-12
   - China 🇨🇳-13
   - China 🇨🇳-14
@@ -723,16 +675,16 @@ proxy-groups:
   - China 🇨🇳-17
   - China 🇨🇳-18
   - China 🇨🇳-19
-  - China 🇨🇳-20
+  - The Netherlands 🇳🇱-20
   - China 🇨🇳-21
   - China 🇨🇳-22
   - China 🇨🇳-23
   - China 🇨🇳-24
   - China 🇨🇳-25
-  - Hong Kong 🇭🇰-26
+  - Taiwan 🇹🇼-26
   - China 🇨🇳-27
-  - Philippines 🇵🇭-28
-  - Taiwan 🇹🇼-29
+  - China 🇨🇳-28
+  - Ecuador 🇪🇨-29
   - China 🇨🇳-30
   - China 🇨🇳-31
   - China 🇨🇳-32
@@ -741,43 +693,43 @@ proxy-groups:
   - China 🇨🇳-35
   - China 🇨🇳-36
   - China 🇨🇳-37
-  - China 🇨🇳-38
+  - Kyrgyzstan 🇰🇬-38
   - China 🇨🇳-39
   - China 🇨🇳-40
   - China 🇨🇳-41
-  - China 🇨🇳-42
-  - United Arab Emirates 🇦🇪-43
-  - India 🇮🇳-44
-  - Hong Kong 🇭🇰-45
+  - United Arab Emirates 🇦🇪-42
+  - India 🇮🇳-43
+  - Hong Kong 🇭🇰-44
+  - China 🇨🇳-45
   - China 🇨🇳-46
   - China 🇨🇳-47
-  - China 🇨🇳-48
-  - China 🇨🇳-49
-  - Vietnam 🇻🇳-50
-  - France 🇫🇷-51
-  - Hong Kong 🇭🇰-52
-  - Hong Kong 🇭🇰-53
+  - Vietnam 🇻🇳-48
+  - Hong Kong 🇭🇰-49
+  - Hong Kong 🇭🇰-50
+  - China 🇨🇳-51
+  - China 🇨🇳-52
+  - Rwanda 🇷🇼-53
   - China 🇨🇳-54
-  - China 🇨🇳-55
-  - Hong Kong 🇭🇰-56
+  - Hong Kong 🇭🇰-55
+  - China 🇨🇳-56
   - China 🇨🇳-57
   - China 🇨🇳-58
-  - Czechia 🇨🇿-59
+  - China 🇨🇳-59
   - China 🇨🇳-60
-  - China 🇨🇳-61
-  - Taiwan 🇹🇼-62
+  - Taiwan 🇹🇼-61
+  - United States 🇺🇸-62
   - China 🇨🇳-63
   - China 🇨🇳-64
-  - China 🇨🇳-65
+  - Colombia 🇨🇴-65
   - China 🇨🇳-66
   - China 🇨🇳-67
   - China 🇨🇳-68
   - China 🇨🇳-69
-  - The Netherlands 🇳🇱-70
-  - China 🇨🇳-71
+  - China 🇨🇳-70
+  - The Netherlands 🇳🇱-71
   - China 🇨🇳-72
   - China 🇨🇳-73
-  - United States 🇺🇸-74
+  - China 🇨🇳-74
   - China 🇨🇳-75
   - China 🇨🇳-76
   - China 🇨🇳-77
@@ -790,94 +742,82 @@ proxy-groups:
   - China 🇨🇳-84
   - China 🇨🇳-85
   - China 🇨🇳-86
-  - Singapore 🇸🇬-87
+  - China 🇨🇳-87
   - China 🇨🇳-88
   - China 🇨🇳-89
-  - South Korea 🇰🇷-90
+  - China 🇨🇳-90
   - China 🇨🇳-91
   - China 🇨🇳-92
-  - Pakistan 🇵🇰-93
+  - China 🇨🇳-93
   - China 🇨🇳-94
   - China 🇨🇳-95
   - China 🇨🇳-96
   - China 🇨🇳-97
-  - China 🇨🇳-98
-  - China 🇨🇳-99
+  - Japan 🇯🇵-98
+  - Singapore 🇸🇬-99
   - China 🇨🇳-100
-  - China 🇨🇳-101
-  - China 🇨🇳-102
+  - United States 🇺🇸-101
+  - Hong Kong 🇭🇰-102
   - China 🇨🇳-103
-  - Singapore 🇸🇬-104
-  - China 🇨🇳-105
-  - United States 🇺🇸-106
-  - Hong Kong 🇭🇰-107
-  - China 🇨🇳-108
-  - United States 🇺🇸-109
-  - Hong Kong 🇭🇰-110
+  - Rwanda 🇷🇼-104
+  - United States 🇺🇸-105
+  - Hong Kong 🇭🇰-106
+  - China 🇨🇳-107
+  - Hong Kong 🇭🇰-108
+  - China 🇨🇳-109
+  - United States 🇺🇸-110
   - China 🇨🇳-111
   - China 🇨🇳-112
-  - United States 🇺🇸-113
+  - China 🇨🇳-113
   - China 🇨🇳-114
-  - China 🇨🇳-115
-  - China 🇨🇳-116
-  - China 🇨🇳-117
-  - United States 🇺🇸-118
-  - Hong Kong 🇭🇰-119
-  - Hong Kong 🇭🇰-120
+  - United States 🇺🇸-115
+  - Hong Kong 🇭🇰-116
+  - Hong Kong 🇭🇰-117
+  - China 🇨🇳-118
+  - China 🇨🇳-119
+  - China 🇨🇳-120
   - China 🇨🇳-121
-  - Türkiye 🇹🇷-122
+  - China 🇨🇳-122
   - China 🇨🇳-123
   - China 🇨🇳-124
   - China 🇨🇳-125
-  - France 🇫🇷-126
+  - Hong Kong 🇭🇰-126
   - China 🇨🇳-127
-  - Germany 🇩🇪-128
+  - China 🇨🇳-128
   - China 🇨🇳-129
   - China 🇨🇳-130
   - China 🇨🇳-131
-  - China 🇨🇳-132
-  - South Korea 🇰🇷-133
-  - Hong Kong 🇭🇰-134
+  - Taiwan 🇹🇼-132
+  - China 🇨🇳-133
+  - China 🇨🇳-134
   - China 🇨🇳-135
   - China 🇨🇳-136
   - China 🇨🇳-137
   - China 🇨🇳-138
-  - China 🇨🇳-139
-  - China 🇨🇳-140
+  - Singapore 🇸🇬-139
+  - Hong Kong 🇭🇰-140
   - China 🇨🇳-141
-  - Taiwan 🇹🇼-142
+  - China 🇨🇳-142
   - China 🇨🇳-143
   - China 🇨🇳-144
-  - China 🇨🇳-145
+  - Taiwan 🇹🇼-145
   - China 🇨🇳-146
   - China 🇨🇳-147
   - China 🇨🇳-148
-  - Singapore 🇸🇬-149
-  - Hong Kong 🇭🇰-150
+  - United States 🇺🇸-149
+  - China 🇨🇳-150
   - China 🇨🇳-151
   - China 🇨🇳-152
   - China 🇨🇳-153
   - China 🇨🇳-154
-  - Taiwan 🇹🇼-155
+  - China 🇨🇳-155
   - China 🇨🇳-156
-  - China 🇨🇳-157
+  - Germany 🇩🇪-157
   - China 🇨🇳-158
-  - United States 🇺🇸-159
-  - United States 🇺🇸-160
+  - China 🇨🇳-159
+  - China 🇨🇳-160
   - China 🇨🇳-161
   - China 🇨🇳-162
-  - China 🇨🇳-163
-  - China 🇨🇳-164
-  - China 🇨🇳-165
-  - China 🇨🇳-166
-  - China 🇨🇳-167
-  - China 🇨🇳-168
-  - China 🇨🇳-169
-  - China 🇨🇳-170
-  - China 🇨🇳-171
-  - China 🇨🇳-172
-  - China 🇨🇳-173
-  - South Korea 🇰🇷-174
   - DIRECT
 rules:
 - MATCH,PROXY
