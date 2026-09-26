@@ -1,6 +1,6 @@
 # 住宅节点（源: Thordata/awesome-free-proxy-list）
-# 生成时间: 2026-09-26 03:12:14 UTC
-# 节点数: 11
+# 生成时间: 2026-09-26 10:43:02 UTC
+# 节点数: 2
 # 筛选条件: {'ip_type': ['residential'], 'type': ['http', 'https', 'socks5']}
 mixed-port: 7890
 allow-lan: false
@@ -11,45 +11,9 @@ proxies:
   type: http
   server: 115.239.234.43
   port: 7302
-- name: '[R]KR-http-1.231.81.166:3128'
-  type: http
-  server: 1.231.81.166
-  port: 3128
 - name: '[R]ID-http-103.177.176.62:8080'
   type: http
   server: 103.177.176.62
-  port: 8080
-- name: '[R]JP-http-133.232.89.179:80'
-  type: http
-  server: 133.232.89.179
-  port: 80
-- name: '[R]JP-http-160.248.7.177:80'
-  type: http
-  server: 160.248.7.177
-  port: 80
-- name: '[R]BD-socks5-103.151.74.29:2025'
-  type: socks5
-  server: 103.151.74.29
-  port: 2025
-- name: '[R]EG-http-154.236.179.229:1981'
-  type: http
-  server: 154.236.179.229
-  port: 1981
-- name: '[R]BD-http-103.93.141.249:8080'
-  type: http
-  server: 103.93.141.249
-  port: 8080
-- name: '[R]BD-socks5-103.151.74.5:2025'
-  type: socks5
-  server: 103.151.74.5
-  port: 2025
-- name: '[R]PH-http-120.28.200.84:5050'
-  type: http
-  server: 120.28.200.84
-  port: 5050
-- name: '[R]AR-http-181.192.2.23:8080'
-  type: http
-  server: 181.192.2.23
   port: 8080
 proxy-groups:
 - name: 住宅
@@ -59,16 +23,7 @@ proxy-groups:
   tolerance: 200
   proxies: &id001
   - '[R]CN-http-115.239.234.43:7302'
-  - '[R]KR-http-1.231.81.166:3128'
   - '[R]ID-http-103.177.176.62:8080'
-  - '[R]JP-http-133.232.89.179:80'
-  - '[R]JP-http-160.248.7.177:80'
-  - '[R]BD-socks5-103.151.74.29:2025'
-  - '[R]EG-http-154.236.179.229:1981'
-  - '[R]BD-http-103.93.141.249:8080'
-  - '[R]BD-socks5-103.151.74.5:2025'
-  - '[R]PH-http-120.28.200.84:5050'
-  - '[R]AR-http-181.192.2.23:8080'
 - name: 住宅-手动
   type: select
   proxies: *id001
