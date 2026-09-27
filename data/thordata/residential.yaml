@@ -1,6 +1,6 @@
 # 住宅节点（源: Thordata/awesome-free-proxy-list）
-# 生成时间: 2026-09-27 16:16:49 UTC
-# 节点数: 4
+# 生成时间: 2026-09-27 20:46:10 UTC
+# 节点数: 2
 # 筛选条件: {'ip_type': ['residential'], 'type': ['http', 'https', 'socks5']}
 mixed-port: 7890
 allow-lan: false
@@ -11,18 +11,10 @@ proxies:
   type: http
   server: 115.239.234.43
   port: 7302
-- name: '[R]RS-http-178.217.12.232:6669'
-  type: http
-  server: 178.217.12.232
-  port: 6669
 - name: '[R]JP-http-160.248.7.177:80'
   type: http
   server: 160.248.7.177
   port: 80
-- name: '[R]PH-http-180.191.98.117:8080'
-  type: http
-  server: 180.191.98.117
-  port: 8080
 proxy-groups:
 - name: 住宅
   type: url-test
@@ -31,9 +23,7 @@ proxy-groups:
   tolerance: 200
   proxies: &id001
   - '[R]CN-http-115.239.234.43:7302'
-  - '[R]RS-http-178.217.12.232:6669'
   - '[R]JP-http-160.248.7.177:80'
-  - '[R]PH-http-180.191.98.117:8080'
 - name: 住宅-手动
   type: select
   proxies: *id001
