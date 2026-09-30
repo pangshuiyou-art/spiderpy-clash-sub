@@ -12,7 +12,9 @@ on:
   workflow_dispatch:
   schedule:
     # 每 6 小时一次。免费代理存活周期短，但 6 小时与本项目其它订阅线保持一致、便于交叉排查。
-    - cron: '15 */6 * * *'
+    # 刻意避开整点：GitHub 在高负载时段（含每小时开头）会延迟甚至丢弃排队的 schedule 任务。
+    # 实测本仓库 update-sub（每小时）最大间隔 8.6h、thordata（每 6h）最大 10.1h，故整体后移并错开分钟。
+    - cron: '43 3,9,15,21 * * *'
 
 permissions:
   contents: write
