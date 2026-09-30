@@ -1,7 +1,8 @@
 name: 更新免费代理订阅
 
 # 免费代理合并：住宅组 + 日常组
-# 流水线：拉取 9 源 → 去重 → TCP 预筛（约 3.6 万 → 约 2000）→ ip-api 补元数据
+# 流水线：拉取 8 个代理源 + 1 个数据中心 CIDR 库 → 去重 → 清洗扫描噪音
+#        → TCP 预筛（约 8000 → 约 1400）→ ip-api 补元数据
 #        → 住宅分类（CIDR 段库 + hosting + ASN 白名单）→ mihomo 多轮测活 → 产物校验
 #
 # 为何用 GitHub Actions：公开仓库的 Actions 完全免费，且本仓库产物直接对外提供 raw 订阅链接。
@@ -82,7 +83,9 @@ jobs:
           set -e
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
-          git add data/free_proxy/ config/residential_asns.yaml
+          # 只提交订阅产物与白名单；候选 CSV 是人工审查用的中间产物，不入库
+          git add data/free_proxy/residential.yaml data/free_proxy/daily.yaml \
+            data/free_proxy/residential-socks4.yaml config/residential_asns.yaml
           git commit -m 'chore: 更新免费代理分组订阅' || { echo '无变更，跳过提交'; exit 0; }
           git pull --rebase origin "$GITHUB_REF_NAME" || true
           git push
