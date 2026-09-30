@@ -1,16 +1,24 @@
 # 日常节点（源: Thordata/awesome-free-proxy-list）
-# 生成时间: 2026-09-30 11:49:17 UTC
-# 节点数: 87
+# 生成时间: 2026-09-30 17:29:45 UTC
+# 节点数: 64
 # 筛选条件: {'type': ['http', 'https', 'socks5'], 'tier': ['fast', 'medium'], 'anonymity': ['elite'], 'min_streak': 1}
 mixed-port: 7890
 allow-lan: false
 mode: rule
 log-level: warning
 proxies:
-- name: '[D]US-http-172.210.12.8:3128'
+- name: '[D]US-http-138.68.60.8:3128'
   type: http
-  server: 172.210.12.8
+  server: 138.68.60.8
   port: 3128
+- name: '[D]US-http-107.167.18.122:443'
+  type: http
+  server: 107.167.18.122
+  port: 443
+- name: '[D]CA-http-184.75.221.82:3118'
+  type: http
+  server: 184.75.221.82
+  port: 3118
 - name: '[D]US-http-159.65.230.46:8888'
   type: http
   server: 159.65.230.46
@@ -19,10 +27,14 @@ proxies:
   type: http
   server: 174.138.119.88
   port: 80
-- name: '[D]CA-http-184.75.221.82:3118'
+- name: '[D]US-http-107.150.41.226:18080'
   type: http
-  server: 184.75.221.82
-  port: 3118
+  server: 107.150.41.226
+  port: 18080
+- name: '[D]US-http-137.66.1.45:80'
+  type: http
+  server: 137.66.1.45
+  port: 80
 - name: '[D]US-http-142.93.202.130:3128'
   type: http
   server: 142.93.202.130
@@ -31,14 +43,6 @@ proxies:
   type: http
   server: 159.203.61.169
   port: 3128
-- name: '[D]US-http-107.150.41.226:18080'
-  type: http
-  server: 107.150.41.226
-  port: 18080
-- name: '[D]US-socks5-129.153.11.56:1080'
-  type: socks5
-  server: 129.153.11.56
-  port: 1080
 - name: '[D]US-http-172.236.242.244:3128'
   type: http
   server: 172.236.242.244
@@ -51,309 +55,213 @@ proxies:
   type: http
   server: 109.199.119.160
   port: 80
-- name: '[D]US-http-107.167.18.122:443'
+- name: '[D]HK-http-18.163.182.106:11301'
   type: http
-  server: 107.167.18.122
-  port: 443
-- name: '[D]US-socks5-162.120.16.210:1080'
-  type: socks5
-  server: 162.120.16.210
-  port: 1080
-- name: '[D]US-http-138.68.60.8:3128'
+  server: 18.163.182.106
+  port: 11301
+- name: '[D]US-http-162.214.159.94:8085'
   type: http
-  server: 138.68.60.8
+  server: 162.214.159.94
+  port: 8085
+- name: '[D]SG-http-103.164.55.81:3128'
+  type: http
+  server: 103.164.55.81
   port: 3128
 - name: '[D]GB-http-134.209.29.120:3128'
   type: http
   server: 134.209.29.120
   port: 3128
-- name: '[D]US-http-137.66.1.45:80'
+- name: '[D]JP-http-139.162.78.109:3128'
   type: http
-  server: 137.66.1.45
-  port: 80
-- name: '[D]DE-http-161.35.70.249:80'
-  type: http
-  server: 161.35.70.249
-  port: 80
-- name: '[D]NL-http-109.236.88.82:80'
-  type: http
-  server: 109.236.88.82
-  port: 80
+  server: 139.162.78.109
+  port: 3128
 - name: '[D]DE-http-103.237.102.191:11111'
   type: http
   server: 103.237.102.191
   port: 11111
-- name: '[D]US-http-162.214.159.94:8085'
-  type: http
-  server: 162.214.159.94
-  port: 8085
+- name: '[D]US-socks5-162.120.16.210:1080'
+  type: socks5
+  server: 162.120.16.210
+  port: 1080
 - name: '[D]DE-http-157.90.10.50:80'
   type: http
   server: 157.90.10.50
+  port: 80
+- name: '[D]BD-http-113.212.111.4:8090'
+  type: http
+  server: 113.212.111.4
+  port: 8090
+- name: '[D]US-socks5-129.153.11.56:1080'
+  type: socks5
+  server: 129.153.11.56
+  port: 1080
+- name: '[D]KR-http-140.238.14.161:8080'
+  type: http
+  server: 140.238.14.161
+  port: 8080
+- name: '[D]DE-http-141.98.153.86:80'
+  type: http
+  server: 141.98.153.86
+  port: 80
+- name: '[D]RS-http-147.91.22.150:80'
+  type: http
+  server: 147.91.22.150
   port: 80
 - name: '[D]IQ-http-185.135.69.34:80'
   type: http
   server: 185.135.69.34
   port: 80
-- name: '[D]DE-http-141.98.153.86:80'
-  type: http
-  server: 141.98.153.86
-  port: 80
-- name: '[D]HK-http-18.163.182.106:18452'
-  type: http
-  server: 18.163.182.106
-  port: 18452
-- name: '[D]HK-http-18.163.182.106:11301'
-  type: http
-  server: 18.163.182.106
-  port: 11301
-- name: '[D]TR-http-107.181.155.86:80'
-  type: http
-  server: 107.181.155.86
-  port: 80
-- name: '[D]SG-http-103.164.55.81:3128'
-  type: http
-  server: 103.164.55.81
-  port: 3128
-- name: '[D]IN-http-18.61.230.250:16401'
-  type: http
-  server: 18.61.230.250
-  port: 16401
-- name: '[D]JP-http-140.238.32.108:3128'
-  type: http
-  server: 140.238.32.108
-  port: 3128
-- name: '[D]BD-http-113.212.111.4:8090'
-  type: http
-  server: 113.212.111.4
-  port: 8090
-- name: '[D]IR-http-185.88.177.40:80'
-  type: http
-  server: 185.88.177.40
-  port: 80
-- name: '[D]JP-http-139.162.78.109:3128'
-  type: http
-  server: 139.162.78.109
-  port: 3128
-- name: '[D]CH-http-185.195.71.218:18080'
-  type: http
-  server: 185.195.71.218
-  port: 18080
-- name: '[D]MX-http-187.190.114.59:999'
-  type: http
-  server: 187.190.114.59
-  port: 999
-- name: '[D]MX-socks5-103.88.234.239:40017'
-  type: socks5
-  server: 103.88.234.239
-  port: 40017
-- name: '[D]MX-socks5-103.88.234.239:40008'
-  type: socks5
-  server: 103.88.234.239
-  port: 40008
-- name: '[D]MX-socks5-103.88.234.239:40012'
-  type: socks5
-  server: 103.88.234.239
-  port: 40012
-- name: '[D]DE-http-152.53.183.107:8081'
-  type: http
-  server: 152.53.183.107
-  port: 8081
-- name: '[D]MX-socks5-103.88.234.239:40015'
-  type: socks5
-  server: 103.88.234.239
-  port: 40015
-- name: '[D]US-socks5-158.101.15.1:443'
-  type: socks5
-  server: 158.101.15.1
-  port: 443
-- name: '[D]IN-http-139.59.1.14:8080'
-  type: http
-  server: 139.59.1.14
-  port: 8080
-- name: '[D]KR-http-140.238.14.161:8080'
-  type: http
-  server: 140.238.14.161
-  port: 8080
-- name: '[D]HK-http-101.32.65.42:8888'
-  type: http
-  server: 101.32.65.42
-  port: 8888
-- name: '[D]IN-http-178.92.72.94:8080'
-  type: http
-  server: 178.92.72.94
-  port: 8080
-- name: '[D]IN-http-178.92.72.129:8080'
-  type: http
-  server: 178.92.72.129
-  port: 8080
-- name: '[D]MX-socks5-103.88.234.239:40014'
-  type: socks5
-  server: 103.88.234.239
-  port: 40014
-- name: '[D]KR-http-112.216.54.226:12121'
-  type: http
-  server: 112.216.54.226
-  port: 12121
-- name: '[D]MX-socks5-103.88.234.239:40003'
-  type: socks5
-  server: 103.88.234.239
-  port: 40003
-- name: '[D]SG-http-172.237.73.24:80'
-  type: http
-  server: 172.237.73.24
-  port: 80
-- name: '[D]NL-socks5-147.45.69.11:1080'
-  type: socks5
-  server: 147.45.69.11
-  port: 1080
-- name: '[D]SG-http-128.199.202.122:8080'
-  type: http
-  server: 128.199.202.122
-  port: 8080
-- name: '[D]IN-http-117.236.124.166:3128'
-  type: http
-  server: 117.236.124.166
-  port: 3128
-- name: '[D]SG-http-143.42.66.91:80'
-  type: http
-  server: 143.42.66.91
-  port: 80
-- name: '[D]MX-socks5-103.88.234.239:40005'
-  type: socks5
-  server: 103.88.234.239
-  port: 40005
-- name: '[D]IN-http-154.201.126.44:8080'
-  type: http
-  server: 154.201.126.44
-  port: 8080
 - name: '[D]HK-http-156.251.19.34:80'
   type: http
   server: 156.251.19.34
   port: 80
-- name: '[D]ID-http-103.77.206.114:3128'
+- name: '[D]TR-http-107.181.155.86:80'
   type: http
-  server: 103.77.206.114
+  server: 107.181.155.86
+  port: 80
+- name: '[D]SG-http-128.199.202.122:8080'
+  type: http
+  server: 128.199.202.122
+  port: 8080
+- name: '[D]SG-http-143.42.66.91:80'
+  type: http
+  server: 143.42.66.91
+  port: 80
+- name: '[D]SG-http-172.237.73.24:80'
+  type: http
+  server: 172.237.73.24
+  port: 80
+- name: '[D]KR-http-183.110.216.159:8091'
+  type: http
+  server: 183.110.216.159
+  port: 8091
+- name: '[D]IN-http-139.59.1.14:8080'
+  type: http
+  server: 139.59.1.14
+  port: 8080
+- name: '[D]IR-http-185.88.177.40:80'
+  type: http
+  server: 185.88.177.40
+  port: 80
+- name: '[D]IN-http-117.236.124.166:3128'
+  type: http
+  server: 117.236.124.166
   port: 3128
-- name: '[D]TR-socks5-107.181.155.234:60000'
+- name: '[D]JP-socks5-101.36.104.46:10808'
   type: socks5
-  server: 107.181.155.234
-  port: 60000
-- name: '[D]MX-socks5-103.88.234.239:40016'
+  server: 101.36.104.46
+  port: 10808
+- name: '[D]IN-http-178.92.72.94:8080'
+  type: http
+  server: 178.92.72.94
+  port: 8080
+- name: '[D]DE-http-161.35.70.249:80'
+  type: http
+  server: 161.35.70.249
+  port: 80
+- name: '[D]MX-socks5-103.88.234.239:40014'
   type: socks5
   server: 103.88.234.239
-  port: 40016
-- name: '[D]SE-socks5-171.25.158.95:1080'
+  port: 40014
+- name: '[D]DE-http-152.53.183.107:8081'
+  type: http
+  server: 152.53.183.107
+  port: 8081
+- name: '[D]DE-socks5-144.76.61.252:1080'
   type: socks5
-  server: 171.25.158.95
+  server: 144.76.61.252
   port: 1080
 - name: '[D]FR-socks5-129.151.240.183:1080'
   type: socks5
   server: 129.151.240.183
   port: 1080
-- name: '[D]ZA-http-102.208.228.90:8080'
-  type: http
-  server: 102.208.228.90
-  port: 8080
-- name: '[D]JP-socks5-101.36.104.46:10808'
+- name: '[D]HK-socks5-123.58.219.171:10808'
   type: socks5
-  server: 101.36.104.46
+  server: 123.58.219.171
   port: 10808
-- name: '[D]US-http-104.218.199.98:16062'
-  type: http
-  server: 104.218.199.98
-  port: 16062
-- name: '[D]IN-http-178.92.72.162:8080'
-  type: http
-  server: 178.92.72.162
-  port: 8080
-- name: '[D]FR-socks5-109.123.251.109:1080'
+- name: '[D]MX-socks5-103.88.234.239:40008'
   type: socks5
-  server: 109.123.251.109
-  port: 1080
-- name: '[D]PH-http-180.195.87.93:8081'
-  type: http
-  server: 180.195.87.93
-  port: 8081
+  server: 103.88.234.239
+  port: 40008
+- name: '[D]MX-socks5-103.88.234.239:40003'
+  type: socks5
+  server: 103.88.234.239
+  port: 40003
+- name: '[D]MX-socks5-103.88.234.239:40016'
+  type: socks5
+  server: 103.88.234.239
+  port: 40016
 - name: '[D]IN-http-178.92.72.68:8080'
   type: http
   server: 178.92.72.68
   port: 8080
-- name: '[D]EC-http-181.78.203.3:999'
-  type: http
-  server: 181.78.203.3
-  port: 999
-- name: '[D]AL-http-185.196.182.22:8080'
-  type: http
-  server: 185.196.182.22
-  port: 8080
+- name: '[D]MX-socks5-103.88.234.239:40012'
+  type: socks5
+  server: 103.88.234.239
+  port: 40012
+- name: '[D]TW-socks5-116.118.147.196:1080'
+  type: socks5
+  server: 116.118.147.196
+  port: 1080
+- name: '[D]SE-socks5-171.25.158.95:1080'
+  type: socks5
+  server: 171.25.158.95
+  port: 1080
 - name: '[D]IN-socks5-144.24.111.128:1088'
   type: socks5
   server: 144.24.111.128
   port: 1088
-- name: '[D]ID-http-182.253.42.232:2026'
-  type: http
-  server: 182.253.42.232
-  port: 2026
-- name: '[D]ID-http-103.31.45.118:8080'
-  type: http
-  server: 103.31.45.118
-  port: 8080
-- name: '[D]IN-socks5-141.148.206.170:1088'
-  type: socks5
-  server: 141.148.206.170
-  port: 1088
-- name: '[D]HK-http-154.209.4.118:10804'
-  type: http
-  server: 154.209.4.118
-  port: 10804
-- name: '[D]SG-http-103.43.191.71:8888'
-  type: http
-  server: 103.43.191.71
-  port: 8888
-- name: '[D]KR-http-183.110.216.159:8091'
-  type: http
-  server: 183.110.216.159
-  port: 8091
 - name: '[D]VN-socks5-160.187.0.89:1080'
   type: socks5
   server: 160.187.0.89
   port: 1080
-- name: '[D]ID-http-103.180.126.138:8080'
-  type: http
-  server: 103.180.126.138
-  port: 8080
-- name: '[D]ZA-http-102.208.228.90:3128'
-  type: http
-  server: 102.208.228.90
-  port: 3128
-- name: '[D]VN-http-116.101.76.225:2094'
-  type: http
-  server: 116.101.76.225
-  port: 2094
-- name: '[D]ID-http-103.172.70.17:9191'
-  type: http
-  server: 103.172.70.17
-  port: 9191
-- name: '[D]IN-socks5-168.144.72.32:1080'
+- name: '[D]MX-socks5-103.88.234.239:40005'
   type: socks5
-  server: 168.144.72.32
-  port: 1080
-- name: '[D]RU-http-176.99.134.183:8090'
-  type: http
-  server: 176.99.134.183
-  port: 8090
+  server: 103.88.234.239
+  port: 40005
 - name: '[D]FR-socks5-144.91.111.48:1088'
   type: socks5
   server: 144.91.111.48
   port: 1088
-- name: '[D]ID-socks5-103.36.11.18:8199'
+- name: '[D]FR-socks5-109.205.182.143:1088'
   type: socks5
-  server: 103.36.11.18
-  port: 8199
-- name: '[D]FR-socks5-144.91.121.61:1088'
+  server: 109.205.182.143
+  port: 1088
+- name: '[D]BD-socks5-118.179.144.142:9090'
   type: socks5
-  server: 144.91.121.61
+  server: 118.179.144.142
+  port: 9090
+- name: '[D]CH-http-185.195.71.218:18080'
+  type: http
+  server: 185.195.71.218
+  port: 18080
+- name: '[D]MY-http-175.139.233.78:80'
+  type: http
+  server: 175.139.233.78
+  port: 80
+- name: '[D]KR-socks5-121.169.46.116:1090'
+  type: socks5
+  server: 121.169.46.116
+  port: 1090
+- name: '[D]US-socks5-138.2.216.186:1080'
+  type: socks5
+  server: 138.2.216.186
+  port: 1080
+- name: '[D]SG-http-103.43.191.71:8888'
+  type: http
+  server: 103.43.191.71
+  port: 8888
+- name: '[D]IN-socks5-168.144.72.32:1080'
+  type: socks5
+  server: 168.144.72.32
+  port: 1080
+- name: '[D]ID-http-103.132.52.20:8080'
+  type: http
+  server: 103.132.52.20
+  port: 8080
+- name: '[D]IN-socks5-141.148.206.170:1088'
+  type: socks5
+  server: 141.148.206.170
   port: 1088
 proxy-groups:
 - name: 日常
@@ -362,93 +270,70 @@ proxy-groups:
   interval: 300
   tolerance: 200
   proxies: &id001
-  - '[D]US-http-172.210.12.8:3128'
+  - '[D]US-http-138.68.60.8:3128'
+  - '[D]US-http-107.167.18.122:443'
+  - '[D]CA-http-184.75.221.82:3118'
   - '[D]US-http-159.65.230.46:8888'
   - '[D]US-http-174.138.119.88:80'
-  - '[D]CA-http-184.75.221.82:3118'
+  - '[D]US-http-107.150.41.226:18080'
+  - '[D]US-http-137.66.1.45:80'
   - '[D]US-http-142.93.202.130:3128'
   - '[D]CA-http-159.203.61.169:3128'
-  - '[D]US-http-107.150.41.226:18080'
-  - '[D]US-socks5-129.153.11.56:1080'
   - '[D]US-http-172.236.242.244:3128'
   - '[D]US-http-165.154.162.73:8888'
   - '[D]FR-http-109.199.119.160:80'
-  - '[D]US-http-107.167.18.122:443'
-  - '[D]US-socks5-162.120.16.210:1080'
-  - '[D]US-http-138.68.60.8:3128'
-  - '[D]GB-http-134.209.29.120:3128'
-  - '[D]US-http-137.66.1.45:80'
-  - '[D]DE-http-161.35.70.249:80'
-  - '[D]NL-http-109.236.88.82:80'
-  - '[D]DE-http-103.237.102.191:11111'
-  - '[D]US-http-162.214.159.94:8085'
-  - '[D]DE-http-157.90.10.50:80'
-  - '[D]IQ-http-185.135.69.34:80'
-  - '[D]DE-http-141.98.153.86:80'
-  - '[D]HK-http-18.163.182.106:18452'
   - '[D]HK-http-18.163.182.106:11301'
-  - '[D]TR-http-107.181.155.86:80'
+  - '[D]US-http-162.214.159.94:8085'
   - '[D]SG-http-103.164.55.81:3128'
-  - '[D]IN-http-18.61.230.250:16401'
-  - '[D]JP-http-140.238.32.108:3128'
-  - '[D]BD-http-113.212.111.4:8090'
-  - '[D]IR-http-185.88.177.40:80'
+  - '[D]GB-http-134.209.29.120:3128'
   - '[D]JP-http-139.162.78.109:3128'
-  - '[D]CH-http-185.195.71.218:18080'
-  - '[D]MX-http-187.190.114.59:999'
-  - '[D]MX-socks5-103.88.234.239:40017'
-  - '[D]MX-socks5-103.88.234.239:40008'
-  - '[D]MX-socks5-103.88.234.239:40012'
-  - '[D]DE-http-152.53.183.107:8081'
-  - '[D]MX-socks5-103.88.234.239:40015'
-  - '[D]US-socks5-158.101.15.1:443'
-  - '[D]IN-http-139.59.1.14:8080'
+  - '[D]DE-http-103.237.102.191:11111'
+  - '[D]US-socks5-162.120.16.210:1080'
+  - '[D]DE-http-157.90.10.50:80'
+  - '[D]BD-http-113.212.111.4:8090'
+  - '[D]US-socks5-129.153.11.56:1080'
   - '[D]KR-http-140.238.14.161:8080'
-  - '[D]HK-http-101.32.65.42:8888'
-  - '[D]IN-http-178.92.72.94:8080'
-  - '[D]IN-http-178.92.72.129:8080'
-  - '[D]MX-socks5-103.88.234.239:40014'
-  - '[D]KR-http-112.216.54.226:12121'
-  - '[D]MX-socks5-103.88.234.239:40003'
-  - '[D]SG-http-172.237.73.24:80'
-  - '[D]NL-socks5-147.45.69.11:1080'
-  - '[D]SG-http-128.199.202.122:8080'
-  - '[D]IN-http-117.236.124.166:3128'
-  - '[D]SG-http-143.42.66.91:80'
-  - '[D]MX-socks5-103.88.234.239:40005'
-  - '[D]IN-http-154.201.126.44:8080'
+  - '[D]DE-http-141.98.153.86:80'
+  - '[D]RS-http-147.91.22.150:80'
+  - '[D]IQ-http-185.135.69.34:80'
   - '[D]HK-http-156.251.19.34:80'
-  - '[D]ID-http-103.77.206.114:3128'
-  - '[D]TR-socks5-107.181.155.234:60000'
-  - '[D]MX-socks5-103.88.234.239:40016'
-  - '[D]SE-socks5-171.25.158.95:1080'
-  - '[D]FR-socks5-129.151.240.183:1080'
-  - '[D]ZA-http-102.208.228.90:8080'
-  - '[D]JP-socks5-101.36.104.46:10808'
-  - '[D]US-http-104.218.199.98:16062'
-  - '[D]IN-http-178.92.72.162:8080'
-  - '[D]FR-socks5-109.123.251.109:1080'
-  - '[D]PH-http-180.195.87.93:8081'
-  - '[D]IN-http-178.92.72.68:8080'
-  - '[D]EC-http-181.78.203.3:999'
-  - '[D]AL-http-185.196.182.22:8080'
-  - '[D]IN-socks5-144.24.111.128:1088'
-  - '[D]ID-http-182.253.42.232:2026'
-  - '[D]ID-http-103.31.45.118:8080'
-  - '[D]IN-socks5-141.148.206.170:1088'
-  - '[D]HK-http-154.209.4.118:10804'
-  - '[D]SG-http-103.43.191.71:8888'
+  - '[D]TR-http-107.181.155.86:80'
+  - '[D]SG-http-128.199.202.122:8080'
+  - '[D]SG-http-143.42.66.91:80'
+  - '[D]SG-http-172.237.73.24:80'
   - '[D]KR-http-183.110.216.159:8091'
+  - '[D]IN-http-139.59.1.14:8080'
+  - '[D]IR-http-185.88.177.40:80'
+  - '[D]IN-http-117.236.124.166:3128'
+  - '[D]JP-socks5-101.36.104.46:10808'
+  - '[D]IN-http-178.92.72.94:8080'
+  - '[D]DE-http-161.35.70.249:80'
+  - '[D]MX-socks5-103.88.234.239:40014'
+  - '[D]DE-http-152.53.183.107:8081'
+  - '[D]DE-socks5-144.76.61.252:1080'
+  - '[D]FR-socks5-129.151.240.183:1080'
+  - '[D]HK-socks5-123.58.219.171:10808'
+  - '[D]MX-socks5-103.88.234.239:40008'
+  - '[D]MX-socks5-103.88.234.239:40003'
+  - '[D]MX-socks5-103.88.234.239:40016'
+  - '[D]IN-http-178.92.72.68:8080'
+  - '[D]MX-socks5-103.88.234.239:40012'
+  - '[D]TW-socks5-116.118.147.196:1080'
+  - '[D]SE-socks5-171.25.158.95:1080'
+  - '[D]IN-socks5-144.24.111.128:1088'
   - '[D]VN-socks5-160.187.0.89:1080'
-  - '[D]ID-http-103.180.126.138:8080'
-  - '[D]ZA-http-102.208.228.90:3128'
-  - '[D]VN-http-116.101.76.225:2094'
-  - '[D]ID-http-103.172.70.17:9191'
-  - '[D]IN-socks5-168.144.72.32:1080'
-  - '[D]RU-http-176.99.134.183:8090'
+  - '[D]MX-socks5-103.88.234.239:40005'
   - '[D]FR-socks5-144.91.111.48:1088'
-  - '[D]ID-socks5-103.36.11.18:8199'
-  - '[D]FR-socks5-144.91.121.61:1088'
+  - '[D]FR-socks5-109.205.182.143:1088'
+  - '[D]BD-socks5-118.179.144.142:9090'
+  - '[D]CH-http-185.195.71.218:18080'
+  - '[D]MY-http-175.139.233.78:80'
+  - '[D]KR-socks5-121.169.46.116:1090'
+  - '[D]US-socks5-138.2.216.186:1080'
+  - '[D]SG-http-103.43.191.71:8888'
+  - '[D]IN-socks5-168.144.72.32:1080'
+  - '[D]ID-http-103.132.52.20:8080'
+  - '[D]IN-socks5-141.148.206.170:1088'
 - name: 日常-手动
   type: select
   proxies: *id001
