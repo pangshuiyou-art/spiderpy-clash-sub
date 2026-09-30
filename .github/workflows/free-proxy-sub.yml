@@ -83,9 +83,17 @@ jobs:
           set -e
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
-          # 只提交订阅产物与白名单；候选 CSV 是人工审查用的中间产物，不入库
-          git add data/free_proxy/residential.yaml data/free_proxy/daily.yaml \
-            data/free_proxy/residential-socks4.yaml config/residential_asns.yaml
+          # 只提交订阅产物与白名单；候选 CSV 是人工审查用的中间产物，不入库。
+          # 脚本在对应组存活数为 0 时不写文件，故逐个判断存在性，避免 git add 路径不匹配而失败。
+          git add config/residential_asns.yaml
+          for name in residential daily residential-socks4; do
+            path="data/free_proxy/${name}.yaml"
+            if [ -f "$path" ]; then
+              git add "$path"
+            else
+              echo "[!] $path 不存在，跳过提交"
+            fi
+          done
           git commit -m 'chore: 更新免费代理分组订阅' || { echo '无变更，跳过提交'; exit 0; }
           git pull --rebase origin "$GITHUB_REF_NAME" || true
           git push
