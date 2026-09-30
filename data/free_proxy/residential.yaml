@@ -1,0 +1,82 @@
+# 住宅节点
+# 节点数: 12
+# 生成时间: 2026-09-30 16:48:07 UTC
+# 测活: mihomo 连续 3 轮通过
+# 数据来源: config/free_proxy_sources.yaml 中配置的免费代理源
+mixed-port: 7890
+allow-lan: false
+mode: rule
+log-level: warning
+proxies:
+- name: '[R]UZ-0001'
+  type: http
+  server: 90.156.196.230
+  port: 3128
+- name: '[R]MX-0002'
+  type: http
+  server: 189.51.168.165
+  port: 999
+- name: '[R]CZ-0003'
+  type: http
+  server: 103.119.19.218
+  port: 3128
+- name: '[R]CN-0004'
+  type: http
+  server: 114.249.225.156
+  port: 8888
+- name: '[R]EC-0005'
+  type: http
+  server: 186.5.94.206
+  port: 999
+- name: '[R]UA-0006'
+  type: http
+  server: 176.111.37.216
+  port: 39811
+- name: '[R]CN-0007'
+  type: http
+  server: 114.246.203.194
+  port: 8888
+- name: '[R]UA-0008'
+  type: http
+  server: 176.111.37.5
+  port: 39811
+- name: '[R]AR-0009'
+  type: http
+  server: 187.102.219.64
+  port: 999
+- name: '[R]US-0010'
+  type: http
+  server: 69.87.216.54
+  port: 7989
+- name: '[R]RU-0011'
+  type: socks5
+  server: 176.122.74.108
+  port: 1080
+- name: '[R]TW-0012'
+  type: socks5
+  server: 202.160.76.167
+  port: 1080
+proxy-groups:
+- name: 住宅
+  type: url-test
+  url: https://www.gstatic.com/generate_204
+  interval: 300
+  tolerance: 200
+  proxies: &id001
+  - '[R]UZ-0001'
+  - '[R]MX-0002'
+  - '[R]CZ-0003'
+  - '[R]CN-0004'
+  - '[R]EC-0005'
+  - '[R]UA-0006'
+  - '[R]CN-0007'
+  - '[R]UA-0008'
+  - '[R]AR-0009'
+  - '[R]US-0010'
+  - '[R]RU-0011'
+  - '[R]TW-0012'
+- name: 住宅-手动
+  type: select
+  proxies: *id001
+rules:
+- MATCH,住宅

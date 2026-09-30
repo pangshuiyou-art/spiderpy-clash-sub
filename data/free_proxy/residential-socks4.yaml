@@ -1,0 +1,14 @@
+# 住宅 socks4 代理（mihomo/Clash 不支持此类型，供 Python/curl 场景使用）
+# 节点数: 10
+# 生成时间: 2026-09-30 16:48:07 UTC
+# 测活: SOCKS4 CONNECT + TLS 握手，连续 3 轮通过
+119.18.147.179:1080  # BD BBTS Network
+94.253.95.241:3629  # RU Itkm ISP
+177.85.65.177:4153  # BR ASE TELECOMUNICAÇÕES LTDA ME
+178.48.13.177:80  # HU UPC
+200.16.211.68:4153  # AR Telefonica de Argentina
+123.200.15.226:1080  # BD Link3 Technologies Limited
+185.98.208.98:28000  # SK GOLEM TECH s.r.o
+38.191.204.44:33317  # CO Hola Telecomunicacines Colombia S.A.S
+62.103.186.66:4153  # GR OTEnet
+195.225.116.15:4145  # CH netz116
