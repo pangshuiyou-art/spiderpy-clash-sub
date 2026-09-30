@@ -1,0 +1,97 @@
+name: 更新免费代理订阅
+
+# 免费代理合并：住宅组 + 日常组
+# 流水线：拉取 9 源 → 去重 → TCP 预筛（约 3.6 万 → 约 2000）→ ip-api 补元数据
+#        → 住宅分类（CIDR 段库 + hosting + ASN 白名单）→ mihomo 多轮测活 → 产物校验
+#
+# 为何用 GitHub Actions：公开仓库的 Actions 完全免费，且本仓库产物直接对外提供 raw 订阅链接。
+# 本机不承担任何定时任务（用户要求：一切脚本都在 GitHub 上执行）。
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 每 6 小时一次。免费代理存活周期短，但 6 小时与本项目其它订阅线保持一致、便于交叉排查。
+    - cron: '15 */6 * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: free-proxy-sub
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v6
+
+      - name: 配置 Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: 安装依赖
+        run: pip install -r scripts/free_proxy_merger/requirements.txt
+
+      - name: 下载 mihomo 内核
+        run: |
+          set -e
+          # 固定版本避免未认证 API 限流导致 404（本项目既有教训）
+          MIHOMO_VERSION="v1.19.10"
+          MIHOMO_URL="https://github.com/MetaCubeX/mihomo/releases/download/${MIHOMO_VERSION}/mihomo-linux-amd64-${MIHOMO_VERSION}.gz"
+          curl -sL -f --retry 3 --connect-timeout 20 -o mihomo.gz "${MIHOMO_URL}"
+          # 下载后校验确实是 gzip，防止拿到错误页
+          file mihomo.gz | grep -q gzip
+          gunzip -f mihomo.gz
+          chmod +x mihomo
+          ./mihomo -v
+
+      - name: 合并并测活免费代理
+        run: |
+          set -e
+          python scripts/free_proxy_merger/build_free_proxy_subs.py \
+            --mihomo ./mihomo \
+            --residential-rounds 3 \
+            --daily-rounds 2 \
+            --max-daily-test 4000
+
+      - name: 产物自检（节点数与延迟分布）
+        run: |
+          set -e
+          python - <<'PY'
+          import re
+          from pathlib import Path
+
+          for name in ('residential', 'daily'):
+              path = Path(f'data/free_proxy/{name}.yaml')
+              if not path.exists():
+                  print(f'[!] {name}: 产物不存在')
+                  continue
+              text = path.read_text(encoding='utf-8')
+              nodes = re.findall(r'^\s*- name: (.+)$', text, re.M)
+              print(f'[OK] {name}: {len(nodes)} 节点')
+              if not nodes:
+                  raise SystemExit(f'{name} 节点数为 0，判定失败')
+          PY
+
+      - name: 提交产物
+        run: |
+          set -e
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add data/free_proxy/ config/residential_asns.yaml
+          git commit -m 'chore: 更新免费代理分组订阅' || { echo '无变更，跳过提交'; exit 0; }
+          git pull --rebase origin "$GITHUB_REF_NAME" || true
+          git push
+
+      - name: 刷新 jsdelivr 缓存
+        run: |
+          # 产物走 jsdelivr 分发，主动 purge 才能让国内订阅及时更新（本项目既有做法）
+          for name in residential daily residential-socks4; do
+            curl -s --max-time 20 \
+              "https://purge.jsdelivr.net/gh/pangshuiyou-art/spiderpy-clash-sub@main/data/free_proxy/${name}.yaml" \
+              || true
+          done
