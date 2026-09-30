@@ -1,5 +1,5 @@
 # 住宅节点（源: Thordata/awesome-free-proxy-list）
-# 生成时间: 2026-09-30 17:29:45 UTC
+# 生成时间: 2026-09-30 21:48:11 UTC
 # 节点数: 1
 # 筛选条件: {'ip_type': ['residential'], 'type': ['http', 'https', 'socks5']}
 mixed-port: 7890
