@@ -1,44 +1,58 @@
 # 住宅 socks4 代理（mihomo/Clash 不支持此类型，供 Python/curl 场景使用）
-# 节点数: 40
-# 生成时间: 2026-10-01 00:49:29 UTC
+# 节点数: 54
+# 生成时间: 2026-10-01 06:55:47 UTC
 # 测活: SOCKS4 CONNECT + TLS 握手，连续 3 轮通过
-119.18.147.179:1080  # BD BBTS Network
-213.6.68.210:4145  # PS Palestine Telecommunications Company
-180.183.149.236:5678  # TH Triple T Broadband Public Company Limited
-103.175.127.230:60606  # BD Inovative Online LTD
-200.10.31.74:49992  # CO Super Redes S.A.S
+107.149.92.23:8443  # HK Ansheng Network Technology Co., Limited
+116.101.13.116:20002  # VN Viettel Group
+116.101.13.111:20005  # VN Viettel Group
+42.116.103.107:1106  # VN FPT Telecom Company
 202.5.50.151:1080  # BD BBTS-NEW
-177.85.65.177:4153  # BR ASE TELECOMUNICAÇÕES LTDA ME
-160.30.104.170:1080  # PK S. B Link Network
-103.9.134.114:1080  # BD Information Services Network Ltd
-123.253.124.28:5678  # IN Multi Acquisitions And Renewals
-203.150.113.52:5180  # TH Internet Thailand Company Ltd.
-123.200.6.58:5678  # BD Link3 Technologies Limited
-103.185.250.136:1080  # BD L.J Broadband Network
-196.216.133.18:1080  # ZA HERO TELECOMS (PTY) LTD
+42.112.14.245:1090  # VN Vietnam Internet Network Information Center
+50.238.47.86:32100  # US Comcast Cable Communications, LLC
+110.34.3.144:1080  # NP SUBISU C7
 102.36.231.77:1080  # NG Timeless Network Services Ltd
+190.14.5.164:5678  # GT Navega.com S.A.
+203.150.113.52:5180  # TH Internet Thailand Company Limited
+213.149.156.87:5678  # BG VIM TV LTD
+91.150.189.122:1080  # PL Skyware Sp. z o.o.
+103.23.100.9:1080  # ID Universitas Negeri Semarang, y
+36.94.119.218:4145  # ID PT. Telekomunikasi Indonesia
 103.26.209.206:1080  # ID Neuviz
-119.93.123.229:4145  # PH Philippine Long Distance Telephone Co.
-200.192.236.242:1080  # CR GCI SERVICE PROVIDER S.A.
-125.25.82.207:5678  # TH TOT Public Company Limited
-213.197.136.218:5678  # LT BALTNET
-213.149.154.213:5678  # BG VIM TV Ltd
-113.53.29.228:13629  # TH TOT Public Company Limited
-103.143.8.126:51951  # IN Promptnet Broadband Pvt Ltd
-200.105.252.170:5678  # EC Puntonet S.A
-105.27.180.194:1080  # ZA SEACOM Limited
-203.156.190.5:5678  # TH JasTel Network Company Limited
-182.93.75.254:1080  # NP Subisu Cablenet
-77.65.50.118:34159  # PL Inea S.A
-179.189.253.193:5432  # BR WorldNet Telecom Comercio e Serviços de Telecomuni
-190.220.25.42:4153  # AR Telmex Argentina S.A
-177.131.119.185:5432  # BR Acessoline Telecomunicacoes Ltda
-185.95.186.165:48293  # IQ Next Net for Internet and IT Services LTD
-190.12.95.170:37209  # PE ON EMPRESAS S.A.C
-201.184.239.75:5678  # CO EPM Telecomunicaciones S.A. E.S.P.
-116.97.117.27:4153  # VN Viettel Group
-178.48.13.177:80  # HU UPC
-179.189.249.61:5432  # BR WorldNet Telecom Comercio e Serviços de Telecomuni
-186.251.253.53:31337  # BR Seanet Telecom Carazinho Eireli
+115.127.95.82:1080  # BD BRACNet Limited
 177.125.144.94:1080  # BR Mega Grupo de Telecomunicações Ltda
-202.79.35.143:4153  # NP WorldLink Communications
+31.13.239.4:5678  # BG Neterra Ltd.
+123.253.124.28:5678  # IN Multi Acquisitions And Renewals
+103.88.204.70:1080  # ID PT INDONESIA COMNETS PLUS
+119.18.147.179:1080  # BD BBTS Network
+103.185.250.136:1080  # BD L.J Broadband Network
+154.18.220.190:5678  # MM Next Tier Trading Company Limited
+202.142.170.115:1080  # PK ITI Karachi Multinet
+177.131.119.185:5432  # BR Acessoline Telecomunicacoes Ltda
+116.97.117.27:4153  # VN Viettel Group
+86.127.209.234:1080  # RO RCS & RDS
+190.12.95.170:37209  # PE ON EMPRESAS S.A.C
+31.220.40.59:5080  # NL Amarutu Technology Ltd. Network
+186.1.182.194:4153  # CO Dialnet de Colombia S.A. E.S.P
+177.55.191.22:60606  # BR BTT TELECOMUNICACOES S.A.
+175.100.37.171:1080  # KH VIETTEL (CAMBODIA) PTE., LTD
+125.25.82.207:5678  # TH TOT Public Company Limited
+190.89.104.48:5432  # BR Acessoline Telecomunicacoes Ltda
+179.189.253.193:5432  # BR WorldNet Telecom Comercio e Servi?os de Telecomuni
+195.200.245.132:1080  # UA PP "IF-IX"
+171.4.85.65:5678  # TH Triple T Broadband Public Company Limited
+200.125.40.38:5678  # UY Administracion Nacional de Telecomunicaciones
+179.189.248.109:5432  # BR WorldNet Telecom Comercio e Serviços de Telecomuni
+181.204.4.74:5678  # CO EPM Telecomunicaciones S.A. E.S.P.
+38.191.204.44:33317  # CO Hola Telecomunicacines Colombia S.A.S
+91.211.100.35:44744  # PL Lukman Multimedia Sp. z o.o
+160.226.220.30:1080  # ZA Iclix (PTY) Ltd
+179.189.249.61:5432  # BR WorldNet Telecom Comercio e Serviços de Telecomuni
+157.15.62.169:1080  # ID AMAN ISP Customer Malang
+187.62.193.152:5678  # BR UWBR VOX Telecomunicacoes S/A
+213.149.154.213:5678  # BG VIM TV Ltd
+189.203.181.34:1080  # MX TOTAL PLAY TELECOMUNICACIONES, S.A.P.I. DE C.V.
+111.119.162.248:10970  # PK Connect Communication
+103.156.15.129:12  # ID PT Lintas Jaringan Nusantara
+93.118.135.176:1080  # IR Iran Telecommunication Company PJS
+171.249.163.170:1080  # VN Viettel Corporation
+85.105.194.113:4153  # TR Turk Telekom
