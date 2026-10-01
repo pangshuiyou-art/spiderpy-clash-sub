@@ -33,3 +33,9 @@ jobs:
           git add clash.yaml
           git commit -m 'chore: 更新代理订阅' || echo '无变更，跳过提交'
           git push
+
+      - name: 刷新 jsdelivr 缓存
+        run: |
+          curl -s --max-time 20 \
+            https://purge.jsdelivr.net/gh/pangshuiyou-art/spiderpy-clash-sub@main/clash.yaml \
+            || true
