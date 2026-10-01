@@ -1,32 +1,31 @@
-name: 更新免费代理订阅
+name: 更新聚合订阅
 
-# 免费代理合并：住宅组 + 日常组
-# 流水线：拉取 8 个代理源 + 1 个数据中心 CIDR 库 → 去重 → 清洗扫描噪音
-#        → TCP 预筛（约 8000 → 约 1400）→ ip-api 补元数据
-#        → 住宅分类（CIDR 段库 + hosting + ASN 白名单）→ mihomo 多轮测活 → 产物校验
+# 聚合层：8 个代理池源 + 2 个订阅链接源 + 1 个数据中心 CIDR 段库
+#        → 去重 → 剔除扫描噪音 → 源侧粗筛 → TCP 预筛 → ip-api 补元数据
+#        → 住宅分类（CIDR 段库 + hosting + ASN 白名单，含放宽策略）
+#        → mihomo 多轮测活（住宅 3 轮 / 日常 2 轮）→ 命名 → 产物校验
 #
-# 为何用 GitHub Actions：公开仓库的 Actions 完全免费，且本仓库产物直接对外提供 raw 订阅链接。
-# 本机不承担任何定时任务（用户要求：一切脚本都在 GitHub 上执行）。
-#
-# 2026-10-01 起 schedule 已停用：住宅组/日常组的产出方已整合到 aggregate-sub.yml
-# （新旧订阅源合并后直接写 data/free_proxy/，客户端链接不变）。若继续定时运行，
-# 两条工作流会互相覆盖同一组文件，故这里只保留手动触发，便于需要时单独重跑旧逻辑。
-# 三份产物（含 residential-socks4.yaml，旧逻辑独有）现已全部由 aggregate-sub.yml 产出。
+# 产物直接落在 data/free_proxy/：新旧订阅源整合后，住宅组/日常组只由本线产出，
+# 客户端既有链接无需改动。原 free-proxy-sub.yml 的 schedule 已停用（保留手动触发），
+# 否则两条工作流会互相覆盖同一组文件。Thordata 线（data/thordata）与 spiderpy 线独立，不受影响。
 
 on:
   workflow_dispatch:
+  schedule:
+    # 沿用原免费代理线的频率与时段，避免改变产出新鲜度；刻意避开整点以降低 schedule 被丢弃的概率。
+    - cron: '43 3,9,15,21 * * *'
 
 permissions:
   contents: write
 
 concurrency:
-  group: free-proxy-sub
+  group: aggregate-sub
   cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 60
     steps:
       - name: 检出代码
         uses: actions/checkout@v6
@@ -37,7 +36,7 @@ jobs:
           python-version: '3.12'
 
       - name: 安装依赖
-        run: pip install -r scripts/free_proxy_merger/requirements.txt
+        run: pip install -r scripts/sub_aggregator/requirements.txt
 
       - name: 下载 mihomo 内核
         run: |
@@ -52,32 +51,51 @@ jobs:
           chmod +x mihomo
           ./mihomo -v
 
-      - name: 合并并测活免费代理
+      - name: 聚合并测活
         run: |
           set -e
-          python scripts/free_proxy_merger/build_free_proxy_subs.py \
+          python scripts/sub_aggregator/build_aggregated_subs.py \
             --mihomo ./mihomo \
             --residential-rounds 3 \
             --daily-rounds 2 \
+            --max-residential-test 1500 \
             --max-daily-test 4000
 
-      - name: 产物自检（节点数与延迟分布）
+      - name: 产物自检（节点数与策略组）
         run: |
           set -e
           python - <<'PY'
-          import re
           from pathlib import Path
+
+          import yaml
 
           for name in ('residential', 'daily'):
               path = Path(f'data/free_proxy/{name}.yaml')
               if not path.exists():
                   print(f'[!] {name}: 产物不存在')
                   continue
-              text = path.read_text(encoding='utf-8')
-              nodes = re.findall(r'^\s*- name: (.+)$', text, re.M)
-              print(f'[OK] {name}: {len(nodes)} 节点')
-              if not nodes:
+              data = yaml.safe_load(path.read_text(encoding='utf-8'))
+              proxies = data.get('proxies') or []
+              groups = data.get('proxy-groups') or []
+              print(f'[OK] {name}: {len(proxies)} 节点 / {len(groups)} 策略组')
+              if not proxies:
                   raise SystemExit(f'{name} 节点数为 0，判定失败')
+              if not groups:
+                  raise SystemExit(f'{name} 策略组为空，判定失败')
+
+          # socks4 是纯文本清单（非 Clash 配置），只校验端点格式
+          socks4 = Path('data/free_proxy/residential-socks4.yaml')
+          if not socks4.exists():
+              print('[!] residential-socks4: 产物不存在（本轮无 socks4 存活属正常）')
+          else:
+              body = [line.split('#', 1)[0].strip() for line in
+                      socks4.read_text(encoding='utf-8').splitlines()]
+              endpoints = [line for line in body if line and not line.startswith('#')]
+              print(f'[OK] residential-socks4: {len(endpoints)} 端点')
+              for line in endpoints:
+                  host, _, port = line.rpartition(':')
+                  if not host or not port.isdigit():
+                      raise SystemExit(f'residential-socks4 端点非法: {line}')
           PY
 
       - name: 提交产物
@@ -96,7 +114,12 @@ jobs:
               echo "[!] $path 不存在，跳过提交"
             fi
           done
-          git commit -m 'chore: 更新免费代理分组订阅' || { echo '无变更，跳过提交'; exit 0; }
+          # 两组都为空时 git add 无事可做，直接结束
+          if git diff --cached --quiet; then
+            echo '无变更，跳过提交'
+            exit 0
+          fi
+          git commit -m 'chore: 更新聚合分组订阅'
           git pull --rebase origin "$GITHUB_REF_NAME" || true
           git push
 
