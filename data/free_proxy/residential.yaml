@@ -1,6 +1,6 @@
 # 住宅节点
-# 节点数: 12
-# 生成时间: 2026-09-30 16:48:07 UTC
+# 节点数: 35
+# 生成时间: 2026-10-01 00:49:29 UTC
 # 测活: mihomo 连续 3 轮通过
 # 数据来源: config/free_proxy_sources.yaml 中配置的免费代理源
 mixed-port: 7890
@@ -8,53 +8,145 @@ allow-lan: false
 mode: rule
 log-level: warning
 proxies:
-- name: '[R]UZ-0001'
+- name: '[R]CO-0001'
   type: http
-  server: 90.156.196.230
-  port: 3128
-- name: '[R]MX-0002'
+  server: 190.0.246.211
+  port: 4040
+- name: '[R]CO-0002'
   type: http
-  server: 189.51.168.165
-  port: 999
+  server: 190.0.246.210
+  port: 4040
 - name: '[R]CZ-0003'
   type: http
   server: 103.119.19.218
   port: 3128
-- name: '[R]CN-0004'
+- name: '[R]CO-0004'
   type: http
-  server: 114.249.225.156
-  port: 8888
-- name: '[R]EC-0005'
-  type: http
-  server: 186.5.94.206
-  port: 999
-- name: '[R]UA-0006'
-  type: http
-  server: 176.111.37.216
-  port: 39811
-- name: '[R]CN-0007'
+  server: 190.0.246.213
+  port: 4040
+- name: '[R]CN-0005'
   type: http
   server: 114.246.203.194
   port: 8888
-- name: '[R]UA-0008'
+- name: '[R]CN-0006'
   type: http
-  server: 176.111.37.5
-  port: 39811
-- name: '[R]AR-0009'
+  server: 111.196.31.46
+  port: 8888
+- name: '[R]CN-0007'
   type: http
-  server: 187.102.219.64
+  server: 114.244.214.40
+  port: 8888
+- name: '[R]CN-0008'
+  type: http
+  server: 123.121.122.28
+  port: 8888
+- name: '[R]CN-0009'
+  type: http
+  server: 114.249.225.156
+  port: 8888
+- name: '[R]CN-0010'
+  type: http
+  server: 111.192.16.130
+  port: 8888
+- name: '[R]CN-0011'
+  type: http
+  server: 111.196.31.158
+  port: 8888
+- name: '[R]CN-0012'
+  type: http
+  server: 111.200.188.89
+  port: 8888
+- name: '[R]CN-0013'
+  type: http
+  server: 114.246.196.242
+  port: 8888
+- name: '[R]CN-0014'
+  type: http
+  server: 123.115.226.82
+  port: 8888
+- name: '[R]CN-0015'
+  type: http
+  server: 114.244.221.178
+  port: 8888
+- name: '[R]CN-0016'
+  type: http
+  server: 123.121.123.216
+  port: 8888
+- name: '[R]CN-0017'
+  type: http
+  server: 123.121.123.115
+  port: 8888
+- name: '[R]ID-0018'
+  type: http
+  server: 103.130.61.61
+  port: 8081
+- name: '[R]CN-0019'
+  type: http
+  server: 111.192.56.157
+  port: 8888
+- name: '[R]CN-0020'
+  type: http
+  server: 221.221.159.97
+  port: 8888
+- name: '[R]EC-0021'
+  type: http
+  server: 45.173.228.217
+  port: 1550
+- name: '[R]CN-0022'
+  type: http
+  server: 123.121.142.252
+  port: 8888
+- name: '[R]IN-0023'
+  type: http
+  server: 45.194.3.132
+  port: 8080
+- name: '[R]CN-0024'
+  type: http
+  server: 116.196.150.180
+  port: 17981
+- name: '[R]EG-0025'
+  type: http
+  server: 156.200.116.69
+  port: 8080
+- name: '[R]PH-0026'
+  type: http
+  server: 112.208.168.10
+  port: 8081
+- name: '[R]CO-0027'
+  type: http
+  server: 45.65.138.48
   port: 999
-- name: '[R]US-0010'
+- name: '[R]ID-0028'
+  type: http
+  server: 118.136.169.190
+  port: 8080
+- name: '[R]ID-0029'
+  type: http
+  server: 38.253.240.183
+  port: 9191
+- name: '[R]AU-0030'
+  type: http
+  server: 180.181.215.232
+  port: 3128
+- name: '[R]BR-0031'
+  type: http
+  server: 179.156.68.230
+  port: 2020
+- name: '[R]ID-0032'
+  type: http
+  server: 116.68.162.174
+  port: 8080
+- name: '[R]ID-0033'
+  type: http
+  server: 45.198.33.65
+  port: 8080
+- name: '[R]US-0034'
   type: http
   server: 69.87.216.54
   port: 7989
-- name: '[R]RU-0011'
+- name: '[R]RU-0035'
   type: socks5
-  server: 176.122.74.108
-  port: 1080
-- name: '[R]TW-0012'
-  type: socks5
-  server: 202.160.76.167
+  server: 45.84.13.153
   port: 1080
 proxy-groups:
 - name: 住宅
@@ -63,18 +155,41 @@ proxy-groups:
   interval: 300
   tolerance: 200
   proxies: &id001
-  - '[R]UZ-0001'
-  - '[R]MX-0002'
+  - '[R]CO-0001'
+  - '[R]CO-0002'
   - '[R]CZ-0003'
-  - '[R]CN-0004'
-  - '[R]EC-0005'
-  - '[R]UA-0006'
+  - '[R]CO-0004'
+  - '[R]CN-0005'
+  - '[R]CN-0006'
   - '[R]CN-0007'
-  - '[R]UA-0008'
-  - '[R]AR-0009'
-  - '[R]US-0010'
-  - '[R]RU-0011'
-  - '[R]TW-0012'
+  - '[R]CN-0008'
+  - '[R]CN-0009'
+  - '[R]CN-0010'
+  - '[R]CN-0011'
+  - '[R]CN-0012'
+  - '[R]CN-0013'
+  - '[R]CN-0014'
+  - '[R]CN-0015'
+  - '[R]CN-0016'
+  - '[R]CN-0017'
+  - '[R]ID-0018'
+  - '[R]CN-0019'
+  - '[R]CN-0020'
+  - '[R]EC-0021'
+  - '[R]CN-0022'
+  - '[R]IN-0023'
+  - '[R]CN-0024'
+  - '[R]EG-0025'
+  - '[R]PH-0026'
+  - '[R]CO-0027'
+  - '[R]ID-0028'
+  - '[R]ID-0029'
+  - '[R]AU-0030'
+  - '[R]BR-0031'
+  - '[R]ID-0032'
+  - '[R]ID-0033'
+  - '[R]US-0034'
+  - '[R]RU-0035'
 - name: 住宅-手动
   type: select
   proxies: *id001
