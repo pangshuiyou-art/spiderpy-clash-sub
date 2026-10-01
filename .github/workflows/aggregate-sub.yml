@@ -5,9 +5,8 @@ name: 更新聚合订阅
 #        → 住宅分类（CIDR 段库 + hosting + ASN 白名单，含放宽策略）
 #        → mihomo 多轮测活（住宅 3 轮 / 日常 2 轮）→ 命名 → 产物校验
 #
-# 产物直接落在 data/free_proxy/：新旧订阅源整合后，住宅组/日常组只由本线产出，
-# 客户端既有链接无需改动。原 free-proxy-sub.yml 的 schedule 已停用（保留手动触发），
-# 否则两条工作流会互相覆盖同一组文件。Thordata 线（data/thordata）与 spiderpy 线独立，不受影响。
+# 产物直接落在 data/free_proxy/：整合后住宅组/日常组只由本线产出，客户端既有链接
+# 无需改动。CNB 只运行影子流水线，结果写 data/cnb_shadow/，不覆盖正式订阅。
 
 on:
   workflow_dispatch:

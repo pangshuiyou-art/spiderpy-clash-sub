@@ -1,109 +1,157 @@
 # =============================================================================
-# CNB（腾讯云原生构建）流水线：国内机房跑 v2ray 订阅合并 + mihomo 真实测活
+# CNB（腾讯云原生构建）影子流水线
 #
-# 触发方式：
-#   1. push 到 main 分支（仅当 .cnb.yml / scripts / config 变更时触发）
-#   2. 定时任务：每 6 小时（crontab，时区 Asia/Shanghai）
+# 定位：CNB 不覆盖 GitHub 正式产物，只在国内环境生成同一组订阅并与 GitHub
+# 正式产物对比。连续观察数周后，再决定是否把 CNB 纳入生产分发。
 #
-# 额度说明：构建机 8 核，单次实测约 1.22 核时；免费额度 160 核时/月，
-#          故定时间隔不宜低于 6 小时（6 小时约 146 核时，占额度 91%）。
-#          产物回写只改 data/**，靠 ifModify 拦住，避免构建自我触发翻倍消耗。
+# 正式产物（GitHub Actions）：
+#   data/free_proxy/{residential,daily,residential-socks4}.yaml
+#   clash.yaml
 #
-# 超时策略：CNB 默认「连续 10 分钟无输出」即判超时，而测活阶段本可静默数分钟，
-#          实测成功构建的测活阶段约 584s、失败构建恰在 600s 被终止，属贴边抖动。
-#          故给「合并订阅并真实测活」这个 Job 声明 timeout：无输出阈值同步放宽到该值，
-#          Job 上限也从默认 2h 收到 20m（该阶段实测约 10 分钟，留一倍余量）。
-#          测活脚本仍以 python -u 无缓冲输出心跳，双重兜底。
+# 影子产物（CNB，仅用于对照）：
+#   data/cnb_shadow/free_proxy/*.yaml
+#   data/cnb_shadow/spiderpy.yaml
+#   data/cnb_shadow/comparison.{json,md}
+#   data/cnb_shadow/comparison-history.jsonl
 #
-# 产物回写：CNB 内置环境变量 CNB_TOKEN 为流水线临时令牌（可推送本仓库代码），
-#          无需额外配置密钥；用户名取自内置变量 CNB_TOKEN_USER_NAME（固定 cnb）。
+# 调度：CNB 按 12 小时一次运行。两侧触发时间无需强行对齐，因为源站数据、
+# 国内外网络和测活时刻本来就会变化；比较的是一段时间内的稳定执行与产出能力。
 # =============================================================================
 
-# 公共流水线片段：push 与定时任务共用，避免重复定义
-.merge-pipeline: &merge-pipeline
-  name: merge-v2ray-sub
-  # 构建环境：官方完整版 python 镜像自带 git / curl / file，无需 apt 安装
+.shadow-pipeline: &shadow-pipeline
+  name: cnb-shadow-sub
   docker:
     image: python:3.12
   stages:
     - name: 安装 Python 依赖
       script: |
         set -e
-        # 多源兜底：清华源曾对构建机返回 403，故改用腾讯云内网源优先
         for PIP_INDEX in \
           "https://mirrors.cloud.tencent.com/pypi/simple/" \
           "https://mirrors.aliyun.com/pypi/simple/" \
           "https://pypi.org/simple/"
         do
           echo "尝试 pip 源: ${PIP_INDEX}"
-          if pip install --no-cache-dir -r scripts/v2ray_merger/requirements.txt -i "${PIP_INDEX}"; then
+          if pip install --no-cache-dir -r scripts/sub_aggregator/requirements.txt -i "${PIP_INDEX}"; then
             echo "依赖安装成功（源: ${PIP_INDEX}）"
             break
           fi
           echo "该源不可用，切换下一个"
         done
         python -c "import httpx, yaml; print('依赖导入校验通过')"
+
     - name: 下载 mihomo 内核
       script: |
         set -e
         MIHOMO_VERSION="v1.19.10"
         MIHOMO_URL="https://github.com/MetaCubeX/mihomo/releases/download/${MIHOMO_VERSION}/mihomo-linux-amd64-${MIHOMO_VERSION}.gz"
-        # 直连 GitHub 失败时依次走国内镜像代理（多源兜底）
         for PREFIX in "" "https://ghfast.top/" "https://gh-proxy.com/"; do
           echo "尝试下载源: ${PREFIX:-GitHub 直连}"
           if curl -sL -f --connect-timeout 15 -o mihomo.gz "${PREFIX}${MIHOMO_URL}"; then
-            if file mihomo.gz | grep -q "gzip"; then
+            if gzip -t mihomo.gz; then
               echo "下载成功"
               break
             fi
           fi
           echo "该源不可用，切换下一个"
         done
-        file mihomo.gz | grep -q "gzip" || { echo "全部下载源均失败，中止"; exit 1; }
-        gunzip -f mihomo.gz || { echo "解压失败"; exit 1; }
-        chmod +x mihomo || exit 1
-        ./mihomo -v || exit 1
-    - name: 合并订阅并真实测活
-      # 声明后：无输出超时 10m → 20m，本 Job 上限 2h → 20m
-      timeout: 20m
+        gzip -t mihomo.gz || { echo "全部下载源均失败，中止"; exit 1; }
+        gunzip -f mihomo.gz
+        chmod +x mihomo
+        ./mihomo -v
+
+    - name: 生成影子聚合订阅
+      # 聚合线含 TCP 预筛、ip-api 和多轮 mihomo 测活；CNB 给足完整运行窗口。
+      timeout: 90m
       script: |
         set -e
-        # 国内出口存活率低，阈值放宽到 3000ms（测量上限 5000ms，留足余量）
-        # -u：关闭 stdout 块缓冲，测活进度心跳才能实时落盘（否则攒在缓冲区里等于没输出）
-        python -u scripts/v2ray_merger/merge_v2ray_subs.py --mihomo ./mihomo --max-delay 3000
-        python - <<'PY'
-        import re
-        from pathlib import Path
-        text = Path('data/clash/clash_merged.yaml').read_text(encoding='utf-8')
-        delays = [int(m) for m in re.findall(r'delay=(\d+)ms', text)]
-        print(f"国内视角存活节点数: {len(delays)}")
-        if delays:
-            delays.sort()
-            print(f"延迟 最小/中位/最大: {delays[0]}/{delays[len(delays)//2]}/{delays[-1]} ms")
-        PY
-    - name: 回写产物到仓库
+        mkdir -p data/cnb_shadow/free_proxy
+        rm -f \
+          data/cnb_shadow/free_proxy/daily.yaml \
+          data/cnb_shadow/free_proxy/residential.yaml \
+          data/cnb_shadow/free_proxy/residential-socks4.yaml \
+          data/cnb_shadow/spiderpy.yaml
+        if [ ! -f config/cnb_shadow_residential_asns.yaml ]; then
+          cp config/residential_asns.yaml config/cnb_shadow_residential_asns.yaml
+          echo "已用 GitHub 正式 ASN 白名单初始化 CNB 影子白名单"
+        fi
+        python -u scripts/sub_aggregator/build_aggregated_subs.py \
+          --mihomo ./mihomo \
+          --whitelist config/cnb_shadow_residential_asns.yaml \
+          --out-dir data/cnb_shadow/free_proxy \
+          --residential-rounds 3 \
+          --daily-rounds 2 \
+          --max-residential-test 1500 \
+          --max-daily-test 4000
+
+    - name: 生成影子 spiderpy 订阅
+      timeout: 10m
+      script: |
+        set -e
+        python -u scripts/generate.py --output data/cnb_shadow/spiderpy.yaml
+
+    - name: 对比 GitHub 正式产物
+      timeout: 5m
+      script: |
+        set -e
+        BASELINE_DIR=".cnb-shadow-baseline"
+        mkdir -p "${BASELINE_DIR}/free_proxy"
+
+        fetch_baseline() {
+          local output="$1"
+          local path="$2"
+          local github_url="https://raw.githubusercontent.com/pangshuiyou-art/spiderpy-clash-sub/main/${path}"
+          local jsdelivr_url="https://cdn.jsdelivr.net/gh/pangshuiyou-art/spiderpy-clash-sub@main/${path}"
+          for url in "${github_url}" "${jsdelivr_url}"; do
+            echo "拉取 GitHub 正式基线: ${url}"
+            if curl -fsSL --connect-timeout 15 --max-time 60 -o "${output}" "${url}"; then
+              return 0
+            fi
+            echo "拉取失败，尝试下一个地址"
+          done
+          echo "GitHub 正式基线拉取失败: ${path}" >&2
+          return 1
+        }
+
+        fetch_baseline "${BASELINE_DIR}/free_proxy/daily.yaml" "data/free_proxy/daily.yaml"
+        fetch_baseline "${BASELINE_DIR}/free_proxy/residential.yaml" "data/free_proxy/residential.yaml"
+        fetch_baseline "${BASELINE_DIR}/free_proxy/residential-socks4.yaml" "data/free_proxy/residential-socks4.yaml"
+        fetch_baseline "${BASELINE_DIR}/clash.yaml" "clash.yaml"
+
+        python -u scripts/sub_aggregator/compare_shadow_outputs.py \
+          --github-dir "${BASELINE_DIR}/free_proxy" \
+          --github-spiderpy "${BASELINE_DIR}/clash.yaml" \
+          --shadow-dir data/cnb_shadow/free_proxy \
+          --shadow-spiderpy data/cnb_shadow/spiderpy.yaml \
+          --report-dir data/cnb_shadow
+
+    - name: 回写影子产物与对比历史
       script: |
         set -e
         if [ -z "$CNB_TOKEN" ]; then
           echo "未获取到内置 CNB_TOKEN，跳过回写"
           exit 0
         fi
-        # 用凭据助手传令牌，避免令牌出现在推送 URL 与日志中
         git config credential.helper '!f() { echo "username=${CNB_TOKEN_USER_NAME}"; echo "password=${CNB_TOKEN}"; }; f'
         git config user.name 'cnb-bot'
         git config user.email 'cnb-bot@cnb.cool'
-        git add data/clash/clash_merged.yaml data/clash/v2ray_merged.txt
-        git commit -m 'chore: 更新合并代理订阅（国内测活）' || { echo '无变更，跳过提交'; exit 0; }
+        # 基线目录在 data/cnb_shadow 外；目录级添加同时处理空产物轮次和端点删除。
+        git add config/cnb_shadow_residential_asns.yaml data/cnb_shadow
+        if git diff --cached --quiet; then
+          echo '无变更，跳过提交'
+          exit 0
+        fi
+        git commit -m 'chore: 更新 CNB 影子订阅与平台对比'
         git push "https://cnb.cool/${CNB_REPO_SLUG}.git" HEAD:main
 
 main:
   push:
-    # ifModify：仅当代码/配置变更时才执行，产物回写（只改 data/**）不再触发新构建；
-    # 定时任务与页面手动触发都会忽略该检查，不受影响
     - ifModify:
         - .cnb.yml
         - scripts/**
-        - config/**
-      <<: *merge-pipeline
-  "crontab: 0 */6 * * *":
-    - <<: *merge-pipeline
+        - config/aggregator_sources.yaml
+        - config/residential_asns.yaml
+      <<: *shadow-pipeline
+  # CNB 免费额度与单任务耗时均比 GitHub 紧，先用 12 小时频率观察稳定性。
+  "crontab: 23 1,13 * * *":
+    - <<: *shadow-pipeline

@@ -4,7 +4,8 @@
 
 本层是住宅组 / 日常组的**唯一产出方**：产物直接写 `data/free_proxy/`，与客户端既有的
 `data/free_proxy/{residential,daily}.yaml` 链接一致，整合后无需改动任何订阅地址。
-原 `free-proxy-sub.yml` 的 `schedule` 已停用（仅保留手动触发），避免两条工作流互相覆盖同一组文件。
+GitHub Actions 只保留 `aggregate-sub.yml` 这一条住宅 / 日常组生产工作流。CNB 运行同构
+影子流水线，结果写入 `data/cnb_shadow/`，只做平台对比，不覆盖正式订阅。
 
 ## 产物
 
@@ -51,7 +52,7 @@ python scripts/sub_aggregator/build_aggregated_subs.py --skip-tcp --skip-ipapi
 | --- | --- |
 | `--config` | 源清单路径，默认 `config/aggregator_sources.yaml` |
 | `--whitelist` | 住宅 ASN 白名单，默认 `config/residential_asns.yaml` |
-| `--out-dir` | 产物目录，默认 `data/subscriptions` |
+| `--out-dir` | 产物目录，默认 `data/free_proxy` |
 | `--residential-rounds` / `--daily-rounds` | 测活轮数，默认 3 / 2 |
 | `--skip-tcp` / `--skip-ipapi` | 调试开关，跳过网络密集环节 |
 | `--max-residential-test` / `--max-daily-test` | 送入测活的条数上限（0 为不限） |
@@ -87,7 +88,21 @@ sources:
 ## 测试
 
 ```bash
-python -m pytest tests/test_sub_aggregator.py -q
+python -m pytest -q
 ```
 
 测试只覆盖纯逻辑，不发起网络请求、不启动 mihomo。
+
+## 平台影子对比
+
+CNB 使用独立的 `config/cnb_shadow_residential_asns.yaml` 学习状态和 `data/cnb_shadow/`
+输出目录。每次运行会从 GitHub `main` 拉取正式产物作为基线，生成：
+
+| 文件 | 内容 |
+| --- | --- |
+| `data/cnb_shadow/comparison.json` | 最近一次结构化对比结果 |
+| `data/cnb_shadow/comparison.md` | 最近一次人工可读报告 |
+| `data/cnb_shadow/comparison-history.jsonl` | 跨运行追加的历史样本 |
+
+比较指标包括每个文件的两侧节点数、共享键、仅一方包含键和 Jaccard 相似度。两侧抓取时刻、
+网络位置和源站状态不同，单次差异只作参考；建议连续观察数周后再决定是否调整生产平台。
