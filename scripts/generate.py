@@ -17,7 +17,7 @@ from __future__ import annotations
 
 import ipaddress
 import json
-import re
+import argparse
 import sys
 from pathlib import Path
 
@@ -190,15 +190,24 @@ def build_config(proxy_list: list[str]) -> dict:
 
 
 def main() -> None:
-    """入口：拉取、转换并写出 clash.yaml。"""
+    """入口：拉取、转换并写出 spiderpy Clash 订阅。"""
+    args = parse_args()
     proxy_list = fetch_proxy_list()
     if not proxy_list:
         print('未获取到任何代理，终止处理', file=sys.stderr)
         raise SystemExit(1)
     config = build_config(proxy_list)
-    with OUTPUT_PATH.open('w', encoding='utf-8') as f:
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    with args.output.open('w', encoding='utf-8') as f:
         yaml.safe_dump(config, f, allow_unicode=True, sort_keys=False)
-    print(f'已生成 {OUTPUT_PATH}，共 {len(config["proxies"])} 个节点')
+    print(f'已生成 {args.output}，共 {len(config["proxies"])} 个节点')
+
+
+def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description='spiderpy 代理池转 Clash 订阅')
+    parser.add_argument('--output', type=Path, default=OUTPUT_PATH,
+                        help='输出 YAML 路径；GitHub 默认 clash.yaml，CNB 影子目录可自定义')
+    return parser.parse_args(argv)
 
 
 if __name__ == '__main__':

@@ -13,8 +13,6 @@
 import ipaddress
 import socket
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from typing import Optional
-
 # TCP 预筛参数（实测最优值）
 TCP_CONNECT_TIMEOUT_SEC = 1.5
 TCP_CONNECT_WORKERS = 200

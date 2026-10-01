@@ -28,10 +28,10 @@ _register(FREE_PROXY_DIR)
 
 # 免费代理线（ip:port 型）
 import builder as free_builder            # noqa: E402
-import build_free_proxy_subs as free_build  # noqa: E402
 import classifier                          # noqa: E402
 import delay_tester                        # noqa: E402
 import processor                           # noqa: E402
+import quality                             # noqa: E402
 import socks4_tester                       # noqa: E402
 import source_loader                       # noqa: E402
 
@@ -44,10 +44,10 @@ __all__ = [
     'FREE_PROXY_DIR',
     'V2RAY_DIR',
     'free_builder',
-    'free_build',
     'classifier',
     'delay_tester',
     'processor',
+    'quality',
     'socks4_tester',
     'source_loader',
     'merge_v2ray_subs',

@@ -22,14 +22,14 @@ import tempfile
 import time
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Optional
 
 import httpx
 
 from . import normalizers, output_builder, residential
 from .naming import assign_node_names, summarize_countries
-from .reuse import (PROJECT_ROOT, classifier, delay_tester, free_builder, free_build,
-                    merge_v2ray_subs, processor, socks4_tester, source_loader, tester_proxy)
+from .reuse import (PROJECT_ROOT, classifier, delay_tester, free_builder,
+                    merge_v2ray_subs, processor, quality, socks4_tester,
+                    source_loader, tester_proxy)
 from .source_registry import load_registry, split_by_kind
 
 DEFAULT_CONFIG = PROJECT_ROOT / 'config' / 'aggregator_sources.yaml'
@@ -39,9 +39,9 @@ DEFAULT_WHITELIST = PROJECT_ROOT / 'config' / 'residential_asns.yaml'
 DEFAULT_OUT_DIR = PROJECT_ROOT / 'data' / 'free_proxy'
 
 # 源侧粗筛门槛（沿用 free_proxy_merger 的实测结论）
-DAILY_MIN_UPTIME = free_build.DAILY_MIN_UPTIME
-DAILY_MAX_LATENCY_MS = free_build.DAILY_MAX_LATENCY_MS
-RESIDENTIAL_MAX_LATENCY_MS = free_build.RESIDENTIAL_MAX_LATENCY_MS
+DAILY_MIN_UPTIME = quality.DAILY_MIN_UPTIME
+DAILY_MAX_LATENCY_MS = quality.DAILY_MAX_LATENCY_MS
+RESIDENTIAL_MAX_LATENCY_MS = quality.RESIDENTIAL_MAX_LATENCY_MS
 
 
 def _fetch_proxypool(sources: list[dict], client: httpx.Client) -> list[dict]:
@@ -201,8 +201,8 @@ def _run_pipeline(config_path: Path, whitelist_path: Path, out_dir: Path,
             print(f"[*] 剔除扫描噪音: {noise_stats['input']} -> {noise_stats['output']} "
                   f"（{noise_stats['noisy_ip_count']} 个异常 IP）")
 
-        res_side = free_build.apply_source_side_filter(pool_records, is_residential=True)
-        daily_side = free_build.apply_source_side_filter(pool_records, is_residential=False)
+        res_side = quality.apply_source_side_filter(pool_records, is_residential=True)
+        daily_side = quality.apply_source_side_filter(pool_records, is_residential=False)
         print(f'[*] 源侧粗筛: 住宅侧 {len(res_side)} 条, 日常侧 {len(daily_side)} 条')
 
         union: dict[tuple[str, int], dict] = {}
@@ -243,9 +243,9 @@ def _run_pipeline(config_path: Path, whitelist_path: Path, out_dir: Path,
                   f"被机房ASN拦下 {relax_stats['blocked_datacenter_asn']}")
 
             split = residential.split_records(alive)
-            residential_candidates = free_build.sort_by_quality(split['residential'])
-            daily_candidates = free_build.sort_by_quality(split['daily'])
-            residential_socks4_candidates = free_build.sort_by_quality(split['residential_socks4'])
+            residential_candidates = quality.sort_by_quality(split['residential'])
+            daily_candidates = quality.sort_by_quality(split['daily'])
+            residential_socks4_candidates = quality.sort_by_quality(split['residential_socks4'])
 
     # ---------- 链接线 ----------
     link_daily: list[dict] = []
@@ -254,7 +254,7 @@ def _run_pipeline(config_path: Path, whitelist_path: Path, out_dir: Path,
         print(f'[*] 链接去重: {len(link_records)} 条')
         with httpx.Client(trust_env=False) as client:
             link_records = merge_v2ray_subs.annotate_regions(link_records, client)
-        link_daily = free_build.sort_by_quality(link_records)
+        link_daily = quality.sort_by_quality(link_records)
 
     print(summarize_countries(residential_candidates, '住宅候选'))
     print(summarize_countries(daily_candidates + link_daily, '日常候选'))
