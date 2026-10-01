@@ -2,8 +2,18 @@
 # CNB（腾讯云原生构建）流水线：国内机房跑 v2ray 订阅合并 + mihomo 真实测活
 #
 # 触发方式：
-#   1. push 到 main 分支（push 事件）
+#   1. push 到 main 分支（仅当 .cnb.yml / scripts / config 变更时触发）
 #   2. 定时任务：每 6 小时（crontab，时区 Asia/Shanghai）
+#
+# 额度说明：构建机 8 核，单次实测约 1.22 核时；免费额度 160 核时/月，
+#          故定时间隔不宜低于 6 小时（6 小时约 146 核时，占额度 91%）。
+#          产物回写只改 data/**，靠 ifModify 拦住，避免构建自我触发翻倍消耗。
+#
+# 超时策略：CNB 默认「连续 10 分钟无输出」即判超时，而测活阶段本可静默数分钟，
+#          实测成功构建的测活阶段约 584s、失败构建恰在 600s 被终止，属贴边抖动。
+#          故给「合并订阅并真实测活」这个 Job 声明 timeout：无输出阈值同步放宽到该值，
+#          Job 上限也从默认 2h 收到 20m（该阶段实测约 10 分钟，留一倍余量）。
+#          测活脚本仍以 python -u 无缓冲输出心跳，双重兜底。
 #
 # 产物回写：CNB 内置环境变量 CNB_TOKEN 为流水线临时令牌（可推送本仓库代码），
 #          无需额外配置密钥；用户名取自内置变量 CNB_TOKEN_USER_NAME（固定 cnb）。
@@ -54,10 +64,13 @@
         chmod +x mihomo || exit 1
         ./mihomo -v || exit 1
     - name: 合并订阅并真实测活
+      # 声明后：无输出超时 10m → 20m，本 Job 上限 2h → 20m
+      timeout: 20m
       script: |
         set -e
         # 国内出口存活率低，阈值放宽到 3000ms（测量上限 5000ms，留足余量）
-        python scripts/v2ray_merger/merge_v2ray_subs.py --mihomo ./mihomo --max-delay 3000
+        # -u：关闭 stdout 块缓冲，测活进度心跳才能实时落盘（否则攒在缓冲区里等于没输出）
+        python -u scripts/v2ray_merger/merge_v2ray_subs.py --mihomo ./mihomo --max-delay 3000
         python - <<'PY'
         import re
         from pathlib import Path
@@ -85,6 +98,12 @@
 
 main:
   push:
-    - <<: *merge-pipeline
+    # ifModify：仅当代码/配置变更时才执行，产物回写（只改 data/**）不再触发新构建；
+    # 定时任务与页面手动触发都会忽略该检查，不受影响
+    - ifModify:
+        - .cnb.yml
+        - scripts/**
+        - config/**
+      <<: *merge-pipeline
   "crontab: 0 */6 * * *":
     - <<: *merge-pipeline

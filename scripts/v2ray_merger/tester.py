@@ -38,6 +38,9 @@ DELAY_TIMEOUT_MS = 5000
 _READY_POLL_SEC = 0.5
 _READY_MAX_WAIT_SEC = 90
 _TEST_CONCURRENCY = 8
+# 每测完这么多节点落一行进度。CI（CNB）对"连续 10 分钟无输出"会直接判超时，
+# 而并发测活整段本可静默数百秒，故用它保证任意时刻都有心跳输出。
+_PROGRESS_EVERY = 25
 _PORT_PROBE_BASE = 20000
 _PORT_PROBE_SPAN = 2048
 _CONFIG_TEST_TIMEOUT_SEC = 120
@@ -334,6 +337,8 @@ def test_nodes(nodes: list[dict], mihomo_bin: str, working_dir: Path) -> dict[st
                 raise RuntimeError('controller 端口被旧 mihomo 实例顶包应答（假活）')
 
             alive: dict[str, int] = {}
+            total = len(candidates)
+            done = 0
             with ThreadPoolExecutor(max_workers=_TEST_CONCURRENCY) as executor:
                 futures = {executor.submit(_test_one, client, controller_base, node['name']): node['name']
                            for node in candidates}
@@ -342,6 +347,11 @@ def test_nodes(nodes: list[dict], mihomo_bin: str, working_dir: Path) -> dict[st
                     delay = future.result()
                     if delay is not None:
                         alive[name] = delay
+                    done += 1
+                    if done % _PROGRESS_EVERY == 0 or done == total:
+                        # flush=True：CI 里 stdout 不是 TTY 会被块缓冲，
+                        # 不主动刷新则进度攒在缓冲区里，等于没输出，仍会触发无输出超时
+                        print(f'[*] 测活进度 {done}/{total}，已存活 {len(alive)}', flush=True)
             return alive
     finally:
         # 三层清理：进程句柄 → 端口监听反查 → 配置文件目录
