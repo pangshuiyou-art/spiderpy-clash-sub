@@ -907,6 +907,11 @@ pending_review:
     hits: 3
     last_seen: 2026-10-01 00:49:29 UTC
     org: BALTNET
+  AS154438:
+    first_seen: 2026-10-02 20:07:15 UTC
+    hits: 1
+    last_seen: 2026-10-02 20:07:15 UTC
+    org: Cogent Communications
   AS154657:
     first_seen: 2026-09-30 10:10:55 UTC
     hits: 2
@@ -1714,8 +1719,8 @@ pending_review:
     org: F.B. BABETO ME
   AS264617:
     first_seen: 2026-10-01 16:41:06 UTC
-    hits: 2
-    last_seen: 2026-10-02 01:04:06 UTC
+    hits: 3
+    last_seen: 2026-10-02 20:07:15 UTC
     org: Geronimo Ramirez Computer Network
   AS264628:
     first_seen: 2026-10-01 00:49:29 UTC
@@ -1879,8 +1884,8 @@ pending_review:
     org: INVERSIONES FAROCA, C.A.
   AS270004:
     first_seen: 2026-09-30 16:48:07 UTC
-    hits: 5
-    last_seen: 2026-10-02 10:02:09 UTC
+    hits: 6
+    last_seen: 2026-10-02 20:07:15 UTC
     org: Cretton Lisandro Maximiliano
   AS270006:
     first_seen: 2026-10-01 00:49:29 UTC
@@ -2035,8 +2040,8 @@ pending_review:
     org: Telconet S.A
   AS27951:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 23
-    last_seen: 2026-10-02 01:04:06 UTC
+    hits: 26
+    last_seen: 2026-10-02 20:07:15 UTC
     org: Media Commerce Partners S.A
   AS27988:
     first_seen: 2026-09-30 10:09:01 UTC
@@ -2815,8 +2820,8 @@ pending_review:
     org: IP Khachaturova Susanna Rafaelievna
   AS4808:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 121
-    last_seen: 2026-10-02 10:02:09 UTC
+    hits: 123
+    last_seen: 2026-10-02 20:07:15 UTC
     org: China Unicom Beijing Province Network
   AS4812:
     first_seen: 2026-09-30 10:07:16 UTC
@@ -3240,8 +3245,8 @@ pending_review:
     org: Single Digits, Inc.
   AS6364:
     first_seen: 2026-09-30 16:48:07 UTC
-    hits: 6
-    last_seen: 2026-10-02 10:02:09 UTC
+    hits: 7
+    last_seen: 2026-10-02 20:07:15 UTC
     org: Atlantic.net
   AS63859:
     first_seen: 2026-10-01 00:49:29 UTC
@@ -3528,5 +3533,5 @@ pending_review:
     hits: 1
     last_seen: 2026-09-30 10:07:16 UTC
     org: Myanma Post & Telecommunication
-updated: 2026-10-02 10:02:09 UTC
+updated: 2026-10-02 20:07:15 UTC
 version: 1
