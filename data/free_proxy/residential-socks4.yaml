@@ -1,38 +1,45 @@
 # 住宅 socks4 代理（mihomo/Clash 不支持此类型，供 Python/curl 场景使用）
-# 节点数: 34
-# 生成时间: 2026-10-02 01:11:39 UTC
+# 节点数: 41
+# 生成时间: 2026-10-02 10:11:19 UTC
 # 测活: SOCKS4 CONNECT + TLS 握手，连续 3 轮通过
-138.124.66.226:1080  # DE Global Connectivity Solutions LLP
-185.73.39.118:9999  # GB Atlantic.net, Inc.
-156.226.180.241:1080  # HK 158 Cloud Computing
+185.112.83.80:1080  # FI Ihor Hosting LTD
+116.100.218.208:1080  # VN Viettel Corporation
 202.5.50.151:1080  # BD BBTS-NEW
-103.88.204.70:1080  # ID PT INDONESIA COMNETS PLUS
-193.158.12.141:4153  # DE Deutsche Telekom AG
-197.157.192.168:1080  # BI Spidernet Network
-170.238.239.71:60606  # CO Internexa S.a. E.S.P
-103.26.209.206:1080  # ID Neuviz
-202.142.169.142:1080  # PK ITI Karachi Multinet
-103.23.100.9:1080  # ID Universitas Negeri Semarang, y
-103.156.15.129:12  # ID PT Lintas Jaringan Nusantara
-36.95.82.69:1080  # ID PT. Telekomunikasi Indonesia
-170.150.1.253:4145  # BR UNIFIQUE TELECOMUNICACOES S/A
-170.246.199.114:5678  # BR Henet Telecomunicacoes Ltda
-114.130.89.94:1080  # BD Mango Teleservices Limited
-188.72.16.74:1080  # IQ CELLNET - Garden City
-171.242.14.54:1080  # VN Viettel Corporation
-197.157.194.10:1080  # BI Spidernet Network
-37.26.86.206:4145  # AL ATU
-175.203.138.160:5678  # KR Korea Telecom
-212.50.19.150:4153  # BG Spectrum NET
-179.189.242.5:5432  # BR WorldNet Telecom Comercio e Servi?os de Telecomuni
-103.25.167.177:4153  # ID PT Citra Jelajah Informatika
-5.254.178.160:10801  # RU South-East Transtelecom Joint Stock Co.
 95.182.107.210:1080  # KZ TOO Kainar-Media
-83.219.1.130:5678  # RU Rostelecom
-103.41.33.169:51951  # IN Juweriyah Networks Private Limited
-200.108.50.254:4145  # PA Cable Onda
-45.116.230.79:4673  # IN Dwan Supports P LTD
-134.35.201.207:1080  # YE Public Telecommunication Corporation
-125.26.4.197:4145  # TH TOT Public Company Limited
-203.150.113.52:5180  # TH Internet Thailand Company Limited
 160.22.205.66:1080  # ID DNS
+172.247.27.29:11080  # US Cnservers LLC
+200.8.235.10:4145  # VE Corporación Telemic C.A.
+103.83.28.216:5678  # IN Ashish And Ashwin Internet Service
+103.23.100.9:1080  # ID Universitas Negeri Semarang, y
+103.143.8.126:51951  # IN Promptnet Broadband Pvt Ltd
+103.41.33.169:51951  # IN Juweriyah Networks Private Limited
+202.146.230.102:1080  # ID PT Centrin Utama
+182.93.75.254:1080  # NP Subisu Cablenet
+170.246.199.114:5678  # BR Henet Telecomunicacoes Ltda
+200.105.192.6:5678  # BO AXS Bolivia S. A.
+125.25.82.207:5678  # TH TOT Public Company Limited
+103.248.9.69:80  # ID PT Flashnet Inovasi Teknologi
+119.148.23.210:9990  # BD Agni Systems Limited
+105.30.248.241:1080  # ZA SEACOM Limited Networks
+116.90.234.106:1080  # NP Websurfer Nepal Communication System Pvt. Ltd
+36.94.119.218:4145  # ID PT. Telekomunikasi Indonesia
+175.203.138.160:5678  # KR Korea Telecom
+154.79.246.102:1080  # KE Airtel KE Mobile & Fixed Internet
+190.13.147.241:5678  # CL Telefonica del Sur S.A
+103.86.116.193:1080  # ID PT Link Data Sumber Barokah
+180.183.149.236:5678  # TH Triple T Broadband Public Company Limited
+95.46.105.163:4145  # RU Kompleks Media LLC
+103.120.165.132:1080  # BD Discovery Internet/ Madhabdi
+194.62.55.84:40001  # TR Hosting Dunyam Bilisim Teknolojileri Ticaret Limited Sirketi
+121.139.218.165:43295  # KR Korea Telecom
+46.55.3.113:4145  # MD JSC "Moldtelecom" S.A
+196.216.133.18:1080  # ZA HERO TELECOMS (PTY) LTD
+124.109.44.126:4145  # PK Nayatel (Pvt) Ltd
+201.234.24.89:4153  # AR Level 3 Communications, Inc.
+77.238.79.111:5678  # BG FIBER1
+187.188.131.169:1080  # MX TOTAL PLAY TELECOMUNICACIONES, S.A.P.I. DE C.V.
+36.94.110.49:5678  # ID PT. Telekomunikasi Indonesia
+116.97.117.27:4153  # VN Viettel Group
+125.227.169.85:38157  # TW Chunghwa Telecom Co., Ltd.
+96.9.88.130:4153  # KH S.I Group
+176.120.32.135:5678  # UA Langate Ltd
