@@ -1,60 +1,33 @@
 # 住宅 socks4 代理（mihomo/Clash 不支持此类型，供 Python/curl 场景使用）
-# 节点数: 56
-# 生成时间: 2026-10-03 09:33:53 UTC
+# 节点数: 29
+# 生成时间: 2026-10-03 14:34:37 UTC
 # 测活: SOCKS4 CONNECT + TLS 握手，连续 3 轮通过
-138.124.66.226:1080  # DE Global Connectivity Solutions LLP
-213.6.68.210:4145  # PS Palestine Telecommunications Company
-103.26.209.206:1080  # ID Neuviz
-196.0.111.194:48009  # UG Uganda Telecom Ltd
-175.100.37.171:1080  # KH VIETTEL (CAMBODIA) PTE., LTD
-202.142.169.142:1080  # PK ITI Karachi Multinet
-157.15.62.169:1080  # ID AMAN ISP Customer Malang
-94.103.2.238:1080  # MD GIR SER
-103.143.8.126:51951  # IN Promptnet Broadband Pvt Ltd
-83.218.186.22:5678  # AT myNet GmbH
-123.253.124.28:5678  # IN Multi Acquisitions And Renewals
-117.102.101.52:5678  # ID BIZNET
-105.214.19.138:5678  # ZA MTN SA
-115.85.86.114:5678  # ID Sudirman Central Business District
-170.238.239.71:60606  # CO Internexa S.a. E.S.P
-123.200.15.226:1080  # BD Link3 Technologies Limited
-202.142.170.115:1080  # PK ITI Karachi Multinet
-114.130.89.94:1080  # BD Mango Teleservices Limited
-185.132.1.221:4145  # UA Miratel Ltd
-171.4.85.65:5678  # TH Triple T Broadband Public Company Limited
-103.115.198.39:5678  # PK AMBITIONS COMMUNICATION SYSTEM (SMC-PRIVATE) LIMITED
-65.20.158.88:10000  # IQ Hulum
-202.123.183.66:5678  # LA Sky Telecom State Company
-197.157.194.10:1080  # BI Spidernet Network
-36.37.203.215:4153  # KH VIETTEL (CAMBODIA) PTE., LTD
-185.244.158.4:3129  # UA Stargroup LLC
-124.41.213.174:5678  # NP WorldLink Communications
-36.37.189.64:5678  # KH VIETTEL (CAMBODIA) PTE., LTD
-111.119.162.248:10902  # PK Connect Communication
-198.12.37.25:1080  # AR Servicios y Telecomunicaciones S.A
-119.235.50.78:4153  # IN VAINAVI INDUSTIES LTD, INTERNET SERVICE PROVIDER, INDIA
+102.129.229.131:1081  # TH DEXSERVER by CSNE CO., LTD.
+45.81.154.75:1080  # ES GINERNET
+171.249.235.114:5002  # VN Viettel Corporation
+139.226.37.119:10808  # CN China Unicom Shanghai network
+185.112.83.80:1080  # FI Ihor Hosting LTD
+45.80.37.229:10801  # NL Telkom Internet LTD
+213.197.136.218:5678  # LT BALTNET
+88.199.163.83:4153  # PL TK Telekom sp. z o.o
+76.26.114.253:39593  # US Comcast Cable Communications, LLC
+109.68.189.22:54643  # RU OOO Suntel
+177.131.121.208:5432  # BR Acessoline Telecomunicacoes Ltda
+203.150.113.52:5180  # TH Internet Thailand Company Ltd.
+77.65.50.118:34159  # PL Inea S.A
+202.5.50.151:1080  # BD BBTS-NEW
+116.97.117.27:4153  # VN Viettel Group
+103.162.184.251:1088  # BD Dupchanchia Online
+131.0.245.82:60606  # BR supercore tecnologia e informatica eirelli
+103.88.204.70:1080  # ID PT INDONESIA COMNETS PLUS
+160.30.104.170:1080  # PK S. B Link Network
+123.200.28.222:1080  # BD Link3 Technologies Limited
+103.118.127.222:4153  # ID Tele
 102.36.231.77:1080  # NG Timeless Network Services Ltd
-103.229.47.120:4153  # BD MSHELPLINE
-12.109.102.86:64312  # US Acc-community Antenna Service in
-220.132.41.160:1088  # TW Chunghwa Telecom Co., Ltd.
-177.152.106.74:1080  # BR figueiredo provedores eireli
-119.63.95.3:4153  # TH United Information Highway Co., Ltd.
-187.87.35.148:4153  # BR GD SERVIÇOS INTERNET LTDA
-160.22.205.66:1080  # ID DNS
-103.175.127.230:60606  # BD Inovative Online LTD
-83.56.15.57:5678  # ES Telefonica de Espana SAU
-37.26.86.206:4145  # AL ATU
-193.158.12.140:4153  # DE Deutsche Telekom AG
-194.31.212.115:1080  # UA Irpen-Best
-31.43.63.70:4145  # UA Ukrainian Telecommunication Group LLC
-121.200.60.122:4153  # BD Drik ICT Ltd
-195.78.113.38:4153  # UA PrJSC Valex
-93.93.61.153:1080  # LT AB "Ogmios Centras"
-103.41.33.169:51951  # IN Juweriyah Networks Private Limited
-160.226.220.30:1080  # ZA Iclix (PTY) Ltd
-182.93.75.254:1080  # NP Subisu Cablenet
-179.108.153.128:4145  # BR Max Telecomunicações Ltda
-185.190.154.121:4145  # RS TELEKOM-SRBIJA
-180.148.208.30:1080  # BD STARGATE
-202.162.219.12:1080  # ID PT Indonesia Comnets Plus
-31.42.2.113:5678  # PL MARCIN MALOLEPSZY @ALFANET
+177.85.65.177:4153  # BR ASE TELECOMUNICAÇÕES LTDA ME
+103.167.156.88:1080  # ID PT Jaringan Tiang Indonesia Group
+103.161.62.29:1080  # ID Internet Service Provider
+103.76.108.99:80  # ID PT Mahawira Nusantara Grup
+200.10.31.74:49992  # CO Super Redes S.A.S
+45.115.115.37:9090  # BD Drik ICT Ltd
+125.26.4.197:4145  # TH TOT Public Company Limited
