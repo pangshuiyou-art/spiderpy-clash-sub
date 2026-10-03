@@ -1,33 +1,33 @@
 # 住宅 socks4 代理（mihomo/Clash 不支持此类型，供 Python/curl 场景使用）
 # 节点数: 29
-# 生成时间: 2026-10-03 14:34:37 UTC
+# 生成时间: 2026-10-03 18:58:18 UTC
 # 测活: SOCKS4 CONNECT + TLS 握手，连续 3 轮通过
-102.129.229.131:1081  # TH DEXSERVER by CSNE CO., LTD.
-45.81.154.75:1080  # ES GINERNET
-171.249.235.114:5002  # VN Viettel Corporation
-139.226.37.119:10808  # CN China Unicom Shanghai network
-185.112.83.80:1080  # FI Ihor Hosting LTD
-45.80.37.229:10801  # NL Telkom Internet LTD
-213.197.136.218:5678  # LT BALTNET
-88.199.163.83:4153  # PL TK Telekom sp. z o.o
-76.26.114.253:39593  # US Comcast Cable Communications, LLC
-109.68.189.22:54643  # RU OOO Suntel
-177.131.121.208:5432  # BR Acessoline Telecomunicacoes Ltda
+185.73.39.118:9999  # GB Atlantic.net, Inc.
+94.253.95.241:3629  # RU Itkm ISP
+160.226.220.30:1080  # ZA Iclix (PTY) Ltd
+202.162.197.57:4145  # ID PT. Media Antar Nusa
 203.150.113.52:5180  # TH Internet Thailand Company Ltd.
-77.65.50.118:34159  # PL Inea S.A
-202.5.50.151:1080  # BD BBTS-NEW
-116.97.117.27:4153  # VN Viettel Group
-103.162.184.251:1088  # BD Dupchanchia Online
-131.0.245.82:60606  # BR supercore tecnologia e informatica eirelli
-103.88.204.70:1080  # ID PT INDONESIA COMNETS PLUS
+213.197.136.218:5678  # LT BALTNET
+182.93.75.254:1080  # NP Subisu Cablenet
+113.161.134.128:1080  # VN VietNam Post and Telecom Corporation
+146.196.63.234:4145  # IN Acme Diginet Corporation Pvt. Ltd
+45.70.188.10:4153  # BR Rapidus Internet Banda larga
+86.127.187.149:1080  # RO RCS & RDS
+36.95.82.69:1080  # ID PT. Telekomunikasi Indonesia
 160.30.104.170:1080  # PK S. B Link Network
-123.200.28.222:1080  # BD Link3 Technologies Limited
-103.118.127.222:4153  # ID Tele
-102.36.231.77:1080  # NG Timeless Network Services Ltd
+200.105.252.170:5678  # EC Puntonet S.A
+203.172.120.179:1080  # TH sinokor1
+202.142.170.115:1080  # PK ITI Karachi Multinet
 177.85.65.177:4153  # BR ASE TELECOMUNICAÇÕES LTDA ME
-103.167.156.88:1080  # ID PT Jaringan Tiang Indonesia Group
-103.161.62.29:1080  # ID Internet Service Provider
+77.65.50.118:34159  # PL INEA sp. z o.o.
+189.203.181.34:1080  # MX TOTAL PLAY TELECOMUNICACIONES, S.A.P.I. DE C.V.
+103.86.116.193:1080  # ID PT Link Data Sumber Barokah
+185.190.154.121:4145  # RS TELEKOM-SRBIJA
+186.1.182.194:4153  # CO Dialnet de Colombia S.A. E.S.P
+58.27.160.253:1080  # PK Wateen Telecom Limited
+85.117.32.166:4153  # GE Caucasus Online Ltd.
+190.220.25.42:4153  # AR Telmex Argentina S.A
+111.119.162.248:10900  # PK Connect Communication
 103.76.108.99:80  # ID PT Mahawira Nusantara Grup
-200.10.31.74:49992  # CO Super Redes S.A.S
-45.115.115.37:9090  # BD Drik ICT Ltd
-125.26.4.197:4145  # TH TOT Public Company Limited
+170.80.221.192:4153  # BR LOCALLINK TELECOMUNICAÇÕES LTDA - ME
+213.21.53.119:4153  # RU Global Network Management Inc
