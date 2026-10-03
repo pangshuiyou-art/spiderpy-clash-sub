@@ -909,8 +909,8 @@ pending_review:
     org: BALTNET
   AS154438:
     first_seen: 2026-10-02 20:07:15 UTC
-    hits: 1
-    last_seen: 2026-10-02 20:07:15 UTC
+    hits: 2
+    last_seen: 2026-10-03 09:24:47 UTC
     org: Cogent Communications
   AS154657:
     first_seen: 2026-09-30 10:10:55 UTC
@@ -1284,8 +1284,8 @@ pending_review:
     org: Datacamp Limited
   AS212444:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 9
-    last_seen: 2026-10-03 00:43:05 UTC
+    hits: 10
+    last_seen: 2026-10-03 09:24:47 UTC
     org: LLC BROSS-TELECOM
   AS212552:
     first_seen: 2026-09-30 16:48:07 UTC
@@ -1524,8 +1524,8 @@ pending_review:
     org: BRACNet Limited
   AS24492:
     first_seen: 2026-10-01 00:49:29 UTC
-    hits: 2
-    last_seen: 2026-10-02 10:02:09 UTC
+    hits: 3
+    last_seen: 2026-10-03 09:24:47 UTC
     org: WiCAM Corporation
   AS24527:
     first_seen: 2026-09-30 10:07:16 UTC
@@ -2820,8 +2820,8 @@ pending_review:
     org: IP Khachaturova Susanna Rafaelievna
   AS4808:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 129
-    last_seen: 2026-10-03 00:43:05 UTC
+    hits: 130
+    last_seen: 2026-10-03 09:24:47 UTC
     org: China Unicom Beijing Province Network
   AS4812:
     first_seen: 2026-09-30 10:07:16 UTC
@@ -3115,8 +3115,8 @@ pending_review:
     org: JSC "ER-Telecom Holding"
   AS57529:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 6
-    last_seen: 2026-09-30 16:48:07 UTC
+    hits: 7
+    last_seen: 2026-10-03 09:24:47 UTC
     org: ZAO GTNT
   AS5769:
     first_seen: 2026-10-01 00:49:29 UTC
@@ -3250,8 +3250,8 @@ pending_review:
     org: Single Digits, Inc.
   AS6364:
     first_seen: 2026-09-30 16:48:07 UTC
-    hits: 8
-    last_seen: 2026-10-03 00:43:05 UTC
+    hits: 9
+    last_seen: 2026-10-03 09:24:47 UTC
     org: Atlantic.net
   AS63859:
     first_seen: 2026-10-01 00:49:29 UTC
@@ -3475,8 +3475,8 @@ pending_review:
     org: Hong Kong Broadband Network Limited
   AS9299:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 22
-    last_seen: 2026-10-01 00:49:29 UTC
+    hits: 23
+    last_seen: 2026-10-03 09:24:47 UTC
     org: Philippine Long Distance Telephone Co.
   AS9341:
     first_seen: 2026-09-30 10:10:55 UTC
@@ -3538,5 +3538,5 @@ pending_review:
     hits: 1
     last_seen: 2026-09-30 10:07:16 UTC
     org: Myanma Post & Telecommunication
-updated: 2026-10-03 00:43:05 UTC
+updated: 2026-10-03 09:24:47 UTC
 version: 1
