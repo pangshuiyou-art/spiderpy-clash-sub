@@ -1284,8 +1284,8 @@ pending_review:
     org: Datacamp Limited
   AS212444:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 8
-    last_seen: 2026-10-02 10:02:09 UTC
+    hits: 9
+    last_seen: 2026-10-03 00:43:05 UTC
     org: LLC BROSS-TELECOM
   AS212552:
     first_seen: 2026-09-30 16:48:07 UTC
@@ -1339,8 +1339,8 @@ pending_review:
     org: RCell LLC
   AS214743:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 11
-    last_seen: 2026-10-02 10:02:09 UTC
+    hits: 12
+    last_seen: 2026-10-03 00:43:05 UTC
     org: Cogento Backbone Limited
   AS21479:
     first_seen: 2026-09-30 10:09:01 UTC
@@ -1364,8 +1364,8 @@ pending_review:
     org: Lain.sh
   AS215305:
     first_seen: 2026-09-30 10:17:22 UTC
-    hits: 5
-    last_seen: 2026-10-01 16:07:50 UTC
+    hits: 6
+    last_seen: 2026-10-03 00:43:05 UTC
     org: Mastersoft S.R.L.
   AS215365:
     first_seen: 2026-09-30 10:07:16 UTC
@@ -1719,8 +1719,8 @@ pending_review:
     org: F.B. BABETO ME
   AS264617:
     first_seen: 2026-10-01 16:41:06 UTC
-    hits: 3
-    last_seen: 2026-10-02 20:07:15 UTC
+    hits: 4
+    last_seen: 2026-10-03 00:43:05 UTC
     org: Geronimo Ramirez Computer Network
   AS264628:
     first_seen: 2026-10-01 00:49:29 UTC
@@ -1869,8 +1869,8 @@ pending_review:
     org: Tecnoven Services C.A
   AS269804:
     first_seen: 2026-09-30 10:09:01 UTC
-    hits: 2
-    last_seen: 2026-10-01 00:49:29 UTC
+    hits: 3
+    last_seen: 2026-10-03 00:43:05 UTC
     org: Cogent Communications
   AS269832:
     first_seen: 2026-10-01 00:49:29 UTC
@@ -1904,8 +1904,8 @@ pending_review:
     org: Super Redes S.A.S
   AS270111:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 6
-    last_seen: 2026-10-02 01:04:06 UTC
+    hits: 7
+    last_seen: 2026-10-03 00:43:05 UTC
     org: Comunicación por Fibra SA de CV
   AS270399:
     first_seen: 2026-09-30 10:07:16 UTC
@@ -2035,13 +2035,13 @@ pending_review:
     org: Redes y Telecomunicaciones
   AS27947:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 4
-    last_seen: 2026-10-02 10:02:09 UTC
+    hits: 5
+    last_seen: 2026-10-03 00:43:05 UTC
     org: Telconet S.A
   AS27951:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 26
-    last_seen: 2026-10-02 20:07:15 UTC
+    hits: 29
+    last_seen: 2026-10-03 00:43:05 UTC
     org: Media Commerce Partners S.A
   AS27988:
     first_seen: 2026-09-30 10:09:01 UTC
@@ -2095,8 +2095,8 @@ pending_review:
     org: Asespri Ethernet
   AS28458:
     first_seen: 2026-09-30 16:48:07 UTC
-    hits: 1
-    last_seen: 2026-09-30 16:48:07 UTC
+    hits: 2
+    last_seen: 2026-10-03 00:43:05 UTC
     org: IENTC S de RL de CV
   AS28506:
     first_seen: 2026-09-30 10:07:16 UTC
@@ -2820,8 +2820,8 @@ pending_review:
     org: IP Khachaturova Susanna Rafaelievna
   AS4808:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 123
-    last_seen: 2026-10-02 20:07:15 UTC
+    hits: 129
+    last_seen: 2026-10-03 00:43:05 UTC
     org: China Unicom Beijing Province Network
   AS4812:
     first_seen: 2026-09-30 10:07:16 UTC
@@ -3103,6 +3103,11 @@ pending_review:
     hits: 19
     last_seen: 2026-10-01 00:49:29 UTC
     org: BraveWay LLC
+  AS56534:
+    first_seen: 2026-10-03 00:43:05 UTC
+    hits: 1
+    last_seen: 2026-10-03 00:43:05 UTC
+    org: Comfortel Ltd.
   AS56981:
     first_seen: 2026-10-01 00:49:29 UTC
     hits: 1
@@ -3245,8 +3250,8 @@ pending_review:
     org: Single Digits, Inc.
   AS6364:
     first_seen: 2026-09-30 16:48:07 UTC
-    hits: 7
-    last_seen: 2026-10-02 20:07:15 UTC
+    hits: 8
+    last_seen: 2026-10-03 00:43:05 UTC
     org: Atlantic.net
   AS63859:
     first_seen: 2026-10-01 00:49:29 UTC
@@ -3500,8 +3505,8 @@ pending_review:
     org: PT. Core Mediatech
   AS9808:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 39
-    last_seen: 2026-10-01 00:49:29 UTC
+    hits: 40
+    last_seen: 2026-10-03 00:43:05 UTC
     org: China Mobile communications corporation
   AS9829:
     first_seen: 2026-09-30 16:48:07 UTC
@@ -3533,5 +3538,5 @@ pending_review:
     hits: 1
     last_seen: 2026-09-30 10:07:16 UTC
     org: Myanma Post & Telecommunication
-updated: 2026-10-02 20:07:15 UTC
+updated: 2026-10-03 00:43:05 UTC
 version: 1
