@@ -1,43 +1,60 @@
 # 住宅 socks4 代理（mihomo/Clash 不支持此类型，供 Python/curl 场景使用）
-# 节点数: 39
-# 生成时间: 2026-10-04 10:13:42 UTC
+# 节点数: 56
+# 生成时间: 2026-10-04 18:53:52 UTC
 # 测活: SOCKS4 CONNECT + TLS 握手，连续 3 轮通过
-138.124.66.226:1080  # DE Global Connectivity Solutions LLP
 185.73.39.118:9999  # GB Atlantic.net, Inc.
-182.253.144.20:4153  # ID Biznet Networks
+172.247.27.29:11080  # US Cnservers LLC
 181.115.74.172:5678  # HN TELECOMUNICACIONES DE GUATEMALA, SOCIEDAD ANONIMA
-119.18.147.179:1080  # BD BBTS Network
-45.118.77.67:1080  # KH EZECOM CO., LTD.
-213.197.136.218:5678  # LT BALTNET
+181.209.98.106:1080  # AR Empresa Argentina de Soluciones Satelitales S.A.
+109.61.117.11:1080  # HU Dravanet
+171.4.85.65:5678  # TH Triple T Broadband Public Company Limited
+42.112.52.3:20001  # VN Vietnam Internet Network Information Center
+42.112.52.16:20001  # VN Vietnam Internet Network Information Center
+42.112.52.60:20001  # VN Vietnam Internet Network Information Center
+42.112.52.54:20001  # VN Vietnam Internet Network Information Center
+42.112.52.66:20001  # VN Vietnam Internet Network Information Center
+42.112.52.40:20001  # VN Vietnam Internet Network Information Center
+42.112.52.239:20001  # VN Vietnam Internet Network Information Center
+42.112.52.62:20001  # VN Vietnam Internet Network Information Center
+200.10.31.74:49992  # CO Super Redes S.A.S
 202.5.50.151:1080  # BD BBTS-NEW
-14.241.242.177:1080  # VN VNPT
-160.22.205.66:1080  # ID DNS
-196.0.113.10:31651  # UG Uganda Telecom Ltd
-110.38.234.74:1080  # PK Wateen Telecom (Pvt.) Ltd
-76.26.114.253:39593  # US Comcast Cable Communications, LLC
-105.214.19.138:5678  # ZA MTN SA
-181.57.178.146:1080  # CO Telmex Colombia S.A.
-88.87.79.18:3629  # RU JSC ER-Telecom Holding
-190.18.170.230:5678  # AR Telecom Argentina S.A
-109.69.211.18:1080  # CZ LAN servis s.r.o
-200.105.252.170:5678  # EC Puntonet S.A
-119.93.82.236:1080  # PH Philippine Long Distance Telephone Co.
-103.76.190.37:31756  # IN Alacriy Net System Service Private Limited
-111.119.162.248:10915  # PK Connect Communications
-146.196.63.234:4145  # IN Acme Diginet Corporation Pvt. Ltd
-77.65.50.118:34159  # PL INEA sp. z o.o.
-197.156.240.66:5678  # NG Accelon
-182.93.75.254:1080  # NP Subisu Cablenet
-186.138.177.33:4145  # AR Telecom Argentina S.A
-103.167.40.54:1080  # BD Masud Alam Rana
-103.175.127.230:60606  # BD Inovative Online LTD
-88.245.138.87:1080  # TR Turk Telekomunikasyon A.S
-187.188.131.169:1080  # MX TOTAL PLAY TELECOMUNICACIONES, S.A.P.I. DE C.V.
-187.19.127.246:8011  # BR Unidasnet Comunicacoes Ltda
-49.0.156.20:32000  # MN YokozunaNET
-85.117.32.166:4153  # GE Caucasus Online Ltd.
-117.201.152.31:5678  # IN National Internet Backbone
-27.72.122.228:51067  # VN Newass2011xDSLHN
+160.119.159.98:1080  # MZ Voiptech Limitada
+5.175.136.21:1080  # TR AltunHOST LTD
+103.23.100.9:1080  # ID Universitas Negeri Semarang, y
+91.150.189.122:1080  # PL Skyware Sp. z o.o.
+176.235.182.84:1080  # TR Superonline Iletisim Hizmetleri A.S.
+202.146.230.102:1080  # ID PT Centrin Utama
+12.218.209.130:13326  # US AT&T Enterprises, LLC
+45.80.37.229:10801  # NL Telkom Internet LTD
+167.250.137.129:1080  # BR DB3 SERVICOS DE TELECOMUNICACOES S.A
+103.115.198.39:5678  # PK AMBITIONS COMMUNICATION SYSTEM (SMC-PRIVATE) LIMITED
+103.88.204.70:1080  # ID PT INDONESIA COMNETS PLUS
+181.205.207.66:1080  # CO EPM Telecomunicaciones S.A. E.S.P.
+111.119.162.248:10906  # PK Connect Communication
+111.119.162.248:10932  # PK Connect Communication
+102.222.145.8:1080  # KE Blue Streak Horizons Net Limited
+177.136.124.45:56113  # BR ITS TELECOMUNICACOES LTDA
+177.125.212.244:4145  # BR Giga Mais Fibra Telecomunicacoes S.A.
+190.113.249.14:50000  # CR Cooperativa De Electrificacion Rural De Alfaro Ruiz R.L.
+190.12.95.170:37209  # PE ON EMPRESAS S.A.C
+111.119.162.248:10905  # PK Connect Communication
+200.188.246.122:60606  # BR Empresa Catarinense de Tecnologia em Telecom. Ltda
+160.250.226.94:1081  # ID PT Apci Network Solutions
+31.42.2.113:5678  # PL MARCIN MALOLEPSZY @ALFANET
+36.37.189.64:5678  # KH VIETTEL (CAMBODIA) PTE., LTD
+179.189.245.173:5432  # BR WorldNet Telecom Comercio e Serviços de Telecomuni
+123.200.6.58:5678  # BD Link3 Technologies Limited
 181.189.132.74:5678  # GT Comcel Guatemala S.A
+115.127.90.227:1080  # BD BRACNet Limited
+77.65.50.118:34159  # PL INEA sp. z o.o.
+118.71.99.233:5678  # VN FPT Telecom Company
+193.105.62.11:58973  # UA PE Brunarsky Andrey Romanovich
+91.247.92.63:5678  # UA Privately owned enterprise Alexsandrov Yuriy Viktorovich
+45.238.57.1:3629  # EC Instalacion De Sistemas EN Redes Insysred S.A.
+202.162.219.12:1080  # ID PT Indonesia Comnets Plus
+195.68.145.5:80  # RU PJSC "Vimpelcom"
+188.191.18.66:1080  # UA CrimeaCom South LLC
 38.51.243.174:5678  # CO Intercomm de Narino
-139.226.37.119:10808  # CN China Unicom Shanghai network
+89.151.134.157:3629  # RU VolgaTelecom Cheboxary
+212.220.13.98:4153  # RU Rostelecom
+103.248.9.69:80  # ID PT Flashnet Inovasi Teknologi
