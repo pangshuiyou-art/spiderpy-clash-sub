@@ -1,33 +1,45 @@
 # 住宅 socks4 代理（mihomo/Clash 不支持此类型，供 Python/curl 场景使用）
-# 节点数: 29
-# 生成时间: 2026-10-03 18:58:18 UTC
+# 节点数: 41
+# 生成时间: 2026-10-04 00:10:02 UTC
 # 测活: SOCKS4 CONNECT + TLS 握手，连续 3 轮通过
 185.73.39.118:9999  # GB Atlantic.net, Inc.
-94.253.95.241:3629  # RU Itkm ISP
-160.226.220.30:1080  # ZA Iclix (PTY) Ltd
-202.162.197.57:4145  # ID PT. Media Antar Nusa
-203.150.113.52:5180  # TH Internet Thailand Company Ltd.
-213.197.136.218:5678  # LT BALTNET
-182.93.75.254:1080  # NP Subisu Cablenet
-113.161.134.128:1080  # VN VietNam Post and Telecom Corporation
-146.196.63.234:4145  # IN Acme Diginet Corporation Pvt. Ltd
-45.70.188.10:4153  # BR Rapidus Internet Banda larga
+202.5.50.151:1080  # BD BBTS-NEW
+180.183.149.236:5678  # TH Triple T Broadband Public Company Limited
+182.253.144.20:4153  # ID Biznet Networks
+41.139.147.86:5678  # KE Safaricom Limited
+195.9.146.246:3629  # RU PJSC Moscow city telephone network
+161.49.100.131:1080  # PH Converge Information and Communications Technology Solutions
+109.72.109.214:48293  # ME Drustvo za telekomunikacije "MTEL" DOO
+103.137.148.253:1080  # IN Rainbow communications India Pvt Ltd
+179.189.245.173:5432  # BR WorldNet Telecom Comercio e Serviços de Telecomuni
 86.127.187.149:1080  # RO RCS & RDS
-36.95.82.69:1080  # ID PT. Telekomunikasi Indonesia
-160.30.104.170:1080  # PK S. B Link Network
-200.105.252.170:5678  # EC Puntonet S.A
+103.18.47.79:4145  # ID PT. Fiber Networks Indonesia
 203.172.120.179:1080  # TH sinokor1
-202.142.170.115:1080  # PK ITI Karachi Multinet
-177.85.65.177:4153  # BR ASE TELECOMUNICAÇÕES LTDA ME
-77.65.50.118:34159  # PL INEA sp. z o.o.
-189.203.181.34:1080  # MX TOTAL PLAY TELECOMUNICACIONES, S.A.P.I. DE C.V.
+202.179.88.233:51951  # IN Ankhnet
+103.9.134.114:1080  # BD Information Services Network Ltd
+96.9.77.71:51080  # KH SIGROUPS
+201.131.214.1:5678  # BR Vigora Telecom
+41.75.84.86:4153  # NG Main one Cable Company Nigeria Limited
+190.89.4.182:1080  # BR Itaconect Serviços de Comunicação e Multimidia
+179.189.248.125:5432  # BR WorldNet Telecom Comercio e Servi?os de Telecomuni
+176.236.29.193:1080  # TR Superonline Iletisim Hizmetleri A.S.
+136.232.116.2:43314  # IN Reliance Jio Infocomm Limited
+139.226.37.119:10808  # CN China Unicom Shanghai network
+185.56.219.76:40001  # IT Keliweb S.R.L
+103.168.246.3:4153  # ID Dinas Komunikasi dan Informatika Kabupaten Lombok Tengah
+103.167.156.92:1080  # ID PT Jaringan Tiang Indonesia Group
+103.53.110.45:10801  # IN Tycoon Computers Pvt. Ltd.
+177.125.144.94:1080  # BR Mega Grupo de Telecomunicações Ltda
+31.43.63.70:4145  # UA Ukrainian Telecommunication Group LLC
+12.11.59.114:1080  # US AT&T Enterprises, LLC
+45.70.188.10:4153  # BR Rapidus Internet Banda larga
+31.13.239.4:5678  # BG Neterra Ltd.
+198.12.37.25:1080  # AR Servicios y Telecomunicaciones S.A
+114.130.89.94:1080  # BD Mango Teleservices Limited
 103.86.116.193:1080  # ID PT Link Data Sumber Barokah
-185.190.154.121:4145  # RS TELEKOM-SRBIJA
-186.1.182.194:4153  # CO Dialnet de Colombia S.A. E.S.P
-58.27.160.253:1080  # PK Wateen Telecom Limited
-85.117.32.166:4153  # GE Caucasus Online Ltd.
-190.220.25.42:4153  # AR Telmex Argentina S.A
-111.119.162.248:10900  # PK Connect Communication
-103.76.108.99:80  # ID PT Mahawira Nusantara Grup
-170.80.221.192:4153  # BR LOCALLINK TELECOMUNICAÇÕES LTDA - ME
-213.21.53.119:4153  # RU Global Network Management Inc
+213.165.185.211:4153  # MT Melita Cable plc
+45.162.225.114:59341  # BR Rionet Tecnologia EM Internet Eireli - ME
+103.118.127.222:4153  # ID Tele
+45.238.57.1:3629  # EC Instalacion De Sistemas EN Redes Insysred S.A.
+177.128.81.10:81  # BR IBI TELECOM EIRELI
+194.190.98.110:60606  # RU Ooo W-internet
