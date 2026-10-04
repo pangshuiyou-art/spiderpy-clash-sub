@@ -1,9 +1,9 @@
 # 住宅节点（注册场景）
-# 生成时间: 2026-10-04 00:10:02 UTC
-# 节点数: 38
+# 生成时间: 2026-10-04 10:13:42 UTC
+# 节点数: 27
 # 测活: mihomo 连续 3 轮通过
 # 数据来源: config/aggregator_sources.yaml（代理池源，住宅判定已放宽）
-# 置信度构成: low 22, medium 13, high 3
+# 置信度构成: low 17, medium 7, high 3
 mixed-port: 7890
 allow-lan: false
 mode: rule
@@ -13,154 +13,110 @@ proxies:
   type: http
   server: 103.237.102.191
   port: 11111
-- name: '[R]HK-0002'
-  type: socks5
-  server: 107.149.92.23
-  port: 8443
-- name: '[R]US-0003'
-  type: socks5
-  server: 107.174.30.92
-  port: 1080
-- name: '[R]BR-0004'
+- name: '[R]BR-0002'
   type: http
   server: 200.128.84.82
   port: 3128
-- name: '[R]HK-0005'
-  type: http
-  server: 156.240.114.210
-  port: 3129
-- name: '[R]CM-0006'
+- name: '[R]CM-0003'
   type: http
   server: 102.244.78.61
   port: 8080
-- name: '[R]US-0007'
-  type: socks5
-  server: 83.147.217.103
-  port: 1080
-- name: '[R]HK-0008'
-  type: socks5
-  server: 45.194.33.12
-  port: 30002
-- name: '[R]HK-0009'
-  type: socks5
-  server: 45.194.33.12
-  port: 30001
-- name: '[R]CM-0010'
+- name: '[R]CM-0004'
   type: http
   server: 102.244.78.61
   port: 8090
-- name: '[R]DE-0011'
-  type: http
-  server: 69.168.225.235
-  port: 3128
-- name: '[R]MX-0012'
-  type: http
-  server: 189.51.168.165
-  port: 999
-- name: '[R]GB-0013'
-  type: socks5
-  server: 46.235.10.149
-  port: 1080
-- name: '[R]CZ-0014'
-  type: http
-  server: 103.119.19.218
-  port: 3128
-- name: '[R]UZ-0015'
-  type: http
-  server: 193.104.179.115
-  port: 3128
-- name: '[R]MX-0016'
+- name: '[R]MX-0005'
   type: http
   server: 187.149.230.244
   port: 999
-- name: '[R]UZ-0017'
-  type: http
-  server: 90.156.196.230
-  port: 3128
-- name: '[R]CN-0018'
-  type: socks5
-  server: 113.249.111.67
-  port: 1080
-- name: '[R]CO-0019'
-  type: http
-  server: 190.0.246.210
-  port: 4040
-- name: '[R]CN-0020'
-  type: socks5
-  server: 113.108.63.150
-  port: 7890
-- name: '[R]CO-0021'
-  type: http
-  server: 190.0.246.211
-  port: 4040
-- name: '[R]CO-0022'
-  type: http
-  server: 190.0.246.213
-  port: 4040
-- name: '[R]CN-0023'
-  type: http
-  server: 123.121.122.28
-  port: 8888
-- name: '[R]CA-0024'
-  type: socks5
-  server: 38.49.210.79
-  port: 40000
-- name: '[R]VN-0025'
+- name: '[R]VN-0006'
   type: socks5
   server: 160.187.0.89
   port: 1080
-- name: '[R]CN-0026'
-  type: http
-  server: 114.246.203.194
-  port: 8888
-- name: '[R]CN-0027'
-  type: http
-  server: 111.200.188.89
-  port: 8888
-- name: '[R]RU-0028'
+- name: '[R]GB-0007'
   type: socks5
-  server: 193.37.71.46
-  port: 10808
-- name: '[R]VN-0029'
-  type: http
-  server: 171.232.79.28
-  port: 8080
-- name: '[R]BR-0030'
+  server: 46.235.10.149
+  port: 1080
+- name: '[R]US-0008'
   type: socks5
-  server: 192.141.74.246
-  port: 1088
-- name: '[R]CN-0031'
+  server: 83.147.217.103
+  port: 1080
+- name: '[R]CN-0009'
   type: http
-  server: 111.192.59.162
+  server: 120.232.115.57
+  port: 17981
+- name: '[R]HK-0010'
+  type: socks5
+  server: 45.194.33.12
+  port: 30002
+- name: '[R]CN-0011'
+  type: http
+  server: 122.246.4.30
+  port: 17981
+- name: '[R]CN-0012'
+  type: http
+  server: 114.244.221.178
   port: 8888
-- name: '[R]MU-0032'
+- name: '[R]UZ-0013'
   type: http
-  server: 197.224.185.3
+  server: 90.156.196.230
   port: 3128
-- name: '[R]CN-0033'
+- name: '[R]CN-0014'
+  type: socks5
+  server: 113.249.111.67
+  port: 1080
+- name: '[R]NL-0015'
   type: http
-  server: 111.192.42.61
-  port: 8888
-- name: '[R]ID-0034'
+  server: 45.80.37.229
+  port: 10801
+- name: '[R]CN-0016'
   type: http
-  server: 103.176.97.62
-  port: 8082
-- name: '[R]EG-0035'
+  server: 116.196.150.180
+  port: 17981
+- name: '[R]CN-0017'
   type: http
-  server: 62.193.104.29
-  port: 1981
-- name: '[R]EG-0036'
+  server: 119.188.131.55
+  port: 17981
+- name: '[R]UZ-0018'
   type: http
-  server: 196.204.83.232
+  server: 193.104.179.115
+  port: 3128
+- name: '[R]EG-0019'
+  type: http
+  server: 41.128.77.76
   port: 1976
-- name: '[R]CN-0037'
+- name: '[R]EG-0020'
   type: http
-  server: 180.125.216.109
-  port: 8118
-- name: '[R]EG-0038'
+  server: 45.240.232.61
+  port: 8080
+- name: '[R]CN-0021'
+  type: http
+  server: 36.111.33.167
+  port: 13128
+- name: '[R]KR-0022'
+  type: http
+  server: 119.202.84.129
+  port: 8080
+- name: '[R]EG-0023'
+  type: http
+  server: 41.128.90.53
+  port: 1976
+- name: '[R]EG-0024'
   type: http
   server: 41.128.90.54
   port: 1976
+- name: '[R]EG-0025'
+  type: http
+  server: 41.128.90.53
+  port: 1981
+- name: '[R]US-0026'
+  type: http
+  server: 69.87.216.54
+  port: 7989
+- name: '[R]ID-0027'
+  type: socks5
+  server: 103.119.60.219
+  port: 1080
 proxy-groups:
 - name: 住宅
   type: url-test
@@ -169,43 +125,32 @@ proxy-groups:
   tolerance: 200
   proxies: &id001
   - '[R]DE-0001'
-  - '[R]HK-0002'
-  - '[R]US-0003'
-  - '[R]BR-0004'
-  - '[R]HK-0005'
-  - '[R]CM-0006'
-  - '[R]US-0007'
-  - '[R]HK-0008'
-  - '[R]HK-0009'
-  - '[R]CM-0010'
-  - '[R]DE-0011'
-  - '[R]MX-0012'
-  - '[R]GB-0013'
-  - '[R]CZ-0014'
-  - '[R]UZ-0015'
-  - '[R]MX-0016'
-  - '[R]UZ-0017'
-  - '[R]CN-0018'
-  - '[R]CO-0019'
-  - '[R]CN-0020'
-  - '[R]CO-0021'
-  - '[R]CO-0022'
-  - '[R]CN-0023'
-  - '[R]CA-0024'
-  - '[R]VN-0025'
-  - '[R]CN-0026'
-  - '[R]CN-0027'
-  - '[R]RU-0028'
-  - '[R]VN-0029'
-  - '[R]BR-0030'
-  - '[R]CN-0031'
-  - '[R]MU-0032'
-  - '[R]CN-0033'
-  - '[R]ID-0034'
-  - '[R]EG-0035'
-  - '[R]EG-0036'
-  - '[R]CN-0037'
-  - '[R]EG-0038'
+  - '[R]BR-0002'
+  - '[R]CM-0003'
+  - '[R]CM-0004'
+  - '[R]MX-0005'
+  - '[R]VN-0006'
+  - '[R]GB-0007'
+  - '[R]US-0008'
+  - '[R]CN-0009'
+  - '[R]HK-0010'
+  - '[R]CN-0011'
+  - '[R]CN-0012'
+  - '[R]UZ-0013'
+  - '[R]CN-0014'
+  - '[R]NL-0015'
+  - '[R]CN-0016'
+  - '[R]CN-0017'
+  - '[R]UZ-0018'
+  - '[R]EG-0019'
+  - '[R]EG-0020'
+  - '[R]CN-0021'
+  - '[R]KR-0022'
+  - '[R]EG-0023'
+  - '[R]EG-0024'
+  - '[R]EG-0025'
+  - '[R]US-0026'
+  - '[R]ID-0027'
 - name: 住宅-手动
   type: select
   proxies: *id001

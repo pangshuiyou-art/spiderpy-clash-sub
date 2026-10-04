@@ -3,6 +3,10 @@ asns:
     added: '2026-09-30'
     org: Cox Communications Inc.
     source: seed
+  AS36912:
+    added: 2026-10-04 10:04:17 UTC
+    org: Orange CAM INTERNET
+    source: auto
   AS4134:
     added: '2026-09-30'
     org: Chinanet
@@ -1294,8 +1298,8 @@ pending_review:
     org: Datacamp Limited
   AS212444:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 12
-    last_seen: 2026-10-04 00:00:41 UTC
+    hits: 13
+    last_seen: 2026-10-04 10:04:17 UTC
     org: LLC BROSS-TELECOM
   AS212552:
     first_seen: 2026-09-30 16:48:07 UTC
@@ -1559,8 +1563,8 @@ pending_review:
     org: Vodafone Data - Egypt
   AS24863:
     first_seen: 2026-09-30 10:09:01 UTC
-    hits: 13
-    last_seen: 2026-10-04 00:00:41 UTC
+    hits: 16
+    last_seen: 2026-10-04 10:04:17 UTC
     org: Link Egypt (Link.NET)
   AS24940:
     first_seen: 2026-09-30 10:09:01 UTC
@@ -2840,8 +2844,8 @@ pending_review:
     org: IP Khachaturova Susanna Rafaelievna
   AS4808:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 142
-    last_seen: 2026-10-04 00:00:41 UTC
+    hits: 143
+    last_seen: 2026-10-04 10:04:17 UTC
     org: China Unicom Beijing Province Network
   AS4812:
     first_seen: 2026-09-30 10:07:16 UTC
@@ -3270,13 +3274,13 @@ pending_review:
     org: Single Digits, Inc.
   AS6364:
     first_seen: 2026-09-30 16:48:07 UTC
-    hits: 11
-    last_seen: 2026-10-03 18:49:16 UTC
+    hits: 12
+    last_seen: 2026-10-04 10:04:17 UTC
     org: Atlantic.net
   AS63859:
     first_seen: 2026-10-01 00:49:29 UTC
-    hits: 2
-    last_seen: 2026-10-01 00:49:29 UTC
+    hits: 3
+    last_seen: 2026-10-04 10:04:17 UTC
     org: MYREPUBLIC
   AS6400:
     first_seen: 2026-10-01 00:49:29 UTC
@@ -3558,5 +3562,5 @@ pending_review:
     hits: 1
     last_seen: 2026-09-30 10:07:16 UTC
     org: Myanma Post & Telecommunication
-updated: 2026-10-04 00:00:41 UTC
+updated: 2026-10-04 10:04:17 UTC
 version: 1
