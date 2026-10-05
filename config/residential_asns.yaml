@@ -1276,6 +1276,11 @@ pending_review:
     hits: 1
     last_seen: 2026-09-30 10:10:55 UTC
     org: CenterTelecom Voronezh ISP
+  AS210464:
+    first_seen: 2026-10-05 22:10:12 UTC
+    hits: 1
+    last_seen: 2026-10-05 22:10:12 UTC
+    org: Andrew Kristuli
   AS210712:
     first_seen: 2026-09-30 10:07:16 UTC
     hits: 1
@@ -1303,8 +1308,8 @@ pending_review:
     org: Datacamp Limited
   AS212444:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 15
-    last_seen: 2026-10-05 00:08:53 UTC
+    hits: 16
+    last_seen: 2026-10-05 22:10:12 UTC
     org: LLC BROSS-TELECOM
   AS212552:
     first_seen: 2026-09-30 16:48:07 UTC
@@ -1568,8 +1573,8 @@ pending_review:
     org: Vodafone Data - Egypt
   AS24863:
     first_seen: 2026-09-30 10:09:01 UTC
-    hits: 16
-    last_seen: 2026-10-04 10:04:17 UTC
+    hits: 19
+    last_seen: 2026-10-05 22:10:12 UTC
     org: Link Egypt (Link.NET)
   AS24940:
     first_seen: 2026-09-30 10:09:01 UTC
@@ -2054,13 +2059,13 @@ pending_review:
     org: Redes y Telecomunicaciones
   AS27947:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 6
-    last_seen: 2026-10-05 00:08:53 UTC
+    hits: 7
+    last_seen: 2026-10-05 22:10:12 UTC
     org: Telconet S.A
   AS27951:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 41
-    last_seen: 2026-10-05 10:50:00 UTC
+    hits: 44
+    last_seen: 2026-10-05 22:10:12 UTC
     org: Media Commerce Partners S.A
   AS27988:
     first_seen: 2026-09-30 10:09:01 UTC
@@ -2444,8 +2449,8 @@ pending_review:
     org: INQ
   AS3786:
     first_seen: 2026-10-03 14:24:46 UTC
-    hits: 1
-    last_seen: 2026-10-03 14:24:46 UTC
+    hits: 2
+    last_seen: 2026-10-05 22:10:12 UTC
     org: LG DACOM Corporation
   AS38136:
     first_seen: 2026-09-30 16:48:07 UTC
@@ -2597,6 +2602,11 @@ pending_review:
     hits: 9
     last_seen: 2026-10-01 16:07:50 UTC
     org: Baykov Ilya Sergeevich
+  AS41754:
+    first_seen: 2026-10-05 22:10:12 UTC
+    hits: 1
+    last_seen: 2026-10-05 22:10:12 UTC
+    org: CJSC "ER-Telecom Holding" Penza branch
   AS4181:
     first_seen: 2026-09-30 10:07:16 UTC
     hits: 6
@@ -2849,8 +2859,8 @@ pending_review:
     org: IP Khachaturova Susanna Rafaelievna
   AS4808:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 151
-    last_seen: 2026-10-05 10:50:00 UTC
+    hits: 153
+    last_seen: 2026-10-05 22:10:12 UTC
     org: China Unicom Beijing Province Network
   AS4812:
     first_seen: 2026-09-30 10:07:16 UTC
@@ -3284,8 +3294,8 @@ pending_review:
     org: Single Digits, Inc.
   AS6364:
     first_seen: 2026-09-30 16:48:07 UTC
-    hits: 14
-    last_seen: 2026-10-05 00:08:53 UTC
+    hits: 15
+    last_seen: 2026-10-05 22:10:12 UTC
     org: Atlantic.net
   AS63859:
     first_seen: 2026-10-01 00:49:29 UTC
@@ -3572,5 +3582,5 @@ pending_review:
     hits: 1
     last_seen: 2026-09-30 10:07:16 UTC
     org: Myanma Post & Telecommunication
-updated: 2026-10-05 10:50:00 UTC
+updated: 2026-10-05 22:10:12 UTC
 version: 1
