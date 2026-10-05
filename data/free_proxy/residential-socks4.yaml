@@ -1,60 +1,54 @@
 # 住宅 socks4 代理（mihomo/Clash 不支持此类型，供 Python/curl 场景使用）
-# 节点数: 56
-# 生成时间: 2026-10-04 18:53:52 UTC
+# 节点数: 50
+# 生成时间: 2026-10-05 00:17:25 UTC
 # 测活: SOCKS4 CONNECT + TLS 握手，连续 3 轮通过
 185.73.39.118:9999  # GB Atlantic.net, Inc.
-172.247.27.29:11080  # US Cnservers LLC
-181.115.74.172:5678  # HN TELECOMUNICACIONES DE GUATEMALA, SOCIEDAD ANONIMA
-181.209.98.106:1080  # AR Empresa Argentina de Soluciones Satelitales S.A.
-109.61.117.11:1080  # HU Dravanet
-171.4.85.65:5678  # TH Triple T Broadband Public Company Limited
-42.112.52.3:20001  # VN Vietnam Internet Network Information Center
-42.112.52.16:20001  # VN Vietnam Internet Network Information Center
-42.112.52.60:20001  # VN Vietnam Internet Network Information Center
-42.112.52.54:20001  # VN Vietnam Internet Network Information Center
-42.112.52.66:20001  # VN Vietnam Internet Network Information Center
-42.112.52.40:20001  # VN Vietnam Internet Network Information Center
-42.112.52.239:20001  # VN Vietnam Internet Network Information Center
-42.112.52.62:20001  # VN Vietnam Internet Network Information Center
-200.10.31.74:49992  # CO Super Redes S.A.S
 202.5.50.151:1080  # BD BBTS-NEW
-160.119.159.98:1080  # MZ Voiptech Limitada
-5.175.136.21:1080  # TR AltunHOST LTD
-103.23.100.9:1080  # ID Universitas Negeri Semarang, y
-91.150.189.122:1080  # PL Skyware Sp. z o.o.
-176.235.182.84:1080  # TR Superonline Iletisim Hizmetleri A.S.
-202.146.230.102:1080  # ID PT Centrin Utama
-12.218.209.130:13326  # US AT&T Enterprises, LLC
-45.80.37.229:10801  # NL Telkom Internet LTD
-167.250.137.129:1080  # BR DB3 SERVICOS DE TELECOMUNICACOES S.A
-103.115.198.39:5678  # PK AMBITIONS COMMUNICATION SYSTEM (SMC-PRIVATE) LIMITED
-103.88.204.70:1080  # ID PT INDONESIA COMNETS PLUS
-181.205.207.66:1080  # CO EPM Telecomunicaciones S.A. E.S.P.
-111.119.162.248:10906  # PK Connect Communication
-111.119.162.248:10932  # PK Connect Communication
-102.222.145.8:1080  # KE Blue Streak Horizons Net Limited
-177.136.124.45:56113  # BR ITS TELECOMUNICACOES LTDA
-177.125.212.244:4145  # BR Giga Mais Fibra Telecomunicacoes S.A.
-190.113.249.14:50000  # CR Cooperativa De Electrificacion Rural De Alfaro Ruiz R.L.
-190.12.95.170:37209  # PE ON EMPRESAS S.A.C
-111.119.162.248:10905  # PK Connect Communication
-200.188.246.122:60606  # BR Empresa Catarinense de Tecnologia em Telecom. Ltda
-160.250.226.94:1081  # ID PT Apci Network Solutions
-31.42.2.113:5678  # PL MARCIN MALOLEPSZY @ALFANET
-36.37.189.64:5678  # KH VIETTEL (CAMBODIA) PTE., LTD
-179.189.245.173:5432  # BR WorldNet Telecom Comercio e Serviços de Telecomuni
-123.200.6.58:5678  # BD Link3 Technologies Limited
-181.189.132.74:5678  # GT Comcel Guatemala S.A
-115.127.90.227:1080  # BD BRACNet Limited
+119.18.147.179:1080  # BD BBTS Network
 77.65.50.118:34159  # PL INEA sp. z o.o.
-118.71.99.233:5678  # VN FPT Telecom Company
-193.105.62.11:58973  # UA PE Brunarsky Andrey Romanovich
-91.247.92.63:5678  # UA Privately owned enterprise Alexsandrov Yuriy Viktorovich
-45.238.57.1:3629  # EC Instalacion De Sistemas EN Redes Insysred S.A.
-202.162.219.12:1080  # ID PT Indonesia Comnets Plus
-195.68.145.5:80  # RU PJSC "Vimpelcom"
-188.191.18.66:1080  # UA CrimeaCom South LLC
-38.51.243.174:5678  # CO Intercomm de Narino
-89.151.134.157:3629  # RU VolgaTelecom Cheboxary
-212.220.13.98:4153  # RU Rostelecom
-103.248.9.69:80  # ID PT Flashnet Inovasi Teknologi
+177.85.65.177:4153  # BR ASE TELECOMUNICAÇÕES LTDA ME
+45.66.207.175:1080  # IT SiciLink s.r.l.s
+201.184.239.75:5678  # CO EPM Telecomunicaciones S.A. E.S.P.
+182.160.101.193:1080  # BD Aamra Networks Limited
+171.242.14.54:1080  # VN Viettel Corporation
+213.197.136.218:5678  # LT BALTNET
+116.97.117.27:4153  # VN Viettel Group
+45.81.154.75:1080  # ES GINERNET
+103.172.71.204:1080  # ID AZNET
+42.112.52.60:20001  # VN Vietnam Internet Network Information Center
+42.112.52.40:20001  # VN Vietnam Internet Network Information Center
+42.112.52.54:20001  # VN Vietnam Internet Network Information Center
+42.112.52.24:20001  # VN Vietnam Internet Network Information Center
+102.222.145.8:1080  # KE Blue Streak Horizons Net Limited
+42.112.52.66:20001  # VN Vietnam Internet Network Information Center
+185.218.93.36:1080  # CZ CETIN a.s.
+160.22.205.66:1080  # ID PT. PANCA DUTA UTAMA
+45.116.230.79:4673  # IN Dwan Supports P LTD
+182.93.75.254:1080  # NP Subisu Cablenet
+103.9.134.114:1080  # BD Information Services Network Ltd
+91.150.189.122:1080  # PL Skyware Sp. z o.o.
+119.93.82.236:1080  # PH Philippine Long Distance Telephone Company
+36.89.56.127:5678  # ID PT. Telekomunikasi Indonesia
+94.103.2.238:1080  # MD GIR SER
+185.244.158.4:3129  # UA Stargroup LLC
+31.13.239.4:5678  # BG Neterra Ltd.
+176.236.29.193:1080  # TR Superonline Iletisim Hizmetleri A.S.
+189.202.204.53:1080  # MX Operbes, S.A. de C.V.
+45.118.77.67:1080  # KH EZECOM CO., LTD.
+103.86.57.9:4145  # NP Web Networks Pvt. Ltd.
+195.200.245.132:1080  # UA PP "IF-IX"
+193.158.12.141:4153  # DE Deutsche Telekom AG
+50.238.47.86:32100  # US Comcast Cable Communications, LLC
+80.78.74.8:65530  # AL Vodafone Albania Sh.A.
+217.17.112.98:1080  # RU OOO Kiss
+197.157.192.168:1080  # BI Spidernet Network
+190.14.5.164:5678  # GT Navega.com S.A.
+113.53.29.228:13629  # TH TOT Public Company Limited
+160.226.220.30:1080  # ZA Iclix (PTY) Ltd
+186.251.253.53:31337  # BR Seanet Telecom Carazinho Eireli
+193.106.57.96:5678  # UA Magic Line
+185.132.1.221:4145  # UA Miratel Ltd
+83.218.186.22:5678  # AT myNet GmbH
+205.209.66.105:1080  # SY RCell LLC
+102.64.117.254:4145  # CG A.M.C Telecom
+105.214.19.138:5678  # ZA MTN SA
