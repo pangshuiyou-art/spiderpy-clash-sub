@@ -1,34 +1,18 @@
 # 住宅 socks4 代理（mihomo/Clash 不支持此类型，供 Python/curl 场景使用）
-# 节点数: 30
-# 生成时间: 2026-10-06 10:54:23 UTC
+# 节点数: 14
+# 生成时间: 2026-10-06 20:40:19 UTC
 # 测活: SOCKS4 CONNECT + TLS 握手，连续 3 轮通过
-160.187.0.89:1080  # VN ONLINE DATA COMPANY LIMITED
-118.71.44.176:1111  # VN Vietnam Internet Network Information Center
-118.71.44.176:1081  # VN Vietnam Internet Network Information Center
-118.71.44.176:1080  # VN Vietnam Internet Network Information Center
-103.72.101.51:1020  # IN Ultahost, Inc.
-58.187.44.103:1089  # VN FPT Telecom Company
+183.106.215.208:1080  # KR Korea Telecom
+202.5.50.151:1080  # BD Broad Band Telecom Services Ltd
 119.18.147.179:1080  # BD BBTS Network
-202.5.50.151:1080  # BD BBTS-NEW
-177.85.65.177:4153  # BR ASE TELECOMUNICAÇÕES LTDA ME
-42.114.62.33:56884  # VN FPT Telecom Company
-185.190.90.2:4145  # AL Lightnet Sh.p.k.
-117.0.78.133:1100  # VN VIETTEL
-136.228.163.150:5678  # MM Myanma Post & Telecommunication
-91.204.57.48:8989  # RU Yunta Ltd.
-185.142.169.195:5678  # IT Aircomm S.r.L.
-110.34.3.144:1080  # NP SUBISU C7
-177.152.106.74:1080  # BR figueiredo provedores eireli
-202.162.197.57:4145  # ID PT. Media Antar Nusa
-160.22.205.66:1080  # ID DNS
-103.105.79.18:1080  # ID PT. Garuda Media Telematika
-12.109.102.86:64312  # US Acc-community Antenna Service in
-112.78.138.164:5678  # ID Biznet Networks
-45.118.77.67:1080  # KH EZECOM CO., LTD.
-186.248.87.172:5678  # BR AMERICAN TOWER DO BRASIL-COMUNICAÇÂO MULTIMÍDIA LT
-217.197.151.182:5678  # CZ PREROV
-80.92.227.185:5678  # UA WNET TELECOM USA Corp.
+88.245.138.87:1080  # TR Turk Telekom
+45.158.185.53:1080  # RU Lunory Cloud Solutions LTD
+45.238.57.1:3629  # EC Instalacion De Sistemas EN Redes Insysred S.A.
+83.56.15.57:5678  # ES Telefonica De Espana S.a.u.
+105.214.40.169:5678  # ZA MTN SA
+103.221.228.50:5678  # VN BUUDIENCP16
+102.36.231.77:1080  # NG Timeless Network Services Ltd
+85.105.194.113:4153  # TR Turk Telekomunikasyon A.S
 105.30.248.241:1080  # ZA SEACOM Limited Networks
-171.249.163.170:1080  # VN Viettel Corporation
-36.64.238.83:1080  # ID PT. Telekomunikasi Indonesia
-95.46.105.163:4145  # RU Kompleks Media LLC
+175.100.37.171:1080  # KH VIETTEL (CAMBODIA) PTE., LTD
+103.154.53.230:1080  # ID PT Inditech Global Network
