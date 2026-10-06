@@ -1,56 +1,34 @@
 # 住宅 socks4 代理（mihomo/Clash 不支持此类型，供 Python/curl 场景使用）
-# 节点数: 52
-# 生成时间: 2026-10-05 22:17:49 UTC
+# 节点数: 30
+# 生成时间: 2026-10-06 10:54:23 UTC
 # 测活: SOCKS4 CONNECT + TLS 握手，连续 3 轮通过
-185.73.39.118:9999  # GB Atlantic.net, Inc.
-172.247.27.29:11080  # US Cnservers LLC
-45.81.154.75:1080  # ES GINERNET
-183.106.215.208:1080  # KR Korea Telecom
+160.187.0.89:1080  # VN ONLINE DATA COMPANY LIMITED
 118.71.44.176:1111  # VN Vietnam Internet Network Information Center
-160.155.90.26:1080  # CI ORANGE COTE D'IVOIRE
-182.253.144.20:4153  # ID BIZNET NETWORKS
-160.119.159.98:1080  # MZ Voiptech Limitada
-105.214.51.182:5678  # ZA MTN SA
-119.18.147.179:1080  # BD BBTS Network
-159.224.243.185:61303  # UA Content Delivery Network LTD
-77.65.50.118:34159  # PL INEA sp. z o.o.
-188.191.18.66:1080  # UA CrimeaCom South LLC
-102.36.231.77:1080  # NG Timeless Network Services Ltd
-109.69.211.18:1080  # CZ LAN servis s.r.o
-103.137.148.253:1080  # IN Rainbow communications India Pvt Ltd
-117.102.115.156:4153  # ID BIZNET
+118.71.44.176:1081  # VN Vietnam Internet Network Information Center
 118.71.44.176:1080  # VN Vietnam Internet Network Information Center
-103.23.100.9:1080  # ID Universitas Negeri Semarang, y
-160.22.205.66:1080  # ID PT. PANCA DUTA UTAMA
-131.0.245.82:60606  # BR supercore tecnologia e informatica eirelli
+103.72.101.51:1020  # IN Ultahost, Inc.
+58.187.44.103:1089  # VN FPT Telecom Company
+119.18.147.179:1080  # BD BBTS Network
+202.5.50.151:1080  # BD BBTS-NEW
 177.85.65.177:4153  # BR ASE TELECOMUNICAÇÕES LTDA ME
-181.233.94.101:1080  # BR J.A TELECOM.PE
-102.0.35.254:1080  # KE Airtel KE Mobile & Fixed Internet
-36.95.82.69:1080  # ID PT. Telekomunikasi Indonesia
-103.88.204.70:1080  # ID PT INDONESIA COMNETS PLUS
-170.238.239.71:60606  # CO Internexa S.a. E.S.P
+42.114.62.33:56884  # VN FPT Telecom Company
+185.190.90.2:4145  # AL Lightnet Sh.p.k.
+117.0.78.133:1100  # VN VIETTEL
+136.228.163.150:5678  # MM Myanma Post & Telecommunication
+91.204.57.48:8989  # RU Yunta Ltd.
+185.142.169.195:5678  # IT Aircomm S.r.L.
 110.34.3.144:1080  # NP SUBISU C7
-200.125.40.38:5678  # UY Administracion Nacional de Telecomunicaciones
-181.115.74.172:5678  # HN TELECOMUNICACIONES DE GUATEMALA, SOCIEDAD ANONIMA
-202.142.176.130:1080  # PK ITI Karachi Multinet
-37.26.86.206:4145  # AL ATU
-46.17.43.219:7890  # DE TOKALA COMMUNICATIONS INC.
-186.1.182.194:4153  # CO Dialnet de Colombia S.A. E.S.P
-181.57.178.146:1080  # CO Telmex Colombia S.A.
-119.235.50.78:4153  # IN VAINAVI INDUSTIES LTD, INTERNET SERVICE PROVIDER, INDIA
-67.206.213.202:55555  # PR Liberty Mobile Puerto Rico Inc.
-109.245.110.145:4145  # RS CETIN Ltd. Belgrade
-41.75.84.86:4153  # NG Main one Cable Company Nigeria Limited
-185.157.111.3:5678  # EE SkyLive Telecom ldt
-105.214.105.25:5678  # ZA MTN SA
-185.17.1.218:1080  # VN "It Saport" Ltd
-160.226.220.30:1080  # ZA Iclix (PTY) Ltd
-205.209.66.105:1080  # SY RCell LLC
-88.245.138.87:1080  # TR Turk Telekom
-27.68.173.28:1080  # VN Viettel Group
-91.247.92.63:5678  # UA Privately owned enterprise Alexsandrov Yuriy Viktorovich
-187.102.16.66:51327  # BR Guanhaes Internet LTDA-ME
-185.26.168.17:4153  # RU OOO PKF "Delta Telekom"
-91.223.224.238:48293  # RU LLC ATK Telecom
-88.247.31.164:4153  # TR Turk Telekom
-46.8.104.176:1080  # RU Evro Telecom OOO
+177.152.106.74:1080  # BR figueiredo provedores eireli
+202.162.197.57:4145  # ID PT. Media Antar Nusa
+160.22.205.66:1080  # ID DNS
+103.105.79.18:1080  # ID PT. Garuda Media Telematika
+12.109.102.86:64312  # US Acc-community Antenna Service in
+112.78.138.164:5678  # ID Biznet Networks
+45.118.77.67:1080  # KH EZECOM CO., LTD.
+186.248.87.172:5678  # BR AMERICAN TOWER DO BRASIL-COMUNICAÇÂO MULTIMÍDIA LT
+217.197.151.182:5678  # CZ PREROV
+80.92.227.185:5678  # UA WNET TELECOM USA Corp.
+105.30.248.241:1080  # ZA SEACOM Limited Networks
+171.249.163.170:1080  # VN Viettel Corporation
+36.64.238.83:1080  # ID PT. Telekomunikasi Indonesia
+95.46.105.163:4145  # RU Kompleks Media LLC
