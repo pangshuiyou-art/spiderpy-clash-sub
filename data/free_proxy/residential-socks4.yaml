@@ -1,18 +1,17 @@
 # 住宅 socks4 代理（mihomo/Clash 不支持此类型，供 Python/curl 场景使用）
-# 节点数: 14
-# 生成时间: 2026-10-06 20:40:19 UTC
+# 节点数: 13
+# 生成时间: 2026-10-07 01:08:36 UTC
 # 测活: SOCKS4 CONNECT + TLS 握手，连续 3 轮通过
-183.106.215.208:1080  # KR Korea Telecom
-202.5.50.151:1080  # BD Broad Band Telecom Services Ltd
+58.187.44.103:1088  # VN FPT Telecom Company
+45.114.127.247:1080  # HK HanMing HK Limited
 119.18.147.179:1080  # BD BBTS Network
-88.245.138.87:1080  # TR Turk Telekom
-45.158.185.53:1080  # RU Lunory Cloud Solutions LTD
-45.238.57.1:3629  # EC Instalacion De Sistemas EN Redes Insysred S.A.
-83.56.15.57:5678  # ES Telefonica De Espana S.a.u.
-105.214.40.169:5678  # ZA MTN SA
-103.221.228.50:5678  # VN BUUDIENCP16
-102.36.231.77:1080  # NG Timeless Network Services Ltd
-85.105.194.113:4153  # TR Turk Telekomunikasyon A.S
-105.30.248.241:1080  # ZA SEACOM Limited Networks
-175.100.37.171:1080  # KH VIETTEL (CAMBODIA) PTE., LTD
-103.154.53.230:1080  # ID PT Inditech Global Network
+183.106.215.208:1080  # KR Korea Telecom
+117.0.78.133:1039  # VN VIETTEL
+195.13.182.212:8888  # LV SIA Tet
+202.5.50.151:1080  # BD BBTS-NEW
+176.236.29.193:1080  # TR Superonline Iletisim Hizmetleri A.S.
+197.157.195.154:1080  # BI Spidernet Network
+102.0.35.254:1080  # KE Airtel KE Mobile & Fixed Internet
+111.119.162.248:10919  # PK Connect Communication
+129.205.244.158:1080  # BW BOTSWANA FIBRE NETWORKS (Proprietary) Limited
+103.9.134.114:1080  # BD Information Services Network Ltd
