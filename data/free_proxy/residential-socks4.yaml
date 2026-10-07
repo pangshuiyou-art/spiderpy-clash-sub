@@ -1,17 +1,22 @@
 # 住宅 socks4 代理（mihomo/Clash 不支持此类型，供 Python/curl 场景使用）
-# 节点数: 13
-# 生成时间: 2026-10-07 01:08:36 UTC
+# 节点数: 18
+# 生成时间: 2026-10-07 10:40:16 UTC
 # 测活: SOCKS4 CONNECT + TLS 握手，连续 3 轮通过
-58.187.44.103:1088  # VN FPT Telecom Company
-45.114.127.247:1080  # HK HanMing HK Limited
+172.247.27.29:11080  # US Cnservers LLC
 119.18.147.179:1080  # BD BBTS Network
-183.106.215.208:1080  # KR Korea Telecom
-117.0.78.133:1039  # VN VIETTEL
-195.13.182.212:8888  # LV SIA Tet
+5.175.136.21:1080  # TR AltunHOST LTD
+187.188.131.169:1080  # MX TOTAL PLAY TELECOMUNICACIONES, S.A.P.I. DE C.V.
 202.5.50.151:1080  # BD BBTS-NEW
-176.236.29.193:1080  # TR Superonline Iletisim Hizmetleri A.S.
-197.157.195.154:1080  # BI Spidernet Network
-102.0.35.254:1080  # KE Airtel KE Mobile & Fixed Internet
-111.119.162.248:10919  # PK Connect Communication
-129.205.244.158:1080  # BW BOTSWANA FIBRE NETWORKS (Proprietary) Limited
-103.9.134.114:1080  # BD Information Services Network Ltd
+109.63.154.23:10808  # RU PJSC MegaFon
+103.86.116.193:1080  # ID PT Link Data Sumber Barokah
+58.65.142.254:8125  # PK Nayatel (Pvt) Ltd
+139.255.94.122:57853  # ID PT. LINKNET
+177.68.149.141:1080  # BR Vivo
+183.88.219.206:34676  # TH Triple T Broadband Public Company Limited
+5.157.64.213:1080  # GB IP River
+202.142.170.115:1080  # PK ITI Karachi Multinet
+113.53.91.26:4153  # TH TOT Public Company Limited
+201.234.24.89:4153  # AR Level 3 Communications, Inc.
+89.250.148.158:1080  # RU JSC "ER-Telecom Holding"
+117.102.101.52:5678  # ID BIZNET
+88.245.138.87:1080  # TR Turk Telekomunikasyon A.S
