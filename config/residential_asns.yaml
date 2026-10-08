@@ -1372,8 +1372,8 @@ pending_review:
     org: RCell LLC
   AS214743:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 23
-    last_seen: 2026-10-08 01:17:03 UTC
+    hits: 25
+    last_seen: 2026-10-08 10:54:38 UTC
     org: Cogento Backbone Limited
   AS21479:
     first_seen: 2026-09-30 10:09:01 UTC
@@ -1875,6 +1875,11 @@ pending_review:
     hits: 1
     last_seen: 2026-10-01 00:49:29 UTC
     org: Seanet Telecom Carazinho Eireli
+  AS267789:
+    first_seen: 2026-10-08 10:54:38 UTC
+    hits: 1
+    last_seen: 2026-10-08 10:54:38 UTC
+    org: TOP COMUNICATIONS ESTEGIA C.A.
   AS267809:
     first_seen: 2026-10-01 00:49:29 UTC
     hits: 1
@@ -1952,8 +1957,8 @@ pending_review:
     org: Airtime Technology SRL
   AS271968:
     first_seen: 2026-09-30 10:09:01 UTC
-    hits: 2
-    last_seen: 2026-10-02 01:04:06 UTC
+    hits: 3
+    last_seen: 2026-10-08 10:54:38 UTC
     org: CENTRIC MOBILITY (CEMO), S.R.L
   AS272011:
     first_seen: 2026-09-30 16:48:07 UTC
@@ -2068,13 +2073,13 @@ pending_review:
     org: Redes y Telecomunicaciones
   AS27947:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 9
-    last_seen: 2026-10-07 01:00:32 UTC
+    hits: 10
+    last_seen: 2026-10-08 10:54:38 UTC
     org: Telconet S.A
   AS27951:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 56
-    last_seen: 2026-10-08 01:17:03 UTC
+    hits: 57
+    last_seen: 2026-10-08 10:54:38 UTC
     org: Media Commerce Partners S.A
   AS27988:
     first_seen: 2026-09-30 10:09:01 UTC
@@ -2873,8 +2878,8 @@ pending_review:
     org: IP Khachaturova Susanna Rafaelievna
   AS4808:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 175
-    last_seen: 2026-10-08 01:17:03 UTC
+    hits: 177
+    last_seen: 2026-10-08 10:54:38 UTC
     org: China Unicom Beijing Province Network
   AS4812:
     first_seen: 2026-09-30 10:07:16 UTC
@@ -3246,6 +3251,11 @@ pending_review:
     hits: 1
     last_seen: 2026-10-01 00:49:29 UTC
     org: Baikal Teleport CJSC
+  AS60279:
+    first_seen: 2026-10-08 10:54:38 UTC
+    hits: 1
+    last_seen: 2026-10-08 10:54:38 UTC
+    org: Gmina Miasta Elk
   AS60501:
     first_seen: 2026-10-01 00:49:29 UTC
     hits: 1
@@ -3596,5 +3606,5 @@ pending_review:
     hits: 1
     last_seen: 2026-09-30 10:07:16 UTC
     org: Myanma Post & Telecommunication
-updated: 2026-10-08 01:17:03 UTC
+updated: 2026-10-08 10:54:38 UTC
 version: 1

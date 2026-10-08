@@ -1,23 +1,9 @@
 # 住宅 socks4 代理（mihomo/Clash 不支持此类型，供 Python/curl 场景使用）
-# 节点数: 19
-# 生成时间: 2026-10-08 01:26:06 UTC
+# 节点数: 5
+# 生成时间: 2026-10-08 11:02:53 UTC
 # 测活: SOCKS4 CONNECT + TLS 握手，连续 3 轮通过
-160.187.0.89:1080  # VN ONLINE DATA COMPANY LIMITED
-195.13.182.212:8080  # LV SIA Tet
-103.72.101.51:1020  # IN Ultahost, Inc.
-94.103.2.238:1080  # MD GIR SER
-111.119.162.248:10903  # PK Connect Communication
-111.119.162.248:10905  # PK Connect Communication
-202.5.50.151:1080  # BD BBTS-NEW
 119.18.147.179:1080  # BD BBTS Network
-202.146.230.102:1080  # ID PT Centrin Utama
-123.200.15.226:1080  # BD Link3 Technologies Limited
-177.85.65.177:4153  # BR ASE TELECOMUNICAÇÕES LTDA ME
-1.4.195.114:4145  # TH TOT Public Company Limited
-103.105.79.18:1080  # ID PT. Garuda Media Telematika
-125.25.82.207:5678  # TH TOT Public Company Limited
-157.20.189.110:5678  # ID Dinas Komunikasi dan Informatika Kabupaten Lamongan
-79.110.118.15:1080  # BG Rutil Ltd.
-83.56.15.57:5678  # ES Telefonica de Espana SAU
-103.23.100.9:1080  # ID Universitas Negeri Semarang
-171.4.85.65:5678  # TH Triple T Broadband Public Company Limited
+202.5.50.151:1080  # BD BBTS-NEW
+203.172.120.179:1080  # TH sinokor1
+154.79.246.102:1080  # KE Airtel KE Mobile & Fixed Internet
+36.37.244.41:5678  # KH VIETTEL (CAMBODIA) PTE., LTD
