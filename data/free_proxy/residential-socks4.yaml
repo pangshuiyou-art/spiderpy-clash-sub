@@ -1,21 +1,27 @@
 # 住宅 socks4 代理（mihomo/Clash 不支持此类型，供 Python/curl 场景使用）
-# 节点数: 17
-# 生成时间: 2026-10-09 01:33:29 UTC
+# 节点数: 23
+# 生成时间: 2026-10-09 11:02:06 UTC
 # 测活: SOCKS4 CONNECT + TLS 握手，连续 3 轮通过
 102.129.229.131:1081  # TH DEXSERVER by CSNE CO., LTD.
-45.81.154.75:1080  # ES GINERNET
+27.69.77.5:1033  # VN Viettel Group
+27.69.77.5:1089  # VN Viettel Group
+27.69.68.185:1089  # VN Viettel Group
 202.5.50.151:1080  # BD BBTS-NEW
 27.69.78.20:1079  # VN Viettel Group
+183.106.215.208:1080  # KR Korea Telecom
+103.26.209.206:1080  # ID Neuviz
 27.69.77.5:1111  # VN Viettel Group
-27.69.78.20:1111  # VN Viettel Group
-109.69.211.18:1080  # CZ LAN servis s.r.o
-103.23.100.9:1080  # ID Universitas Negeri Semarang, y
-110.38.234.74:1080  # PK Wateen Telecom (Pvt.) Ltd
-46.188.2.42:5678  # RU 2COM
-14.241.242.177:1080  # VN VNPT
-202.4.107.33:9090  # BD dhakaCom Limited
-81.12.157.98:5678  # RO Vodafone RO
-119.93.82.236:1080  # PH Philippine Long Distance Telephone Co.
-109.224.12.170:52015  # IQ Hulum
-212.5.132.74:5678  # BG BTC Plc
-92.247.31.130:1080  # BG A1 Bulgaria EAD
+181.115.74.172:5678  # HN TELECOMUNICACIONES DE GUATEMALA, SOCIEDAD ANONIMA
+180.183.149.236:5678  # TH Triple T Broadband Public Company Limited
+105.214.51.182:5678  # ZA MTN SA
+213.6.68.210:4145  # PS Palestine Telecommunications Company
+171.4.85.65:5678  # TH Triple T Broadband Public Company Limited
+36.94.110.49:5678  # ID PT. Telekomunikasi Indonesia
+105.214.19.138:5678  # ZA MTN SA
+200.10.31.74:49992  # CO Super Redes S.A.S
+177.54.239.13:4145  # BR Aranet Comunicacao Ltda
+91.246.1.6:4431  # RU Baikal Teleport CJSC
+119.63.95.3:4153  # TH United Information Highway Co., Ltd.
+38.41.225.174:8888  # GT Innova Outsourcing S.A
+1.179.151.165:31948  # TH TOT Public Company Limited
+202.87.210.20:57833  # WS Digicel Samoa Ltd

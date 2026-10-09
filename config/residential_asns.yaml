@@ -115,6 +115,11 @@ pending_review:
     hits: 2
     last_seen: 2026-09-30 16:48:07 UTC
     org: Comunitel Global
+  AS12578:
+    first_seen: 2026-10-09 10:53:33 UTC
+    hits: 1
+    last_seen: 2026-10-09 10:53:33 UTC
+    org: SIA Tet
   AS12668:
     first_seen: 2026-09-30 10:07:16 UTC
     hits: 4
@@ -1317,8 +1322,8 @@ pending_review:
     org: Datacamp Limited
   AS212444:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 21
-    last_seen: 2026-10-09 01:24:34 UTC
+    hits: 22
+    last_seen: 2026-10-09 10:53:33 UTC
     org: LLC BROSS-TELECOM
   AS212552:
     first_seen: 2026-09-30 16:48:07 UTC
@@ -1372,8 +1377,8 @@ pending_review:
     org: RCell LLC
   AS214743:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 29
-    last_seen: 2026-10-09 01:24:34 UTC
+    hits: 30
+    last_seen: 2026-10-09 10:53:33 UTC
     org: Cogento Backbone Limited
   AS21479:
     first_seen: 2026-09-30 10:09:01 UTC
@@ -1957,8 +1962,8 @@ pending_review:
     org: Airtime Technology SRL
   AS271968:
     first_seen: 2026-09-30 10:09:01 UTC
-    hits: 3
-    last_seen: 2026-10-08 10:54:38 UTC
+    hits: 4
+    last_seen: 2026-10-09 10:53:33 UTC
     org: CENTRIC MOBILITY (CEMO), S.R.L
   AS272011:
     first_seen: 2026-09-30 16:48:07 UTC
@@ -2073,13 +2078,13 @@ pending_review:
     org: Redes y Telecomunicaciones
   AS27947:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 11
-    last_seen: 2026-10-08 20:48:07 UTC
+    hits: 12
+    last_seen: 2026-10-09 10:53:33 UTC
     org: Telconet S.A
   AS27951:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 62
-    last_seen: 2026-10-09 01:24:34 UTC
+    hits: 63
+    last_seen: 2026-10-09 10:53:33 UTC
     org: Media Commerce Partners S.A
   AS27988:
     first_seen: 2026-09-30 10:09:01 UTC
@@ -2878,8 +2883,8 @@ pending_review:
     org: IP Khachaturova Susanna Rafaelievna
   AS4808:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 181
-    last_seen: 2026-10-09 01:24:34 UTC
+    hits: 184
+    last_seen: 2026-10-09 10:53:33 UTC
     org: China Unicom Beijing Province Network
   AS4812:
     first_seen: 2026-09-30 10:07:16 UTC
@@ -3611,5 +3616,5 @@ pending_review:
     hits: 1
     last_seen: 2026-09-30 10:07:16 UTC
     org: Myanma Post & Telecommunication
-updated: 2026-10-09 01:24:34 UTC
+updated: 2026-10-09 10:53:33 UTC
 version: 1
