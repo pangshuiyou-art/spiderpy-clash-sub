@@ -62,8 +62,8 @@ pending_review:
     org: CPS
   AS11172:
     first_seen: 2026-10-01 00:49:29 UTC
-    hits: 1
-    last_seen: 2026-10-01 00:49:29 UTC
+    hits: 2
+    last_seen: 2026-10-09 20:19:07 UTC
     org: Alestra, S. de R.L. de C.V.
   AS11232:
     first_seen: 2026-09-30 10:17:22 UTC
@@ -337,8 +337,8 @@ pending_review:
     org: PT Tidar Lintas Nusa
   AS134760:
     first_seen: 2026-10-01 06:46:28 UTC
-    hits: 6
-    last_seen: 2026-10-08 01:17:03 UTC
+    hits: 7
+    last_seen: 2026-10-09 20:19:07 UTC
     org: Shijiazhuang IDC network, CHINANET Hebei province
   AS134877:
     first_seen: 2026-10-01 00:49:29 UTC
@@ -1377,8 +1377,8 @@ pending_review:
     org: RCell LLC
   AS214743:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 30
-    last_seen: 2026-10-09 10:53:33 UTC
+    hits: 31
+    last_seen: 2026-10-09 20:19:07 UTC
     org: Cogento Backbone Limited
   AS21479:
     first_seen: 2026-09-30 10:09:01 UTC
@@ -1947,8 +1947,8 @@ pending_review:
     org: Super Redes S.A.S
   AS270111:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 17
-    last_seen: 2026-10-09 01:24:34 UTC
+    hits: 18
+    last_seen: 2026-10-09 20:19:07 UTC
     org: Comunicación por Fibra SA de CV
   AS270399:
     first_seen: 2026-09-30 10:07:16 UTC
@@ -2083,8 +2083,8 @@ pending_review:
     org: Telconet S.A
   AS27951:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 63
-    last_seen: 2026-10-09 10:53:33 UTC
+    hits: 66
+    last_seen: 2026-10-09 20:19:07 UTC
     org: Media Commerce Partners S.A
   AS27988:
     first_seen: 2026-09-30 10:09:01 UTC
@@ -2913,8 +2913,8 @@ pending_review:
     org: Michael Sebastian Schinzel trading as IP-Projects GmbH & Co. KG
   AS4837:
     first_seen: 2026-09-30 10:17:22 UTC
-    hits: 7
-    last_seen: 2026-10-01 16:07:50 UTC
+    hits: 8
+    last_seen: 2026-10-09 20:19:07 UTC
     org: CNC Group CHINA169 Chongqing Province Network
   AS4837169:
     first_seen: 2026-09-30 10:07:16 UTC
@@ -3281,6 +3281,11 @@ pending_review:
     hits: 3
     last_seen: 2026-10-01 00:49:29 UTC
     org: AS Consulting Sp. z o. o.
+  AS6134:
+    first_seen: 2026-10-09 20:19:07 UTC
+    hits: 1
+    last_seen: 2026-10-09 20:19:07 UTC
+    org: Xnnet LLC
   AS61372:
     first_seen: 2026-10-01 00:49:29 UTC
     hits: 1
@@ -3313,8 +3318,8 @@ pending_review:
     org: IP River
   AS62610:
     first_seen: 2026-09-30 16:48:07 UTC
-    hits: 6
-    last_seen: 2026-10-01 00:49:29 UTC
+    hits: 7
+    last_seen: 2026-10-09 20:19:07 UTC
     org: Bunny Communications
   AS63060:
     first_seen: 2026-10-01 00:49:29 UTC
@@ -3328,8 +3333,8 @@ pending_review:
     org: Single Digits, Inc.
   AS6364:
     first_seen: 2026-09-30 16:48:07 UTC
-    hits: 22
-    last_seen: 2026-10-09 01:24:34 UTC
+    hits: 23
+    last_seen: 2026-10-09 20:19:07 UTC
     org: Atlantic.net
   AS63859:
     first_seen: 2026-10-01 00:49:29 UTC
@@ -3616,5 +3621,5 @@ pending_review:
     hits: 1
     last_seen: 2026-09-30 10:07:16 UTC
     org: Myanma Post & Telecommunication
-updated: 2026-10-09 10:53:33 UTC
+updated: 2026-10-09 20:19:07 UTC
 version: 1

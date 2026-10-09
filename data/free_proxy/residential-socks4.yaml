@@ -1,27 +1,34 @@
 # 住宅 socks4 代理（mihomo/Clash 不支持此类型，供 Python/curl 场景使用）
-# 节点数: 23
-# 生成时间: 2026-10-09 11:02:06 UTC
+# 节点数: 30
+# 生成时间: 2026-10-09 20:27:32 UTC
 # 测活: SOCKS4 CONNECT + TLS 握手，连续 3 轮通过
-102.129.229.131:1081  # TH DEXSERVER by CSNE CO., LTD.
-27.69.77.5:1033  # VN Viettel Group
-27.69.77.5:1089  # VN Viettel Group
-27.69.68.185:1089  # VN Viettel Group
+172.247.27.29:11080  # US Cnservers LLC
+160.187.0.89:1080  # VN ONLINE DATA COMPANY LIMITED
 202.5.50.151:1080  # BD BBTS-NEW
-27.69.78.20:1079  # VN Viettel Group
 183.106.215.208:1080  # KR Korea Telecom
-103.26.209.206:1080  # ID Neuviz
-27.69.77.5:1111  # VN Viettel Group
+58.186.169.160:1090  # VN FPT Telecom Company
 181.115.74.172:5678  # HN TELECOMUNICACIONES DE GUATEMALA, SOCIEDAD ANONIMA
-180.183.149.236:5678  # TH Triple T Broadband Public Company Limited
-105.214.51.182:5678  # ZA MTN SA
+14.241.242.177:1080  # VN VNPT
+185.157.111.3:5678  # EE SkyLive Telecom ldt
+177.85.65.177:4153  # BR ASE TELECOMUNICAÇÕES LTDA ME
+41.216.186.68:80  # ID PT. Trans Indonesia Superkoridor
+123.253.124.28:5678  # IN Multi Acquisitions And Renewals
+42.112.52.24:20001  # VN Vietnam Internet Network Information Center
+143.255.109.76:1080  # BR MCD INFORMATICA E TELECOMUNICACOES LTDA - ME
+194.31.212.115:1080  # UA Irpen-Best
+179.189.246.165:5432  # BR WorldNet Telecom Comercio e Serviços de Telecomuni
+94.247.241.70:51006  # RU JSC "ER-Telecom Holding"
+195.140.226.32:5678  # UA Therecom Ltd
+111.119.162.248:10922  # PK Connect Communication
+200.125.40.38:5678  # UY Administracion Nacional de Telecomunicaciones
+157.20.189.110:5678  # ID Dinas Komunikasi dan Informatika Kabupaten Lamongan
+154.79.251.168:1080  # KE Airtel KE Mobile Broadband
+103.31.103.71:1080  # PK CMPak Limited
+185.190.154.121:4145  # RS TELEKOM-SRBIJA
+202.179.88.233:51951  # IN Ankhnet
+193.105.62.11:58973  # UA PE Brunarsky Andrey Romanovich
 213.6.68.210:4145  # PS Palestine Telecommunications Company
-171.4.85.65:5678  # TH Triple T Broadband Public Company Limited
-36.94.110.49:5678  # ID PT. Telekomunikasi Indonesia
-105.214.19.138:5678  # ZA MTN SA
-200.10.31.74:49992  # CO Super Redes S.A.S
-177.54.239.13:4145  # BR Aranet Comunicacao Ltda
-91.246.1.6:4431  # RU Baikal Teleport CJSC
-119.63.95.3:4153  # TH United Information Highway Co., Ltd.
-38.41.225.174:8888  # GT Innova Outsourcing S.A
-1.179.151.165:31948  # TH TOT Public Company Limited
-202.87.210.20:57833  # WS Digicel Samoa Ltd
+118.179.135.69:9090  # BD AmberIT Limited
+190.89.104.48:5432  # BR Acessoline Telecomunicacoes Ltda
+109.61.117.11:1080  # HU Dravanet Co Ltd.
+90.178.216.215:4153  # CZ O2 Czech Republic, a.s.
