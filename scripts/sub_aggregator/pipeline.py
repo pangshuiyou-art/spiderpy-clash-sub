@@ -160,6 +160,36 @@ def _test_link_multi_round(records: list[dict], mihomo_bin: str,
     return kept
 
 
+def _prune_pending_review(whitelist: dict, max_age_days: int = 30, now=None) -> int:
+    """清理待审清单：30 天未再命中的条目移除（写入前调用，防止只增不减）
+
+    待审条目由中置信住宅（hosting=False 且不在白名单）累积，历史上只写入
+    从不清理（实测已积压 717 条）。时间戳格式沿用白名单文件内的
+    '%Y-%m-%d %H:%M:%S UTC'；解析失败的条目保守保留。
+    """
+    now = now or datetime.now(timezone.utc)
+    pending = whitelist.get('pending_review')
+    if not isinstance(pending, dict):
+        return 0
+    removed = 0
+    for asn in list(pending):
+        entry = pending[asn] or {}
+        last = str(entry.get('last_seen') or entry.get('first_seen') or '')
+        if not last:
+            # 空条目（无任何时间戳）没有留档价值，直接清掉
+            del pending[asn]
+            removed += 1
+            continue
+        try:
+            seen = datetime.strptime(last, '%Y-%m-%d %H:%M:%S UTC').replace(tzinfo=timezone.utc)
+        except ValueError:
+            continue
+        if (now - seen).days > max_age_days:
+            del pending[asn]
+            removed += 1
+    return removed
+
+
 def _inject_ledger_candidates(entries: dict, skip_tcp: bool,
                               residential_candidates: list[dict],
                               daily_candidates: list[dict],
@@ -284,14 +314,17 @@ def _run_pipeline(config_path: Path, whitelist_path: Path, out_dir: Path,
 
         if alive:
             ip_metadata: dict[str, dict] = {}
-            need_query = sorted({r['ip'] for r in alive if not r.get('asn')})
+            # 全员补查 hosting：源侧 ASN 只回答"是谁"，住宅/机房的判定证据（hosting 字段）
+            # 只能来自 ip-api。曾因跳过有源侧 ASN 的记录，机房 IP 借「unknown+有ASN」
+            # 放宽混进住宅组（2026-10-11 实测 59 个住宅样本 8 个机房误判，全部源于此）。
+            need_query = sorted({r['ip'] for r in alive})
             if need_query and not skip_ipapi:
                 print(f'[*] ip-api 查询 {len(need_query)} 个 IP（限速 15 批/分钟）...')
                 with httpx.Client(trust_env=False) as client:
                     ip_metadata = processor.query_ip_metadata(need_query, client)
                 print(f'[*] ip-api 命中 {len(ip_metadata)}/{len(need_query)}')
             elif need_query:
-                print(f'[*] 跳过 ip-api 查询（调试），{len(need_query)} 个 IP 无 ASN')
+                print(f'[*] 跳过 ip-api 查询（调试），{len(need_query)} 个 IP 无判定证据')
 
             cidr_match = residential.build_cidr_matcher(cidr_networks)
             alive, class_stats = classifier.classify_records(alive, cidr_match, ip_metadata, whitelist)
@@ -473,9 +506,10 @@ def _run_pipeline(config_path: Path, whitelist_path: Path, out_dir: Path,
 
     # 白名单自学习（沿用既有线；写回后由 workflow 提交）
     learn = classifier.learn_whitelist(residential_alive + daily_alive, whitelist, stamp)
+    pruned_pending = _prune_pending_review(whitelist, now=now)
     classifier.save_asn_whitelist(whitelist_path, whitelist)
     print(f"[*] 白名单: {learn['whitelist_size']} 个 ASN（本轮新增 {len(learn['added_asns'])}）, "
-          f"待审 {learn['pending_size']} 个")
+          f"待审 {learn['pending_size'] - pruned_pending} 个（清理 {pruned_pending} 条 30 天未活动）")
 
     elapsed = time.time() - started
     print(f'[*] 全部完成，用时 {elapsed / 60:.1f} 分钟')

@@ -149,7 +149,8 @@ auxiliary:
 residential_policy:
   # 移动网络按住宅处理：运营商 IP 常被 ip-api 标成 hosting，是住宅召回的主要漏点
   mobile_as_residential: true
-  # ip-api 无结论但有 ASN 证据的条目收回住宅（低置信）
-  unknown_with_asn_as_residential: true
-  # 上述两条放宽不适用于本轮被 ip-api 明确判为机房的 ASN
+  # 2026-10-11 关闭：ip-api 全量补查上线后，无结论只代表查询失败/未覆盖，
+  # 此时有 ASN 也当住宅的误判率实测 19%（59 样本 8 个机房），unknown 一律归日常组
+  unknown_with_asn_as_residential: false
+  # 上述放宽不适用于本轮被 ip-api 明确判为机房的 ASN
   exclude_datacenter_asns: true

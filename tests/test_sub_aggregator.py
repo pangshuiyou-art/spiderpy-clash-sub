@@ -340,3 +340,27 @@ def test_link_multi_round_maps_results_back_by_index(monkeypatch):
     assert calls == [['tmp-0001', 'tmp-0002'], ['tmp-0001']]
     # 原始记录不被污染
     assert all('delay_ms' not in record for record in records)
+
+
+# ---------------------------------------------------------------- 白名单待审清理
+
+def test_prune_pending_review_drops_stale_keeps_fresh_and_unparseable():
+    whitelist = {
+        'pending_review': {
+            'AS100': {'org': '旧', 'last_seen': '2026-08-01 00:00:00 UTC'},   # 超 30 天 → 清
+            'AS200': {'org': '新', 'last_seen': '2026-10-10 00:00:00 UTC'},   # 保留
+            'AS300': {'org': '只有首见', 'first_seen': '2026-10-01 00:00:00 UTC'},  # 回退 first_seen
+            'AS400': {'org': '坏时间戳', 'last_seen': 'not-a-date'},          # 解析失败 → 保守保留
+            'AS500': None,                                                    # 空条目 → 清
+        },
+    }
+
+    removed = pipeline._prune_pending_review(whitelist, now=pipeline.datetime(2026, 10, 11, tzinfo=pipeline.timezone.utc))
+
+    assert removed == 2
+    assert set(whitelist['pending_review']) == {'AS200', 'AS300', 'AS400'}
+
+
+def test_prune_pending_review_handles_missing_or_malformed_pending():
+    assert pipeline._prune_pending_review({}) == 0
+    assert pipeline._prune_pending_review({'pending_review': 'oops'}) == 0
