@@ -371,11 +371,12 @@ def test_prune_pending_review_handles_missing_or_malformed_pending():
 class _FakeResponse:
     def __init__(self, payload, code=200):
         self._payload = payload
-        self._code = code
+        self.status_code = code
+        self.text = json.dumps(payload, ensure_ascii=False) if payload else ''
 
     def raise_for_status(self):
-        if self._code >= 400:
-            raise RuntimeError(f'HTTP {self._code}')
+        if self.status_code >= 400:
+            raise RuntimeError(f'HTTP {self.status_code}')
 
     def json(self):
         return self._payload

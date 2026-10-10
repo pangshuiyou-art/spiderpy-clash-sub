@@ -40,12 +40,19 @@ def query_types(ips: list[str], token: str, client: httpx.Client,
     unique = sorted({ip for ip in ips if ip})
     for index in range(0, len(unique), batch_size):
         chunk = unique[index:index + batch_size]
+        data: dict = {}
         try:
+            # 鉴权参数名是 key=（不是 token=）。曾因写错参数名导致云端运行器
+            # 以未注册身份访问——来源是数据中心 IP 直接被 403 拒绝。
             response = client.get(API_URL + ','.join(chunk), params={
-                'token': token, 'vpn': 1, 'risk': 1,
+                'key': token, 'vpn': 1, 'risk': 1,
             }, timeout=30)
-            response.raise_for_status()
-            data = response.json()
+            if response.status_code != 200:
+                # denied/error 的正文里带原因（配额耗尽 / 来源被封锁 / 参数错误）
+                print(f'[!] proxycheck 批查询 HTTP {response.status_code}'
+                      f'（{chunk[0]}...）: {response.text[:160]}')
+            else:
+                data = response.json()
         except Exception as exc:
             print(f'[!] proxycheck 批查询失败（{chunk[0]}...）: {exc}')
             data = {}
