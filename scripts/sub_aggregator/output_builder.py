@@ -45,10 +45,18 @@ def to_clash_proxy(record: dict) -> dict:
 
 
 def build_payload(records: list[dict], group_name: str,
-                  with_country_groups: bool = False) -> dict:
-    """组装单份 Clash 配置（可选按国家区域增加子策略组）"""
+                  with_country_groups: bool = False,
+                  retention_records: list[dict] | None = None) -> dict:
+    """组装单份 Clash 配置（可选按国家区域增加子策略组、追加保留组）
+
+    保留组是「历史验证通过、本轮未重考通过」的观察节点：独立成组，主组
+    （组名不变、成员只有当轮通过节点）承诺不变；保留组为 select 类型，
+    组名固定 f'{group_name}-保留'。
+    """
     proxies = [to_clash_proxy(record) for record in records]
     all_names = [item['name'] for item in proxies]
+    retention_proxies = [to_clash_proxy(record) for record in (retention_records or [])]
+    proxies.extend(retention_proxies)
 
     groups: list[dict] = [
         {
@@ -77,6 +85,13 @@ def build_payload(records: list[dict], group_name: str,
                 'proxies': names,
             })
 
+    if retention_proxies:
+        groups.append({
+            'name': f'{group_name}-保留',
+            'type': 'select',
+            'proxies': [item['name'] for item in retention_proxies],
+        })
+
     return {
         'mixed-port': 7890,
         'allow-lan': False,
@@ -91,22 +106,27 @@ def build_payload(records: list[dict], group_name: str,
 
 def write_subscription(path: Path, records: list[dict], group_name: str,
                        title: str, header_lines: list[str],
-                       with_country_groups: bool = False) -> int:
-    """写出订阅文件，返回节点数"""
-    payload = build_payload(records, group_name, with_country_groups)
+                       with_country_groups: bool = False,
+                       retention_records: list[dict] | None = None) -> int:
+    """写出订阅文件，返回节点数（含保留组节点）"""
+    payload = build_payload(records, group_name, with_country_groups,
+                            retention_records=retention_records)
     header = (f'# {title}\n'
               f'# 生成时间: {time.strftime("%Y-%m-%d %H:%M:%S UTC", time.gmtime())}\n'
               + ''.join(f'# {line}\n' for line in header_lines))
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(header + _dump(payload), encoding='utf-8')
-    return len(records)
+    return len(payload['proxies'])
 
 
-def write_socks4_list(path: Path, records: list[dict], rounds: int) -> int:
-    """写出住宅 socks4 纯文本清单，返回节点数
+def write_socks4_list(path: Path, records: list[dict], rounds: int,
+                      retention_records: list[dict] | None = None) -> int:
+    """写出住宅 socks4 纯文本清单，返回端点数（含保留行）
 
     格式沿用既有线（`ip:port  # 国家 ISP`）：mihomo/Clash 不支持 socks4，
     这份清单供 Python/curl 场景直接使用，不是 Clash 配置。
+    保留行是「历史验证通过、本轮未重考通过」的观察端点，注释带
+    `验证:YYYY-MM-DD` 日期，使用方自行斟酌。
     """
     lines = [
         '# 住宅 socks4 代理（mihomo/Clash 不支持此类型，供 Python/curl 场景使用）',
@@ -118,9 +138,18 @@ def write_socks4_list(path: Path, records: list[dict], rounds: int) -> int:
         comment = ' '.join(str(x) for x in (record.get('country_code'), record.get('isp')) if x)
         suffix = f'  # {comment}' if comment else ''
         lines.append(f"{record['ip']}:{record['port']}{suffix}")
+    if retention_records:
+        lines.append(f'# 保留观察: {len(retention_records)} 条（历史验证通过，非本轮测活结果）')
+    for record in retention_records or []:
+        comment = ' '.join(str(x) for x in (record.get('country_code'), record.get('isp')) if x)
+        verified = str(record.get('last_verified_date') or '')
+        if verified:
+            comment = f'{comment} 验证:{verified}'.strip()
+        suffix = f'  # {comment}' if comment else ''
+        lines.append(f"{record['ip']}:{record['port']}{suffix}")
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text('\n'.join(lines) + '\n', encoding='utf-8')
-    return len(records)
+    return len(records) + len(retention_records or [])
 
 
 def check_socks4_list(path: Path) -> str | None:

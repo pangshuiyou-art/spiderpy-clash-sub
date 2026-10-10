@@ -25,8 +25,9 @@ from pathlib import Path
 
 import httpx
 
+from . import node_ledger as ledger
 from . import normalizers, output_builder, residential
-from .naming import assign_node_names, summarize_countries
+from .naming import summarize_countries
 from .reuse import (PROJECT_ROOT, classifier, delay_tester, free_builder,
                     merge_v2ray_subs, processor, quality, socks4_tester,
                     source_loader, tester_proxy)
@@ -159,11 +160,73 @@ def _test_link_multi_round(records: list[dict], mihomo_bin: str,
     return kept
 
 
+def _inject_ledger_candidates(entries: dict, skip_tcp: bool,
+                              residential_candidates: list[dict],
+                              daily_candidates: list[dict],
+                              socks4_candidates: list[dict], now) -> set:
+    """台账在役节点回炉：TCP 预筛后按档并入候选列表
+
+    预算独立于新鲜候选封顶（RETEST_CAPS），避免把新鲜候选挤出测活窗口；
+    当轮源已列出的节点不重复注入，走新鲜候选通道。
+    返回实际送入测活的台账节点键集合（供测活后记失败用）。
+    """
+    injected = ledger.build_retest_records(entries, now)
+    if not injected:
+        return set()
+    if skip_tcp:
+        alive = injected
+        print(f'[*] 台账回炉: {len(alive)} 条（跳过 TCP 预筛）')
+    else:
+        alive, stats = processor.tcp_prefilter(injected)
+        print(f"[*] 台账回炉 TCP 预筛: {stats['alive']}/{stats['checked']} 可达")
+
+    fresh_keys = {ledger.make_key(record) for record in
+                  (*residential_candidates, *daily_candidates, *socks4_candidates)}
+    buckets: dict[str, list[dict]] = {tier: [] for tier in ledger.RETEST_CAPS}
+    for record in alive:
+        if ledger.make_key(record) in fresh_keys:
+            continue
+        buckets[str(record['ledger_tier'])].append(record)
+
+    residential_candidates.extend(buckets['residential'][:ledger.RETEST_CAPS['residential']])
+    daily_candidates.extend(buckets['daily'][:ledger.RETEST_CAPS['daily']])
+    socks4_candidates.extend(
+        buckets['residential_socks4'][:ledger.RETEST_CAPS['residential_socks4']])
+    print(f"[*] 台账回炉并入候选: 住宅 {len(buckets['residential'])}, "
+          f"日常 {len(buckets['daily'])}, socks4 {len(buckets['residential_socks4'])}")
+
+    sent: set[tuple] = set()
+    for record in (*residential_candidates, *daily_candidates, *socks4_candidates):
+        if record.get('from_ledger'):
+            sent.add(ledger.make_key(record))
+    return sent
+
+
+def _update_ledger(entries: dict, alive_groups: list[tuple[str, list[dict]]],
+                   sent_ledger_keys: set, now) -> dict:
+    """测活后回写台账：通过者强化，回炉失败者记连败，然后淘汰裁剪"""
+    alive_keys: set[tuple] = set()
+    for tier, records in alive_groups:
+        for record in records:
+            if record.get('record_kind') != 'proxypool':
+                continue  # 链接型节点本期不入台账（见 node_ledger 模块说明）
+            ledger.record_pass(entries, record, tier, now)
+            alive_keys.add(ledger.make_key(record))
+    for key in sorted(sent_ledger_keys - alive_keys):
+        ledger.mark_fail(entries, key, now)
+    stats = ledger.prune(entries, now)
+    print(f"[*] 台账回写: {stats['remaining']} 条在册"
+          f"（淘汰: 连败 {stats['dropped_streak']}, 过期 {stats['dropped_age']}, "
+          f"超限 {stats['dropped_cap']}）")
+    return stats
+
+
 def _run_pipeline(config_path: Path, whitelist_path: Path, out_dir: Path,
                   mihomo_bin: str, residential_rounds: int, daily_rounds: int,
                   skip_tcp: bool, skip_ipapi: bool,
                   max_residential_test: int, max_daily_test: int) -> int:
     stamp = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')
+    now = datetime.now(timezone.utc)
     started = time.time()
 
     sources, auxiliary, policy = load_registry(config_path)
@@ -274,6 +337,17 @@ def _run_pipeline(config_path: Path, whitelist_path: Path, out_dir: Path,
         daily_candidates = daily_candidates[:max_daily_test]
         link_daily = link_daily[:max(0, max_daily_test - len(daily_candidates))]
 
+    # ---------- 台账：历史节点回炉重考 ----------
+    # 先封顶新鲜候选再注入台账，保证链接线的测活预算不被挤占
+    ledger_file = ledger.ledger_path(out_dir)
+    ledger_entries = ledger.load(ledger_file)
+    if ledger_entries:
+        print(f'[*] 台账载入: {len(ledger_entries)} 条历史记录')
+    sent_ledger_keys = _inject_ledger_candidates(
+        ledger_entries, skip_tcp,
+        residential_candidates, daily_candidates,
+        residential_socks4_candidates, now)
+
     # ---------- 测活 ----------
     residential_alive: list[dict] = []
     daily_alive: list[dict] = []
@@ -311,10 +385,12 @@ def _run_pipeline(config_path: Path, whitelist_path: Path, out_dir: Path,
                   f"（各轮 {s4_stats['per_round']}）")
 
     # ---------- 命名与产物 ----------
-    # 先去重再命名，保证序号连续且全局唯一（Clash 对重名直接报错）
+    # 先去重再命名，保证序号全局唯一（Clash 对重名直接报错）
     daily_alive = _cross_dedup(daily_alive)
-    assign_node_names(residential_alive, 'R')
-    assign_node_names(daily_alive, 'D')
+    # 稳定命名：台账在册节点沿用历史名，新节点接着全局最大序号往后编
+    ledger.assign_stable_names(residential_alive, ledger_entries, 'R')
+    ledger.assign_stable_names(daily_alive, ledger_entries, 'D',
+                               extra_names={r['node_name'] for r in residential_alive})
     # socks4 用独立前缀，避免与住宅组重名
     for index, record in enumerate(residential_socks4_alive, start=1):
         code = str(record.get('country_code') or 'XX').upper()
@@ -332,24 +408,55 @@ def _run_pipeline(config_path: Path, whitelist_path: Path, out_dir: Path,
     daily_path = out_dir / 'daily.yaml'
     socks4_path = out_dir / 'residential-socks4.yaml'
 
+    # ---------- 台账：回写本轮结果并产出保留组 ----------
+    # 未提供内核的调试轮没有真实测活结果，不能把回炉节点误记为失败
+    retention_res: list[dict] = []
+    retention_daily: list[dict] = []
+    retention_socks4: list[dict] = []
+    if mihomo_bin:
+        _update_ledger(
+            ledger_entries,
+            [('residential', residential_alive),
+             ('daily', daily_alive),
+             ('residential_socks4', residential_socks4_alive)],
+            sent_ledger_keys, now)
+        ledger.save(ledger_file, ledger_entries)
+
+        retention_res = ledger.retention_records(
+            ledger_entries, 'residential', now,
+            exclude_names={r['node_name'] for r in residential_alive})
+        retention_daily = ledger.retention_records(
+            ledger_entries, 'daily', now,
+            exclude_names={r['node_name'] for r in daily_alive})
+        retention_socks4 = ledger.retention_records(
+            ledger_entries, 'residential_socks4', now)
+        if any((retention_res, retention_daily, retention_socks4)):
+            print(f'[*] 保留组: 住宅 {len(retention_res)}, '
+                  f'日常 {len(retention_daily)}, socks4 {len(retention_socks4)}')
+
     if residential_alive:
         output_builder.write_subscription(
             resid_path, residential_alive, '住宅', '住宅节点（注册场景）',
             [f'节点数: {len(residential_alive)}',
              f'测活: mihomo 连续 {residential_rounds} 轮通过',
              '数据来源: config/aggregator_sources.yaml（代理池源，住宅判定已放宽）',
-             *_confidence_breakdown(residential_alive)])
+             f'保留组: {len(retention_res)} 条（历史验证通过、本轮未重考通过，仅供参考）',
+             *_confidence_breakdown(residential_alive)],
+            retention_records=retention_res)
     if daily_alive:
         output_builder.write_subscription(
             daily_path, daily_alive, '日常', '日常节点（按国家区域分组）',
             [f'节点数: {len(daily_alive)}',
              f'测活: mihomo 连续 {daily_rounds} 轮通过',
              '数据来源: config/aggregator_sources.yaml（代理池源 + 订阅链接源）',
-             '策略组: 日常 / 日常-手动 / 日常-<国家>'],
-            with_country_groups=True)
-    if residential_socks4_alive:
+             '策略组: 日常 / 日常-手动 / 日常-<国家> / 日常-保留',
+             f'保留组: {len(retention_daily)} 条（历史验证通过、本轮未重考通过，仅供参考）'],
+            with_country_groups=True,
+            retention_records=retention_daily)
+    if residential_socks4_alive or retention_socks4:
         output_builder.write_socks4_list(socks4_path, residential_socks4_alive,
-                                         residential_rounds)
+                                         residential_rounds,
+                                         retention_records=retention_socks4)
 
     # socks4 纯文本清单不是 Clash 配置，只做存在性/格式自检，不交给内核静态校验
     problems = _validate_outputs(mihomo_bin, (resid_path, daily_path))
@@ -374,8 +481,9 @@ def _run_pipeline(config_path: Path, whitelist_path: Path, out_dir: Path,
     print(f'[*] 全部完成，用时 {elapsed / 60:.1f} 分钟')
     print(f'[*] 产物: {resid_path} ({len(residential_alive)} 节点)')
     print(f'[*] 产物: {daily_path} ({len(daily_alive)} 节点)')
-    if residential_socks4_alive:
-        print(f'[*] 产物: {socks4_path} ({len(residential_socks4_alive)} 节点)')
+    if residential_socks4_alive or retention_socks4:
+        print(f'[*] 产物: {socks4_path} ({len(residential_socks4_alive)} 端点 '
+              f'+ {len(retention_socks4)} 保留)')
     return 0
 
 

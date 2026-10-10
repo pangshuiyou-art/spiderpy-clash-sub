@@ -77,6 +77,10 @@ jobs:
               proxies = data.get('proxies') or []
               groups = data.get('proxy-groups') or []
               print(f'[OK] {name}: {len(proxies)} 节点 / {len(groups)} 策略组')
+              retention = [g for g in groups if str(g.get('name', '')).endswith('-保留')]
+              if retention:
+                  members = sum(len(g.get('proxies') or []) for g in retention)
+                  print(f'[OK] {name} 保留组: {len(retention)} 组 / {members} 节点')
               if not proxies:
                   raise SystemExit(f'{name} 节点数为 0，判定失败')
               if not groups:
@@ -113,6 +117,10 @@ jobs:
               echo "[!] $path 不存在，跳过提交"
             fi
           done
+          # 台账是跨轮记忆文件，与产物同一 commit 入库（首轮为空文件也创建，保证路径稳定）
+          if [ -f data/free_proxy/known_nodes.jsonl ]; then
+            git add data/free_proxy/known_nodes.jsonl
+          fi
           # 两组都为空时 git add 无事可做，直接结束
           if git diff --cached --quiet; then
             echo '无变更，跳过提交'
