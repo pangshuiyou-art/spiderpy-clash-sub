@@ -1,12 +1,23 @@
 # 住宅 socks4 代理（mihomo/Clash 不支持此类型，供 Python/curl 场景使用）
-# 节点数: 8
-# 生成时间: 2026-10-10 10:16:02 UTC
+# 节点数: 19
+# 生成时间: 2026-10-10 18:35:54 UTC
 # 测活: SOCKS4 CONNECT + TLS 握手，连续 3 轮通过
-58.186.169.160:1080  # VN FPT Telecom Company
+172.247.27.29:11080  # US Cnservers LLC
+102.129.229.131:1081  # TH DEXSERVER by CSNE CO., LTD.
 202.5.50.151:1080  # BD BBTS-NEW
 183.106.215.208:1080  # KR Korea Telecom
+182.93.75.162:1080  # NP Subisu Cablenet
 165.99.90.2:1080  # BD Future Communication and Network
-14.241.242.177:1080  # VN VNPT
-129.205.244.158:1080  # BW BOTSWANA FIBRE NETWORKS (Proprietary) Limited
-105.27.180.194:1080  # ZA SEACOM Limited
-103.137.148.253:1080  # IN Rainbow communications India Pvt Ltd
+27.69.68.185:1033  # VN Viettel Group
+103.23.100.9:1080  # ID Universitas Negeri Semarang, y
+200.188.246.122:60606  # BR Empresa Catarinense de Tecnologia em Telecom. Ltda
+46.8.104.176:1080  # RU Evro Telecom OOO
+111.119.162.248:10916  # PK Connect Communication
+111.119.162.248:10925  # PK Connect Communication
+111.119.162.248:10929  # PK Connect Communication
+70.60.132.130:5678  # US Charter Communications Inc
+139.255.94.122:57853  # ID PT. LINKNET
+101.73.55.242:1083  # CN China Unicom Hebei Province Network
+27.69.68.185:1106  # VN Viettel Group
+27.69.77.5:1106  # VN Viettel Group
+89.186.8.107:1080  # PL VIP AGENCJA REKLAMY sp. z o.o

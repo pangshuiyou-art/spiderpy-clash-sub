@@ -1377,8 +1377,8 @@ pending_review:
     org: RCell LLC
   AS214743:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 34
-    last_seen: 2026-10-10 10:06:51 UTC
+    hits: 36
+    last_seen: 2026-10-10 18:26:44 UTC
     org: Cogento Backbone Limited
   AS21479:
     first_seen: 2026-09-30 10:09:01 UTC
@@ -2088,8 +2088,8 @@ pending_review:
     org: Telconet S.A
   AS27951:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 69
-    last_seen: 2026-10-10 01:13:13 UTC
+    hits: 72
+    last_seen: 2026-10-10 18:26:44 UTC
     org: Media Commerce Partners S.A
   AS27988:
     first_seen: 2026-09-30 10:09:01 UTC
@@ -2888,8 +2888,8 @@ pending_review:
     org: IP Khachaturova Susanna Rafaelievna
   AS4808:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 187
-    last_seen: 2026-10-10 01:13:13 UTC
+    hits: 191
+    last_seen: 2026-10-10 18:26:44 UTC
     org: China Unicom Beijing Province Network
   AS4812:
     first_seen: 2026-09-30 10:07:16 UTC
@@ -3338,8 +3338,8 @@ pending_review:
     org: Single Digits, Inc.
   AS6364:
     first_seen: 2026-09-30 16:48:07 UTC
-    hits: 25
-    last_seen: 2026-10-10 10:06:51 UTC
+    hits: 26
+    last_seen: 2026-10-10 18:26:44 UTC
     org: Atlantic.net
   AS63859:
     first_seen: 2026-10-01 00:49:29 UTC
@@ -3581,6 +3581,11 @@ pending_review:
     hits: 2
     last_seen: 2026-10-03 14:24:46 UTC
     org: BHARTI
+  AS963:
+    first_seen: 2026-10-10 18:26:44 UTC
+    hits: 1
+    last_seen: 2026-10-10 18:26:44 UTC
+    org: N963
   AS9689:
     first_seen: 2026-09-30 10:09:01 UTC
     hits: 4
@@ -3626,5 +3631,5 @@ pending_review:
     hits: 1
     last_seen: 2026-09-30 10:07:16 UTC
     org: Myanma Post & Telecommunication
-updated: 2026-10-10 10:06:51 UTC
+updated: 2026-10-10 18:26:44 UTC
 version: 1
