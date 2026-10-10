@@ -16,6 +16,7 @@
 
 | 日期 | 主题 | 位置 |
 |------|------|------|
+| 2026-10-11 | 住宅判定准确率根因与修复（跳过 ip-api 查询+放宽误判 19% 实测；三层修复已验证；社区判定方案调研） | [learnings/20261011-residential-accuracy-fix.md](./learnings/20261011-residential-accuracy-fix.md) |
 | 2026-10-11 | 节点保留机制落地记录（台账回炉+保留组+稳定命名；双平台云端验证通过；参数与观察要点） | [project/20261011-node-retention-rollout.md](./project/20261011-node-retention-rollout.md) |
 | 2026-10-11 | CNB 代码同步与 CDN 验证的坑（改 scripts 必须推 cnb 远端；合并 cnb/main 保快进；purge 受理≠立即可见） | [learnings/20261011-cnb-code-sync-and-cdn-verify.md](./learnings/20261011-cnb-code-sync-and-cdn-verify.md) |
 | 2026-10-02 | 代理订阅双平台重组记录与操作手册（GitHub 正式线 + CNB 影子线；产物、定时器、排障和新增订阅步骤） | [project/20261002-shuangpingtai-dingyue-chongzu-runbook.md](./project/20261002-shuangpingtai-dingyue-chongzu-runbook.md) |
@@ -40,6 +41,7 @@
 - [模板版本与升级机制](./project/20260827-模板版本与升级机制.md) — 版本锚点 / 采用记录 / 升级闭环与发版四步约定
 
 ### learnings/（经验与踩坑）
+- [住宅判定准确率根因与修复](./learnings/20261011-residential-accuracy-fix.md) — 有源侧 ASN 被跳过 ip-api 查询致机房混入住宅（实测 19%）；三层修复已验证；IP2Proxy/proxycheck 社区方案需账号
 - [CNB 代码同步与 CDN 验证的坑](./learnings/20261011-cnb-code-sync-and-cdn-verify.md) — 改 scripts 后必须合并 cnb/main 再推 cnb 才触发影子线；合并结果勿推回 origin；purge 受理≠立即可见，本机对 jsDelivr 有间歇 RST
 - [免费代理住宅/日常分组订阅流水线](./learnings/20260930-free-proxy-residential-pipeline.md) — 8 源+数据中心 CIDR 库；TCP 预筛把 4.8 万压到 1400；住宅三库交叉判定；mihomo 不支持 socks4 需独立协议层测活；candidates CSV 不得入库；远端只保交付文件不推 tests
 - [Thordata 源分组订阅](./learnings/20260924-thordata-grouped-subscriptions.md) — 源里 socks4/https 均不被 Clash 支持需剔除/映射（https 要写成 http）；GEOIP 规则校验需本地 geoip.metadb；推送 GitHub 须走 7897 代理（git -c http.proxy 一次性参数）
