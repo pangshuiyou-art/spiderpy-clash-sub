@@ -40,6 +40,10 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
                         help='住宅组送入测活的最大条数（0 表示不限）')
     parser.add_argument('--max-daily-test', type=int, default=0,
                         help='日常组送入测活的最大条数（0 表示不限）')
+    parser.add_argument('--proxycheck-token', default='',
+                        help='proxycheck.io 凭证；提供则对住宅候选做独立类型交叉复核')
+    parser.add_argument('--proxycheck-budget', type=int, default=150,
+                        help='单轮 second opinion 复核的住宅候选上限（免费配额 1000 次/天）')
     return parser.parse_args(argv)
 
 
@@ -56,6 +60,8 @@ def main(argv: list[str] | None = None) -> int:
         skip_ipapi=args.skip_ipapi,
         max_residential_test=args.max_residential_test,
         max_daily_test=args.max_daily_test,
+        proxycheck_token=args.proxycheck_token,
+        proxycheck_budget=args.proxycheck_budget,
     )
 
 

@@ -58,7 +58,9 @@ jobs:
             --residential-rounds 3 \
             --daily-rounds 2 \
             --max-residential-test 1500 \
-            --max-daily-test 4000
+            --max-daily-test 4000 \
+            --proxycheck-token "${{ secrets.PROXYCHECK_TOKEN }}" \
+            --proxycheck-budget 150
 
       - name: 产物自检（节点数与策略组）
         run: |

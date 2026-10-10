@@ -364,3 +364,122 @@ def test_prune_pending_review_drops_stale_keeps_fresh_and_unparseable():
 def test_prune_pending_review_handles_missing_or_malformed_pending():
     assert pipeline._prune_pending_review({}) == 0
     assert pipeline._prune_pending_review({'pending_review': 'oops'}) == 0
+
+
+# ---------------------------------------------------------------- 第二意见（proxycheck）
+
+class _FakeResponse:
+    def __init__(self, payload, code=200):
+        self._payload = payload
+        self._code = code
+
+    def raise_for_status(self):
+        if self._code >= 400:
+            raise RuntimeError(f'HTTP {self._code}')
+
+    def json(self):
+        return self._payload
+
+
+class _FakeClient:
+    """按调用顺序返回预置响应的最小 httpx.Client 替身"""
+
+    def __init__(self, responses):
+        self.responses = list(responses)
+        self.calls = []
+
+    def get(self, url, params=None, timeout=None):
+        self.calls.append(url)
+        payload, code = self.responses.pop(0) if self.responses else ({}, 500)
+        return _FakeResponse(payload, code)
+
+
+def test_query_types_parses_chunks_and_tolerates_failure():
+    from sub_aggregator import second_opinion
+
+    ok_payload = {
+        'status': 'ok',
+        '1.1.1.1': {'network': {'type': 'Residential'}, 'detections': {'proxy': True, 'risk': 40}},
+        '2.2.2.2': {'network': {'type': 'Hosting'}, 'detections': {'proxy': False, 'risk': 90}},
+        'query_time': 12,
+    }
+    client = _FakeClient([
+        (ok_payload, 200),
+        ({'status': 'error'}, 200),      # 解析不出 IP → 无意见
+    ])
+
+    opinions = second_opinion.query_types(
+        ['2.2.2.2', '1.1.1.1', '3.3.3.3'], 'token-x', client, batch_size=2)
+
+    # 3 个 IP → 2 批；第二批失败不影响第一批结果
+    assert opinions['1.1.1.1']['type'] == 'Residential'
+    assert opinions['2.2.2.2']['type'] == 'Hosting'
+    assert '3.3.3.3' not in opinions
+    assert len(client.calls) == 2
+    assert client.calls[0].startswith('https://proxycheck.io/v3/1.1.1.1,2.2.2.2')
+
+
+def test_query_types_single_batch_failure_returns_empty():
+    from sub_aggregator import second_opinion
+
+    client = _FakeClient([({}, 503)])
+    assert second_opinion.query_types(['1.1.1.1'], 't', client) == {}
+
+
+def test_apply_residential_verdict_demotes_only_hosting_signal():
+    """降级规则（标定后确定）：只降 proxycheck 的托管信号，Business 不降"""
+    from sub_aggregator import second_opinion
+
+    records = [
+        {'ip': '1.1.1.1', 'ip_kind': 'residential', 'ip_confidence': 'medium'},
+        {'ip': '2.2.2.2', 'ip_kind': 'residential', 'ip_confidence': 'medium'},
+        {'ip': '3.3.3.3', 'ip_kind': 'residential', 'ip_confidence': 'high'},
+        {'ip': '4.4.4.4', 'ip_kind': 'residential', 'ip_confidence': 'medium'},
+        {'ip': '5.5.5.5', 'ip_kind': 'residential', 'ip_confidence': 'medium'},
+        {'ip': '6.6.6.6', 'ip_kind': 'residential', 'ip_confidence': 'medium'},
+        {'ip': '7.7.7.7', 'ip_kind': 'datacenter'},   # 非住宅不动
+    ]
+    opinions = {
+        # type=Hosting → 降级
+        '1.1.1.1': {'type': 'Hosting', 'hosting': True, 'proxy': True, 'risk': 90},
+        # Business 但 detections.hosting=True → 降级（真托管商被误标 Business 的情况）
+        '2.2.2.2': {'type': 'Business', 'hosting': True, 'proxy': True, 'risk': 80},
+        # Business + hosting=False → 保留（标定实证：联通家庭宽带等消费级线路是 Business）
+        '3.3.3.3': {'type': 'Business', 'hosting': False, 'proxy': False, 'risk': 0},
+        # Residential / Wireless → 保留
+        '4.4.4.4': {'type': 'Residential', 'hosting': False, 'proxy': None, 'risk': 5},
+        '5.5.5.5': {'type': 'Wireless', 'hosting': False, 'proxy': None, 'risk': None},
+        # 无 type 且无 hosting 结论 → 维持现状
+        '6.6.6.6': {'type': None, 'hosting': None, 'proxy': None, 'risk': None},
+    }
+
+    stats = second_opinion.apply_residential_verdict(records, opinions)
+
+    assert stats == {'checked': 6, 'demoted': 2, 'kept': 4, 'no_opinion': 0}
+    assert records[0]['ip_kind'] == 'datacenter'
+    assert records[0]['second_opinion'] == 'demoted:Hosting'
+    assert records[1]['ip_kind'] == 'datacenter'
+    assert records[1]['second_opinion'] == 'demoted:Business'
+    assert records[2]['ip_kind'] == 'residential'
+    assert records[3]['ip_kind'] == 'residential'
+    assert records[4]['ip_kind'] == 'residential'
+    assert records[5]['ip_kind'] == 'residential'
+    assert records[6]['ip_kind'] == 'datacenter' and 'second_opinion' not in records[6]
+
+
+def test_is_hosting_recognizes_both_signals():
+    from sub_aggregator import second_opinion
+
+    assert second_opinion.is_hosting({'type': 'Hosting', 'hosting': False})
+    assert second_opinion.is_hosting({'type': 'Business', 'hosting': True})
+    assert not second_opinion.is_hosting({'type': 'Business', 'hosting': False})
+    assert not second_opinion.is_hosting({'type': None, 'hosting': None})
+
+
+def test_apply_residential_verdict_ignores_absent_ips():
+    from sub_aggregator import second_opinion
+
+    records = [{'ip': '9.9.9.9', 'ip_kind': 'residential'}]
+    stats = second_opinion.apply_residential_verdict(records, {})
+    assert stats == {'checked': 0, 'demoted': 0, 'kept': 0, 'no_opinion': 1}
+    assert records[0]['ip_kind'] == 'residential'

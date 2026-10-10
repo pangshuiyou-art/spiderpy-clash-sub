@@ -26,7 +26,7 @@ from pathlib import Path
 import httpx
 
 from . import node_ledger as ledger
-from . import normalizers, output_builder, residential
+from . import normalizers, output_builder, residential, second_opinion
 from .naming import summarize_countries
 from .reuse import (PROJECT_ROOT, classifier, delay_tester, free_builder,
                     merge_v2ray_subs, processor, quality, socks4_tester,
@@ -254,7 +254,8 @@ def _update_ledger(entries: dict, alive_groups: list[tuple[str, list[dict]]],
 def _run_pipeline(config_path: Path, whitelist_path: Path, out_dir: Path,
                   mihomo_bin: str, residential_rounds: int, daily_rounds: int,
                   skip_tcp: bool, skip_ipapi: bool,
-                  max_residential_test: int, max_daily_test: int) -> int:
+                  max_residential_test: int, max_daily_test: int,
+                  proxycheck_token: str = '', proxycheck_budget: int = 150) -> int:
     stamp = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')
     now = datetime.now(timezone.utc)
     started = time.time()
@@ -337,6 +338,25 @@ def _run_pipeline(config_path: Path, whitelist_path: Path, out_dir: Path,
             print(f"[*] 住宅放宽: 移动网络 +{relax_stats['by_mobile']}, "
                   f"未知有ASN +{relax_stats['by_unknown_asn']}, "
                   f"被机房ASN拦下 {relax_stats['blocked_datacenter_asn']}")
+
+            # ---------- 第二意见：proxycheck 交叉复核住宅候选 ----------
+            # 独立数据源拦同源盲区；预算按置信度从低到高消费（最弱证据优先复核）
+            if proxycheck_token:
+                res_targets = sorted(
+                    (r for r in alive if r.get('ip_kind') == 'residential'),
+                    key=lambda r: {'low': 0, 'medium': 1, 'high': 2}.get(str(r.get('ip_confidence')), 1),
+                )[:max(0, proxycheck_budget)]
+                if res_targets:
+                    print(f'[*] proxycheck 第二意见: 复核 {len(res_targets)} 个住宅候选（预算 {proxycheck_budget}）...')
+                    with httpx.Client(trust_env=False) as client:
+                        opinions = second_opinion.query_types(
+                            [r['ip'] for r in res_targets], proxycheck_token, client)
+                    verdict = second_opinion.apply_residential_verdict(alive, opinions)
+                    print(f"[*] proxycheck 第二意见: 复核 {verdict['checked']}, "
+                          f"降级 {verdict['demoted']}, 保留 {verdict['kept']}, "
+                          f"无意见 {verdict['no_opinion']}")
+                else:
+                    print('[*] proxycheck 第二意见: 无住宅候选可复核')
 
             split = residential.split_records(alive)
             residential_candidates = quality.sort_by_quality(split['residential'])
@@ -583,8 +603,11 @@ def run(config_path: Path = DEFAULT_CONFIG,
         skip_tcp: bool = False,
         skip_ipapi: bool = False,
         max_residential_test: int = 0,
-        max_daily_test: int = 0) -> int:
+        max_daily_test: int = 0,
+        proxycheck_token: str = '',
+        proxycheck_budget: int = 150) -> int:
     """聚合入口（供 CLI 与测试调用）"""
     return _run_pipeline(config_path, whitelist_path, out_dir, mihomo_bin,
                          residential_rounds, daily_rounds, skip_tcp, skip_ipapi,
-                         max_residential_test, max_daily_test)
+                         max_residential_test, max_daily_test,
+                         proxycheck_token, proxycheck_budget)
