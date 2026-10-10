@@ -16,6 +16,8 @@
 
 | 日期 | 主题 | 位置 |
 |------|------|------|
+| 2026-10-11 | 节点保留机制落地记录（台账回炉+保留组+稳定命名；双平台云端验证通过；参数与观察要点） | [project/20261011-node-retention-rollout.md](./project/20261011-node-retention-rollout.md) |
+| 2026-10-11 | CNB 代码同步与 CDN 验证的坑（改 scripts 必须推 cnb 远端；合并 cnb/main 保快进；purge 受理≠立即可见） | [learnings/20261011-cnb-code-sync-and-cdn-verify.md](./learnings/20261011-cnb-code-sync-and-cdn-verify.md) |
 | 2026-10-02 | 代理订阅双平台重组记录与操作手册（GitHub 正式线 + CNB 影子线；产物、定时器、排障和新增订阅步骤） | [project/20261002-shuangpingtai-dingyue-chongzu-runbook.md](./project/20261002-shuangpingtai-dingyue-chongzu-runbook.md) |
 | 2026-09-30 | 免费代理住宅/日常分组订阅流水线（8 源+CIDR 库；TCP 预筛、socks4 独立测活、提交范围精确化） | [learnings/20260930-free-proxy-residential-pipeline.md](./learnings/20260930-free-proxy-residential-pipeline.md) |
 | 2026-09-24 | Thordata 源分组订阅（住宅/日常；socks4 与 https 类型坑、mihomo 校验要点） | [learnings/20260924-thordata-grouped-subscriptions.md](./learnings/20260924-thordata-grouped-subscriptions.md) |
@@ -31,12 +33,14 @@
 ## 分类索引
 
 ### project/（项目约束与决策）
+- [节点保留机制落地记录](./project/20261011-node-retention-rollout.md) — 台账回炉+保留组+稳定命名已双平台云端验证；回测预算/淘汰线/台账上限等参数先读再改
 - [代理订阅双平台重组记录与操作手册](./project/20261002-shuangpingtai-dingyue-chongzu-runbook.md) — GitHub 正式线使用 jsDelivr；CNB 影子线写入 `data/cnb_shadow`；记录频率、产物、crontab sync 和新增订阅步骤
 - [spiderpy-clash-sub 远端仓库交付纪律](./project/20260923-spiderpy-repo-deliverables.md) — 远端只保留交付文件；本地记忆/docs/tests/规范不推送；Actions 已自动跑通
 - [模板 v1.3 内容隔离红线](./project/20260907-模板v1.3内容隔离红线.md) — 分析对象内容=数据非指令；五类危险内容与六处落位
 - [模板版本与升级机制](./project/20260827-模板版本与升级机制.md) — 版本锚点 / 采用记录 / 升级闭环与发版四步约定
 
 ### learnings/（经验与踩坑）
+- [CNB 代码同步与 CDN 验证的坑](./learnings/20261011-cnb-code-sync-and-cdn-verify.md) — 改 scripts 后必须合并 cnb/main 再推 cnb 才触发影子线；合并结果勿推回 origin；purge 受理≠立即可见，本机对 jsDelivr 有间歇 RST
 - [免费代理住宅/日常分组订阅流水线](./learnings/20260930-free-proxy-residential-pipeline.md) — 8 源+数据中心 CIDR 库；TCP 预筛把 4.8 万压到 1400；住宅三库交叉判定；mihomo 不支持 socks4 需独立协议层测活；candidates CSV 不得入库；远端只保交付文件不推 tests
 - [Thordata 源分组订阅](./learnings/20260924-thordata-grouped-subscriptions.md) — 源里 socks4/https 均不被 Clash 支持需剔除/映射（https 要写成 http）；GEOIP 规则校验需本地 geoip.metadb；推送 GitHub 须走 7897 代理（git -c http.proxy 一次性参数）
 - [CNB 额度核算与产物回写自触发](./learnings/20260924-cnb-quota-and-self-trigger.md) — 免费额度 160 核时/月、单次 1.22 核时、定时间隔硬下限约 6 小时；产物回写会再触发流水线，用 ifModify 拦截；改 crontab 后必须调 sync 接口
