@@ -340,11 +340,18 @@ def _run_pipeline(config_path: Path, whitelist_path: Path, out_dir: Path,
                   f"被机房ASN拦下 {relax_stats['blocked_datacenter_asn']}")
 
             # ---------- 第二意见：proxycheck 交叉复核住宅候选 ----------
-            # 独立数据源拦同源盲区；预算按置信度从低到高消费（最弱证据优先复核）
+            # 独立数据源拦同源盲区。预算优先给「台账里从未被复核过」的节点，
+            # 再按置信度从低到高（最弱证据优先），避免每轮都复核同一批。
             if proxycheck_token:
+                def _so_priority(record: dict) -> tuple:
+                    entry = ledger_entries.get(ledger.make_key(record)) or {}
+                    confidence_rank = {'low': 0, 'medium': 1, 'high': 2}.get(
+                        str(record.get('ip_confidence')), 1)
+                    return (1 if entry.get('last_proxycheck_at') else 0, confidence_rank)
+
                 res_targets = sorted(
                     (r for r in alive if r.get('ip_kind') == 'residential'),
-                    key=lambda r: {'low': 0, 'medium': 1, 'high': 2}.get(str(r.get('ip_confidence')), 1),
+                    key=_so_priority,
                 )[:max(0, proxycheck_budget)]
                 if res_targets:
                     print(f'[*] proxycheck 第二意见: 复核 {len(res_targets)} 个住宅候选（预算 {proxycheck_budget}）...')
@@ -352,6 +359,10 @@ def _run_pipeline(config_path: Path, whitelist_path: Path, out_dir: Path,
                         opinions = second_opinion.query_types(
                             [r['ip'] for r in res_targets], proxycheck_token, client)
                     verdict = second_opinion.apply_residential_verdict(alive, opinions)
+                    for record in res_targets:
+                        entry = ledger_entries.get(ledger.make_key(record))
+                        if entry is not None:
+                            entry['last_proxycheck_at'] = now.isoformat()
                     print(f"[*] proxycheck 第二意见: 复核 {verdict['checked']}, "
                           f"降级 {verdict['demoted']}, 保留 {verdict['kept']}, "
                           f"无意见 {verdict['no_opinion']}")

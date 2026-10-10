@@ -143,7 +143,8 @@ def record_pass(entries: dict, record: dict, tier: str, now: datetime) -> None:
         best = entry.get('best_delay_ms')
         if not isinstance(best, (int, float)) or delay < best:
             entry['best_delay_ms'] = int(delay)
-    for field in ('country_code', 'asn', 'isp', 'ip_kind', 'ip_confidence', 'relaxed'):
+    for field in ('country_code', 'asn', 'isp', 'ip_kind', 'ip_confidence', 'relaxed',
+                  'second_opinion'):
         value = record.get(field)
         if value not in (None, ''):
             entry[field] = value
