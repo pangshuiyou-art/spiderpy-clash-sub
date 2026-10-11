@@ -213,7 +213,9 @@ def _prune_pending_review(whitelist: dict, max_age_days: int = 30, now=None) -> 
 def _inject_ledger_candidates(entries: dict, skip_tcp: bool,
                               residential_candidates: list[dict],
                               daily_candidates: list[dict],
-                              socks4_candidates: list[dict], now) -> set:
+                              socks4_candidates: list[dict], now,
+                              proxycheck_token: str = '',
+                              proxycheck_budget: int = 150) -> set:
     """台账在役节点回炉：TCP 预筛后按档并入候选列表
 
     预算独立于新鲜候选封顶（RETEST_CAPS），避免把新鲜候选挤出测活窗口；
@@ -237,6 +239,33 @@ def _inject_ledger_candidates(entries: dict, skip_tcp: bool,
         if ledger.make_key(record) in fresh_keys:
             continue
         buckets[str(record['ledger_tier'])].append(record)
+
+    # 回炉住宅候选先过第二意见：历史 tier 可能过时（ip-api 说非托管、
+    # proxycheck 说托管的互补盲区），降级者本轮转日常考场，台账同步改档
+    if proxycheck_token and buckets['residential']:
+        targets = buckets['residential'][:max(0, proxycheck_budget)]
+        print(f'[*] proxycheck 第二意见（回炉）: 复核 {len(targets)} 个回炉住宅候选...')
+        with httpx.Client(trust_env=False) as client:
+            opinions = second_opinion.query_types(
+                [r['ip'] for r in targets], proxycheck_token, client)
+        verdict = second_opinion.apply_residential_verdict(targets, opinions)
+        kept_res: list[dict] = []
+        demoted_res: list[dict] = []
+        target_ids = {id(r) for r in targets}
+        for record in targets:
+            entry = entries.get(ledger.make_key(record))
+            if entry is not None:
+                entry['last_proxycheck_at'] = now.isoformat()
+                if record.get('second_opinion'):
+                    entry['second_opinion'] = record['second_opinion']
+                    entry['tier'] = 'daily'
+                    record['ledger_tier'] = 'daily'
+            (demoted_res if record.get('ip_kind') == 'datacenter' else kept_res).append(record)
+        buckets['residential'] = kept_res + [
+            r for r in buckets['residential'] if id(r) not in target_ids]
+        buckets['daily'].extend(demoted_res)
+        print(f"[*] proxycheck 第二意见（回炉）: 复核 {verdict['checked']}, "
+              f"降级 {verdict['demoted']}, 保留 {verdict['kept']}")
 
     residential_candidates.extend(buckets['residential'][:ledger.RETEST_CAPS['residential']])
     daily_candidates.extend(buckets['daily'][:ledger.RETEST_CAPS['daily']])
@@ -426,7 +455,8 @@ def _run_pipeline(config_path: Path, whitelist_path: Path, out_dir: Path,
     sent_ledger_keys = _inject_ledger_candidates(
         ledger_entries, skip_tcp,
         residential_candidates, daily_candidates,
-        residential_socks4_candidates, now)
+        residential_socks4_candidates, now,
+        proxycheck_token, proxycheck_budget)
 
     # ---------- 测活 ----------
     residential_alive: list[dict] = []

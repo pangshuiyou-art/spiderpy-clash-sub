@@ -571,3 +571,62 @@ def test_relax_still_promotes_mobile_when_policy_enabled():
 
     assert stats['by_mobile'] == 1
     assert records[0]['ip_kind'] == 'residential'
+
+
+def test_inject_ledger_candidates_demotes_hosting_via_second_opinion(monkeypatch):
+    """回炉住宅候选在注入前过第二意见：托管者转日常考场，台账改档"""
+    from sub_aggregator import pipeline, second_opinion
+
+    def fake_tcp(records):
+        return list(records), {'alive': len(records), 'checked': len(records),
+                               'input': len(records), 'skipped_private': 0}
+
+    monkeypatch.setattr(pipeline.processor, 'tcp_prefilter', fake_tcp)
+    monkeypatch.setattr(
+        pipeline.second_opinion, 'query_types',
+        lambda ips, token, client, batch_size=second_opinion.BATCH_SIZE: {
+            ips[0]: {'type': 'Hosting', 'hosting': True, 'proxy': True, 'risk': 90}}
+        if len(ips) == 1 else {})
+
+    entries = {
+        ('socks5', '9.9.9.9', 1080): {
+            'key': ['socks5', '9.9.9.9', 1080], 'protocol': 'socks5', 'ip': '9.9.9.9',
+            'port': 1080, 'tier': 'residential', 'verified_count': 5, 'pass_streak': 5,
+            'fail_streak': 0, 'last_verified': '2026-10-11T00:00:00+00:00',
+            'country_code': 'US', 'node_name': '[R]US-0001', 'sources': ['pool'],
+            'ip_kind': 'residential', 'ip_confidence': 'medium',
+        },
+    }
+    now = pipeline.datetime(2026, 10, 11, tzinfo=pipeline.timezone.utc)
+    res_candidates: list[dict] = []
+    daily_candidates: list[dict] = []
+
+    sent = pipeline._inject_ledger_candidates(
+        entries, True, res_candidates, daily_candidates, [], now, 'token-x', 150)
+
+    # 托管者被降级：不进住宅候选，转日常候选，台账改档
+    assert [r['ip'] for r in res_candidates] == []
+    assert [r['ip'] for r in daily_candidates] == ['9.9.9.9']
+    assert daily_candidates[0]['ledger_tier'] == 'daily'
+    assert entries[('socks5', '9.9.9.9', 1080)]['tier'] == 'daily'
+    assert entries[('socks5', '9.9.9.9', 1080)]['second_opinion'] == 'demoted:Hosting'
+    assert sent == {('socks5', '9.9.9.9', 1080)}
+
+
+def test_inject_ledger_candidates_without_token_skips_second_opinion(monkeypatch):
+    from sub_aggregator import pipeline
+
+    monkeypatch.setattr(pipeline.processor, 'tcp_prefilter',
+                        lambda records: (list(records), {'alive': len(records), 'checked': len(records), 'input': len(records), 'skipped_private': 0}))
+    entries = {
+        ('http', '8.8.8.8', 80): {
+            'key': ['http', '8.8.8.8', 80], 'protocol': 'http', 'ip': '8.8.8.8',
+            'port': 80, 'tier': 'residential', 'verified_count': 5, 'pass_streak': 5,
+            'fail_streak': 0, 'last_verified': '2026-10-11T00:00:00+00:00',
+            'country_code': 'US', 'node_name': None, 'sources': [],
+        },
+    }
+    res_candidates: list[dict] = []
+    daily_candidates: list[dict] = []
+    sent = pipeline._inject_ledger_candidates(entries, True, res_candidates, daily_candidates, [], pipeline.datetime(2026, 10, 11, tzinfo=pipeline.timezone.utc))
+    assert len(res_candidates) == 1 and not daily_candidates
