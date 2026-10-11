@@ -103,6 +103,18 @@ jobs:
                       raise SystemExit(f'residential-socks4 端点非法: {line}')
           PY
 
+      - name: 同步发布到旧版 Thordata 路径
+        # 2026-10-02 重组时旧 Thordata 线下线，但客户端仍订阅 data/thordata/ 路径。
+        # 将聚合产物按原路径补发，既有订阅链接零改动即可恢复更新。
+        run: |
+          set -e
+          mkdir -p data/thordata
+          for name in residential daily; do
+            if [ -f "data/free_proxy/${name}.yaml" ]; then
+              cp "data/free_proxy/${name}.yaml" "data/thordata/${name}.yaml"
+            fi
+          done
+
       - name: 提交产物
         run: |
           set -e
@@ -143,5 +155,10 @@ jobs:
           for name in residential daily residential-socks4; do
             curl -s --max-time 20 \
               "https://purge.jsdelivr.net/gh/pangshuiyou-art/spiderpy-clash-sub@main/data/free_proxy/${name}.yaml" \
+              || true
+          done
+          for name in residential daily; do
+            curl -s --max-time 20 \
+              "https://purge.jsdelivr.net/gh/pangshuiyou-art/spiderpy-clash-sub@main/data/thordata/${name}.yaml" \
               || true
           done
