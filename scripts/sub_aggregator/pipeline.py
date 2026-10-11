@@ -269,6 +269,12 @@ def _run_pipeline(config_path: Path, whitelist_path: Path, out_dir: Path,
           f"链接 {len(grouped['link'])} 个, 辅助数据 {len(auxiliary)} 个")
     print(f"[*] 住宅放宽策略: {policy}")
 
+    # ---------- 台账：尽早载入（第二意见的目标筛选依赖它） ----------
+    ledger_file = ledger.ledger_path(out_dir)
+    ledger_entries = ledger.load(ledger_file)
+    if ledger_entries:
+        print(f'[*] 台账载入: {len(ledger_entries)} 条历史记录')
+
     with httpx.Client() as client:
         pool_records = _fetch_proxypool(grouped['proxypool'], client)
         link_records = _fetch_links(grouped['link'], client)
@@ -343,16 +349,8 @@ def _run_pipeline(config_path: Path, whitelist_path: Path, out_dir: Path,
             # 独立数据源拦同源盲区。预算优先给「台账里从未被复核过」的节点，
             # 再按置信度从低到高（最弱证据优先），避免每轮都复核同一批。
             if proxycheck_token:
-                def _so_priority(record: dict) -> tuple:
-                    entry = ledger_entries.get(ledger.make_key(record)) or {}
-                    confidence_rank = {'low': 0, 'medium': 1, 'high': 2}.get(
-                        str(record.get('ip_confidence')), 1)
-                    return (1 if entry.get('last_proxycheck_at') else 0, confidence_rank)
-
-                res_targets = sorted(
-                    (r for r in alive if r.get('ip_kind') == 'residential'),
-                    key=_so_priority,
-                )[:max(0, proxycheck_budget)]
+                res_targets = second_opinion.select_targets(
+                    alive, ledger_entries, proxycheck_budget)
                 if res_targets:
                     print(f'[*] proxycheck 第二意见: 复核 {len(res_targets)} 个住宅候选（预算 {proxycheck_budget}）...')
                     with httpx.Client(trust_env=False) as client:
@@ -403,10 +401,7 @@ def _run_pipeline(config_path: Path, whitelist_path: Path, out_dir: Path,
 
     # ---------- 台账：历史节点回炉重考 ----------
     # 先封顶新鲜候选再注入台账，保证链接线的测活预算不被挤占
-    ledger_file = ledger.ledger_path(out_dir)
-    ledger_entries = ledger.load(ledger_file)
-    if ledger_entries:
-        print(f'[*] 台账载入: {len(ledger_entries)} 条历史记录')
+    # （台账已在流水线开头载入）
     sent_ledger_keys = _inject_ledger_candidates(
         ledger_entries, skip_tcp,
         residential_candidates, daily_candidates,

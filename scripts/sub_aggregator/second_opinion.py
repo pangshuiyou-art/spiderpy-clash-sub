@@ -22,12 +22,35 @@ import time
 
 import httpx
 
+from .node_ledger import make_key
+
 API_URL = 'https://proxycheck.io/v3/'
 BATCH_SIZE = 10
 CHUNK_PAUSE_SEC = 2
 
 # v3 响应里的非 IP 键
 _META_KEYS = {'status', 'node', 'time', 'query_time'}
+
+
+def select_targets(records: list[dict], ledger_entries: dict, budget: int) -> list[dict]:
+    """预算内挑选复核目标：台账从未复核过优先 → 置信度低优先
+
+    避免每轮重复复核同一批节点；budget<=0 返回空。
+    """
+    if budget <= 0:
+        return []
+
+    def priority(record: dict) -> tuple:
+        entry = (ledger_entries or {}).get(make_key(record)) or {}
+        confidence_rank = {'low': 0, 'medium': 1, 'high': 2}.get(
+            str(record.get('ip_confidence')), 1)
+        # 未复核过排前（0），已复核靠后
+        return (1 if entry.get('last_proxycheck_at') else 0, confidence_rank)
+
+    return sorted(
+        (r for r in records if r.get('ip_kind') == 'residential'),
+        key=priority,
+    )[:budget]
 
 
 def query_types(ips: list[str], token: str, client: httpx.Client,

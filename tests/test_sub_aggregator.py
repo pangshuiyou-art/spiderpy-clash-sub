@@ -484,3 +484,28 @@ def test_apply_residential_verdict_ignores_absent_ips():
     stats = second_opinion.apply_residential_verdict(records, {})
     assert stats == {'checked': 0, 'demoted': 0, 'kept': 0, 'no_opinion': 1}
     assert records[0]['ip_kind'] == 'residential'
+
+
+def test_select_targets_prefers_unchecked_then_weakest_evidence():
+    from sub_aggregator import node_ledger, second_opinion
+
+    entries = {
+        ('http', '1.1.1.1', 80): {'last_proxycheck_at': '2026-10-11T00:00:00+00:00'},
+    }
+    records = [
+        {'protocol': 'http', 'ip': '1.1.1.1', 'port': 80, 'ip_kind': 'residential', 'ip_confidence': 'low'},
+        {'protocol': 'http', 'ip': '2.2.2.2', 'port': 80, 'ip_kind': 'residential', 'ip_confidence': 'medium'},
+        {'protocol': 'http', 'ip': '3.3.3.3', 'port': 80, 'ip_kind': 'residential', 'ip_confidence': 'high'},
+        {'protocol': 'http', 'ip': '4.4.4.4', 'port': 80, 'ip_kind': 'datacenter'},  # 非住宅不参与
+        {'protocol': 'http', 'ip': '5.5.5.5', 'port': 80, 'ip_kind': 'residential', 'ip_confidence': 'medium'},
+    ]
+
+    targets = second_opinion.select_targets(records, entries, 2)
+
+    # 未复核过的 2.2.2.2 / 5.5.5.5 优先于已复核的 1.1.1.1 与高置信 3.3.3.3
+    assert [r['ip'] for r in targets] == ['2.2.2.2', '5.5.5.5']
+    assert second_opinion.select_targets(records, entries, 0) == []
+    # 空台账不报错（回归：曾因闭包引用未加载的台账在云端 NameError）
+    # 空台账：全员未复核，置信度低的排前
+    assert [r['ip'] for r in second_opinion.select_targets(records, {}, 1)] == ['1.1.1.1']
+    assert node_ledger.make_key(records[0]) == ('http', '1.1.1.1', 80)
