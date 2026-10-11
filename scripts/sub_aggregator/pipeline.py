@@ -160,6 +160,26 @@ def _test_link_multi_round(records: list[dict], mihomo_bin: str,
     return kept
 
 
+def _filter_daily_delay(records: list[dict], max_delay_ms: int) -> tuple[list[dict], int]:
+    """日常组「快」的测活后闸门：剔除超过延迟上限的记录
+
+    源侧粗筛只约束带元数据的记录；这里用 mihomo 实测延迟兜底
+    （移动 CGNAT / 换线源常有高延迟尾巴）。delay_ms 缺失的记录
+    交由客户端 url-test 自行裁决，不强杀。
+    """
+    if max_delay_ms <= 0:
+        return records, 0
+    kept: list[dict] = []
+    dropped = 0
+    for record in records:
+        delay = record.get('delay_ms')
+        if isinstance(delay, (int, float)) and delay > max_delay_ms:
+            dropped += 1
+            continue
+        kept.append(record)
+    return kept, dropped
+
+
 def _prune_pending_review(whitelist: dict, max_age_days: int = 30, now=None) -> int:
     """清理待审清单：30 天未再命中的条目移除（写入前调用，防止只增不减）
 
@@ -255,7 +275,8 @@ def _run_pipeline(config_path: Path, whitelist_path: Path, out_dir: Path,
                   mihomo_bin: str, residential_rounds: int, daily_rounds: int,
                   skip_tcp: bool, skip_ipapi: bool,
                   max_residential_test: int, max_daily_test: int,
-                  proxycheck_token: str = '', proxycheck_budget: int = 150) -> int:
+                  proxycheck_token: str = '', proxycheck_budget: int = 150,
+                  max_daily_delay_ms: int = 2500) -> int:
     stamp = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')
     now = datetime.now(timezone.utc)
     started = time.time()
@@ -443,6 +464,11 @@ def _run_pipeline(config_path: Path, whitelist_path: Path, out_dir: Path,
             print(f"[*] 住宅 socks4 结果: {s4_stats['alive']} 条存活"
                   f"（各轮 {s4_stats['per_round']}）")
 
+    # ---------- 日常组「快」的测活后闸门 ----------
+    daily_alive, dropped_slow = _filter_daily_delay(daily_alive, max_daily_delay_ms)
+    if dropped_slow:
+        print(f'[*] 日常组延迟闸门: 剔除 {dropped_slow} 条超过 {max_daily_delay_ms}ms 的记录')
+
     # ---------- 命名与产物 ----------
     # 先去重再命名，保证序号全局唯一（Clash 对重名直接报错）
     daily_alive = _cross_dedup(daily_alive)
@@ -611,9 +637,11 @@ def run(config_path: Path = DEFAULT_CONFIG,
         max_residential_test: int = 0,
         max_daily_test: int = 0,
         proxycheck_token: str = '',
-        proxycheck_budget: int = 150) -> int:
+        proxycheck_budget: int = 150,
+        max_daily_delay_ms: int = 2500) -> int:
     """聚合入口（供 CLI 与测试调用）"""
     return _run_pipeline(config_path, whitelist_path, out_dir, mihomo_bin,
                          residential_rounds, daily_rounds, skip_tcp, skip_ipapi,
                          max_residential_test, max_daily_test,
-                         proxycheck_token, proxycheck_budget)
+                         proxycheck_token, proxycheck_budget,
+                         max_daily_delay_ms)

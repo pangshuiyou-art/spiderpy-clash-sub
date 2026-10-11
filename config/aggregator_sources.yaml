@@ -147,8 +147,9 @@ auxiliary:
 
 # ===== 住宅判定放宽策略（用户要求：住宅组可以放宽一些）=====
 residential_policy:
-  # 移动网络按住宅处理：运营商 IP 常被 ip-api 标成 hosting，是住宅召回的主要漏点
-  mobile_as_residential: true
+  # 2026-10-11 用户决策：移动 CGNAT（中国移动家宽/手机出口，proxycheck 判 Wireless）
+  # 移出住宅组、归日常组——日常组要求快而稳，住宅组要求 IP 干净
+  mobile_as_residential: false
   # 2026-10-11 关闭：ip-api 全量补查上线后，无结论只代表查询失败/未覆盖，
   # 此时有 ASN 也当住宅的误判率实测 19%（59 样本 8 个机房），unknown 一律归日常组
   unknown_with_asn_as_residential: false

@@ -44,6 +44,8 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
                         help='proxycheck.io 凭证；提供则对住宅候选做独立类型交叉复核')
     parser.add_argument('--proxycheck-budget', type=int, default=150,
                         help='单轮 second opinion 复核的住宅候选上限（免费配额 1000 次/天）')
+    parser.add_argument('--max-daily-delay-ms', type=int, default=2500,
+                        help='日常组测活后延迟上限（毫秒，0 表示不启用）')
     return parser.parse_args(argv)
 
 
@@ -62,6 +64,7 @@ def main(argv: list[str] | None = None) -> int:
         max_daily_test=args.max_daily_test,
         proxycheck_token=args.proxycheck_token,
         proxycheck_budget=args.proxycheck_budget,
+        max_daily_delay_ms=args.max_daily_delay_ms,
     )
 
 

@@ -509,3 +509,22 @@ def test_select_targets_prefers_unchecked_then_weakest_evidence():
     # 空台账：全员未复核，置信度低的排前
     assert [r['ip'] for r in second_opinion.select_targets(records, {}, 1)] == ['1.1.1.1']
     assert node_ledger.make_key(records[0]) == ('http', '1.1.1.1', 80)
+
+
+# ---------------------------------------------------------------- 日常组延迟闸门
+
+def test_filter_daily_delay_drops_only_over_limit():
+    records = [
+        {'ip': '1.1.1.1', 'delay_ms': 800},
+        {'ip': '2.2.2.2', 'delay_ms': 3000},
+        {'ip': '3.3.3.3', 'delay_ms': None},   # 缺实测值不强杀
+        {'ip': '4.4.4.4'},                     # 无字段同上
+    ]
+
+    kept, dropped = pipeline._filter_daily_delay(records, 2500)
+
+    assert [r['ip'] for r in kept] == ['1.1.1.1', '3.3.3.3', '4.4.4.4']
+    assert dropped == 1
+    # 0 = 关闭闸门
+    kept, dropped = pipeline._filter_daily_delay(records, 0)
+    assert len(kept) == 4 and dropped == 0
