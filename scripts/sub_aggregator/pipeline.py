@@ -243,7 +243,10 @@ def _inject_ledger_candidates(entries: dict, skip_tcp: bool,
     # 回炉住宅候选先过第二意见：历史 tier 可能过时（ip-api 说非托管、
     # proxycheck 说托管的互补盲区），降级者本轮转日常考场，台账同步改档
     if proxycheck_token and buckets['residential']:
-        targets = buckets['residential'][:max(0, proxycheck_budget)]
+        # 与主复核同一套优先级（降级标记 > 未查过 > 已查过）：
+        # 回炉桶默认按「最近验证」排序，最陈旧的标签恰好排在队尾永远轮不到
+        targets = second_opinion.select_targets(
+            buckets['residential'], entries, proxycheck_budget)
         print(f'[*] proxycheck 第二意见（回炉）: 复核 {len(targets)} 个回炉住宅候选...')
         with httpx.Client(trust_env=False) as client:
             opinions = second_opinion.query_types(

@@ -60,7 +60,7 @@ jobs:
             --max-residential-test 1500 \
             --max-daily-test 4000 \
             --proxycheck-token "${{ secrets.PROXYCHECK_TOKEN }}" \
-            --proxycheck-budget 150
+            --proxycheck-budget 120
 
       - name: 产物自检（节点数与策略组）
         run: |
