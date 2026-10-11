@@ -125,7 +125,8 @@ def test_relax_promotes_mobile_and_unknown_but_blocks_datacenter_asn():
 
     stats = residential.relax_residential(records, metadata, policy)
 
-    assert stats == {'by_mobile': 1, 'by_unknown_asn': 1, 'blocked_datacenter_asn': 1}
+    assert stats == {'by_mobile': 1, 'by_unknown_asn': 1, 'blocked_datacenter_asn': 1,
+                     'mobile_demoted': 0}
     assert (records[0]['ip_kind'], records[0]['ip_confidence']) == ('residential', 'medium')
     assert records[0]['relaxed'] == 'mobile'
     assert (records[1]['ip_kind'], records[1]['ip_confidence']) == ('residential', 'low')
@@ -142,7 +143,8 @@ def test_relax_respects_disabled_policy():
 
     stats = residential.relax_residential(records, {'10.0.0.1': {'mobile': True}}, policy)
 
-    assert stats == {'by_mobile': 0, 'by_unknown_asn': 0, 'blocked_datacenter_asn': 0}
+    assert stats == {'by_mobile': 0, 'by_unknown_asn': 0, 'blocked_datacenter_asn': 0,
+                     'mobile_demoted': 0}
     assert records[0]['ip_kind'] == 'datacenter'
 
 
@@ -528,3 +530,44 @@ def test_filter_daily_delay_drops_only_over_limit():
     # 0 = 关闭闸门
     kept, dropped = pipeline._filter_daily_delay(records, 0)
     assert len(kept) == 4 and dropped == 0
+
+
+def test_relax_demotes_mobile_when_policy_disabled():
+    """用户决策：mobile_as_residential=False 时，住宅里的移动 CGNAT 降级归日常组"""
+    records = [
+        {'ip': '10.0.0.1', 'ip_kind': 'residential', 'ip_confidence': 'high'},
+        {'ip': '10.0.0.2', 'ip_kind': 'residential', 'ip_confidence': 'high',
+         'ip_type': 'residential'},                       # 源方标注：信任，不降
+        {'ip': '10.0.0.3', 'ip_kind': 'datacenter'},      # 非住宅不动
+        {'ip': '10.0.0.4', 'ip_kind': 'residential', 'ip_confidence': 'medium'},
+    ]
+    metadata = {
+        '10.0.0.1': {'mobile': True, 'hosting': True},
+        '10.0.0.2': {'mobile': True, 'hosting': True},
+        '10.0.0.4': {'mobile': False, 'hosting': False},
+    }
+    policy = {'mobile_as_residential': False,
+              'unknown_with_asn_as_residential': False,
+              'exclude_datacenter_asns': True}
+
+    stats = residential.relax_residential(records, metadata, policy)
+
+    assert stats['mobile_demoted'] == 1
+    assert records[0]['ip_kind'] == 'datacenter'
+    assert records[0]['relaxed'] == 'mobile_demoted'
+    assert records[1]['ip_kind'] == 'residential'      # 源方标注保留
+    assert records[2]['ip_kind'] == 'datacenter'
+    assert records[3]['ip_kind'] == 'residential'      # 非移动不动
+
+
+def test_relax_still_promotes_mobile_when_policy_enabled():
+    records = [{'ip': '10.0.0.1', 'ip_kind': 'datacenter'}]
+    metadata = {'10.0.0.1': {'mobile': True, 'hosting': True, 'asn': 'AS9808'}}
+    policy = {'mobile_as_residential': True,
+              'unknown_with_asn_as_residential': False,
+              'exclude_datacenter_asns': True}
+
+    stats = residential.relax_residential(records, metadata, policy)
+
+    assert stats['by_mobile'] == 1
+    assert records[0]['ip_kind'] == 'residential'

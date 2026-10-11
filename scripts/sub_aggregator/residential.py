@@ -36,15 +36,33 @@ def collect_datacenter_asns(ip_metadata: dict[str, dict]) -> set[str]:
 
 def relax_residential(records: list[dict], ip_metadata: dict[str, dict],
                       policy: dict) -> dict:
-    """对已分类记录做住宅放宽，原地更新 ip_kind/ip_confidence，返回统计"""
+    """对已分类记录做住宅放宽/收紧，原地更新 ip_kind/ip_confidence，返回统计
+
+    mobile_as_residential 双向生效：
+      true  → 移动网络收回住宅（中置信）
+      false → 已被判住宅但 ip-api 标 mobile 的记录降级为机房（归日常组），
+              用户决策（2026-10-11）：移动 CGNAT 共享污染重，不属于「IP 干净」
+              承诺；源方明确标注 ip_type 的条目仍被信任，不参与降级。
+    """
     mobile_enabled = bool(policy.get('mobile_as_residential', True))
     unknown_enabled = bool(policy.get('unknown_with_asn_as_residential', True))
     guard_enabled = bool(policy.get('exclude_datacenter_asns', True))
     datacenter_asns = collect_datacenter_asns(ip_metadata) if guard_enabled else set()
 
-    stats = {'by_mobile': 0, 'by_unknown_asn': 0, 'blocked_datacenter_asn': 0}
+    stats = {'by_mobile': 0, 'by_unknown_asn': 0, 'blocked_datacenter_asn': 0,
+             'mobile_demoted': 0}
     for record in records:
         if record.get('ip_kind') == 'residential':
+            if not mobile_enabled:
+                source_type = str(record.get('ip_type') or '').strip().lower()
+                if source_type in classifier.TRUSTED_SOURCE_IP_TYPE:
+                    continue
+                info = ip_metadata.get(record['ip']) or {}
+                if info.get('mobile'):
+                    record['ip_kind'] = 'datacenter'
+                    record['ip_confidence'] = 'medium'
+                    record['relaxed'] = 'mobile_demoted'
+                    stats['mobile_demoted'] += 1
             continue
         # 源方明确标注过的条目（Thordata）视为可信，不参与放宽
         source_type = str(record.get('ip_type') or '').strip().lower()
