@@ -129,7 +129,12 @@ jobs:
             exit 0
           fi
           git commit -m 'chore: 更新聚合分组订阅'
-          git pull --rebase origin "$GITHUB_REF_NAME" || true
+          # 产物是整文件重写的机器生成内容：与并行轮次撞车时，rebase 冲突
+          # 一律采用本侧（theirs=重放的本轮提交），二段式确保 rebase 必然完成
+          git pull --rebase -X theirs origin "$GITHUB_REF_NAME" || {
+            git rebase --abort 2>/dev/null || true
+            git pull --rebase -X theirs origin "$GITHUB_REF_NAME"
+          }
           git push
 
       - name: 刷新 jsdelivr 缓存
