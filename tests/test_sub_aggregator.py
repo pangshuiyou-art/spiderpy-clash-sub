@@ -630,3 +630,22 @@ def test_inject_ledger_candidates_without_token_skips_second_opinion(monkeypatch
     daily_candidates: list[dict] = []
     sent = pipeline._inject_ledger_candidates(entries, True, res_candidates, daily_candidates, [], pipeline.datetime(2026, 10, 11, tzinfo=pipeline.timezone.utc))
     assert len(res_candidates) == 1 and not daily_candidates
+
+
+def test_select_targets_rechecks_demoted_nodes_every_round():
+    """带降级标记的节点优先复看，防止 ip-api 下轮翻案后旧判决失效"""
+    from sub_aggregator import second_opinion
+
+    entries = {
+        ('http', '1.1.1.1', 80): {'second_opinion': 'demoted:Hosting'},
+        ('http', '2.2.2.2', 80): {'last_proxycheck_at': '2026-10-11T00:00:00+00:00'},
+    }
+    records = [
+        {'protocol': 'http', 'ip': '2.2.2.2', 'port': 80, 'ip_kind': 'residential', 'ip_confidence': 'low'},
+        {'protocol': 'http', 'ip': '1.1.1.1', 'port': 80, 'ip_kind': 'residential', 'ip_confidence': 'medium'},
+        {'protocol': 'http', 'ip': '3.3.3.3', 'port': 80, 'ip_kind': 'residential', 'ip_confidence': 'medium'},
+    ]
+
+    targets = second_opinion.select_targets(records, entries, 2)
+
+    assert [r['ip'] for r in targets] == ['1.1.1.1', '3.3.3.3']

@@ -44,8 +44,15 @@ def select_targets(records: list[dict], ledger_entries: dict, budget: int) -> li
         entry = (ledger_entries or {}).get(make_key(record)) or {}
         confidence_rank = {'low': 0, 'medium': 1, 'high': 2}.get(
             str(record.get('ip_confidence')), 1)
-        # 未复核过排前（0），已复核靠后
-        return (1 if entry.get('last_proxycheck_at') else 0, confidence_rank)
+        # 带降级标记的每轮必复核（ip-api 下一轮可能把它重新判回住宅，
+        # 不复看则旧判决失效）；未复核过的次之；已复核干净的排最后
+        if str(entry.get('second_opinion') or '').startswith('demoted'):
+            checked_rank = 0
+        elif entry.get('last_proxycheck_at'):
+            checked_rank = 2
+        else:
+            checked_rank = 1
+        return (checked_rank, confidence_rank)
 
     return sorted(
         (r for r in records if r.get('ip_kind') == 'residential'),
