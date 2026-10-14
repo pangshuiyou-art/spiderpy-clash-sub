@@ -135,6 +135,14 @@ jobs:
           if [ -f data/free_proxy/known_nodes.jsonl ]; then
             git add data/free_proxy/known_nodes.jsonl
           fi
+          # 旧版 Thordata 路径是给既有订阅链接的补发副本，必须随产物一起入库，
+          # 否则只复制不提交，data/thordata/ 永远是 404（2026-10-11 漏提交的教训）。
+          for name in residential daily; do
+            path="data/thordata/${name}.yaml"
+            if [ -f "$path" ]; then
+              git add "$path"
+            fi
+          done
           # 两组都为空时 git add 无事可做，直接结束
           if git diff --cached --quiet; then
             echo '无变更，跳过提交'
