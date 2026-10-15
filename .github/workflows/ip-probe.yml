@@ -2,6 +2,9 @@ name: IP 探测（出口 IP 与注册风控可达性）
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - codex/ip-probe
 
 permissions:
   contents: read
