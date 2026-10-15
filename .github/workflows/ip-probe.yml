@@ -1,0 +1,103 @@
+name: IP 探测（出口 IP 与注册风控可达性）
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 环境与出口 IP
+        run: |
+          echo "=== runner 信息 ==="
+          uname -a
+          echo "=== 出口 IP（多源）==="
+          curl -s --max-time 15 https://ipinfo.io/json || true
+          echo ""
+          curl -s --max-time 15 https://api.myip.com/ || true
+          echo ""
+          curl -s --max-time 15 https://www.cloudflare.com/cdn-cgi/trace || true
+
+      - name: 注册页可达性
+        run: |
+          URL="https://signup.live.com/signup?lic=1&mkt=en-US"
+          echo "=== 目标: $URL ==="
+          CODE=$(curl -s -o /tmp/page.html -w '%{http_code}' --max-time 30 "$URL" || echo FAIL)
+          echo "HTTP: $CODE"
+          echo "=== 页面关键字 ==="
+          grep -o -i -E 'blocked|create your|signup' /tmp/page.html | head -5 || echo no-match
+          echo "=== 页面大小 ==="
+          wc -c /tmp/page.html
+
+      - name: risk/initialize 探测
+        run: |
+          echo "=== risk/initialize ==="
+          curl -s -o /tmp/init.json -w 'HTTP=%{http_code}\n' --max-time 30 \
+            -X POST 'https://login.microsoftonline.com/9188040d-6c67-4c5b-b112-36a304b66dad/api/v1.0/risk/initialize' \
+            -H 'Content-Type: application/json; charset=utf-8' \
+            -H 'Accept: application/json' \
+            -H 'Origin: https://signup.live.com' \
+            -H 'Referer: https://signup.live.com/' \
+            -d '{"continuationToken":""}' || true
+          echo "=== 响应 ==="
+          head -c 600 /tmp/init.json
+          echo ""
+          if grep -q 'humanSensorUrl' /tmp/init.json; then
+            echo '★ initialize 可访问（返回 humanSensorUrl）'
+          else
+            echo '（未返回 humanSensorUrl）'
+          fi
+
+      - name: risk/verify IP 判定测试
+        run: |
+          python3 - <<'PYEOF'
+          import json
+          try:
+              d = json.load(open('/tmp/init.json'))
+              tok = d.get('continuationToken', '')
+          except Exception:
+              tok = ''
+          if not tok:
+              print('无 token，跳过')
+              raise SystemExit(0)
+          print('token 长度:', len(tok))
+          body = {
+              'continuationToken': tok,
+              'riskProviderMetadata': [{
+                  'riskProvider': 'Human',
+                  'px3': '0' * 64 + ':' + 'A' * 88 + ':1000:' + 'A' * 80,
+                  'pxde': '0' * 64 + ':eyJ0aW1lc3RhbXAiOjB9',
+                  'pxvid': '00000000-0000-0000-0000-000000000000',
+              }],
+              'msaRiskVerifySignature': {
+                  'memberName': 'ghprobe@outlook.com',
+                  'siteId': '', 'uiFlavor': 'Web', 'appId': '',
+                  'birthdate': '01:01:1990', 'firstName': 'James',
+                  'lastName': 'Smith', 'countryCode': 'US',
+                  'verificationCode': '',
+                  'deviceDetails': {'isRdm': False}, 'action': 'SignUp',
+              },
+          }
+          open('/tmp/verify.json', 'w').write(json.dumps(body))
+          print('已构造 verify 请求体')
+          PYEOF
+          echo "=== 提交 verify ==="
+          curl -s -o /tmp/verify_resp.json -w 'HTTP=%{http_code}\n' --max-time 30 \
+            -X POST 'https://login.microsoftonline.com/9188040d-6c67-4c5b-b112-36a304b66dad/api/v1.0/risk/verify' \
+            -H 'Content-Type: application/json; charset=utf-8' \
+            -H 'Accept: application/json' \
+            -H 'Origin: https://signup.live.com' \
+            -H 'Referer: https://signup.live.com/' \
+            -d @/tmp/verify.json || true
+          echo "=== ★★★ 判定结果 ==="
+          head -c 500 /tmp/verify_resp.json
+          echo ""
+          if grep -q 'riskChallengeRequired' /tmp/verify_resp.json; then
+            echo '★★★★★ GitHub Actions IP 能弹挑战！'
+          fi
+          if grep -q 'riskBlock' /tmp/verify_resp.json; then
+            echo '❌ GitHub Actions IP 也被 riskBlock'
+          fi
