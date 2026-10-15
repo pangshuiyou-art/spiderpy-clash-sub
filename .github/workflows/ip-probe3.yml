@@ -1,0 +1,93 @@
+name: IP 探测 v3（curl_cffi 浏览器 TLS 指纹）
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - codex/ip-probe
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 配置 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 安装 curl_cffi
+        run: pip install curl_cffi
+
+      - name: 出口 IP
+        run: |
+          curl -s --max-time 15 https://ipinfo.io/json || true
+
+      - name: ★★★ 用浏览器 TLS 指纹跑完整流程
+        run: |
+          python3 - <<'PYEOF'
+          import json, time
+          from curl_cffi import requests as creq
+
+          MS = "https://login.microsoftonline.com/9188040d-6c67-4c5b-b112-36a304b66dad/api/v1.0"
+          UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                "(KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36")
+
+          def hdrs(rid):
+              return {
+                  "Accept": "application/json",
+                  "Content-Type": "application/json; charset=utf-8",
+                  "hpgid": "200225",
+                  "Referer": "https://signup.live.com/",
+                  "client-request-id": rid,
+                  "correlationId": rid,
+                  "Origin": "https://signup.live.com",
+                  "User-Agent": UA,
+              }
+
+          # ★ 关键：impersonate=chrome（浏览器 TLS 指纹）
+          s = creq.Session(impersonate="chrome")
+          rid = "12345678123412341234123456789012"
+
+          print("=== 1. risk/initialize（curl_cffi chrome 指纹）===")
+          r = s.post(f"{MS}/risk/initialize", json={"continuationToken": ""},
+                     headers=hdrs(rid), timeout=30)
+          print(f"HTTP: {r.status_code}")
+          j = r.json()
+          tok = j.get("continuationToken", "")
+          print(f"★ token 长度: {len(tok)}")
+          print(f"  humanSensorUrl: {(j.get('riskInitializationData') or [{}])[0].get('humanSensorUrl','')[:100]}")
+
+          if not tok:
+              print("无 token，退出")
+              raise SystemExit(0)
+
+          print()
+          print("=== 2. risk/verify（★ IP 判定）===")
+          body = {
+              "continuationToken": tok,
+              "riskProviderMetadata": [{
+                  "riskProvider": "Human",
+                  "px3": "0"*64 + ":" + "A"*88 + ":1000:" + "A"*80,
+                  "pxde": "0"*64 + ":eyJ0aW1lc3RhbXAiOjB9",
+                  "pxvid": "00000000-0000-0000-0000-000000000000",
+              }],
+              "msaRiskVerifySignature": {
+                  "memberName": "ghprobe3@outlook.com",
+                  "siteId": "", "uiFlavor": "Web", "appId": "",
+                  "birthdate": "01:01:1990", "firstName": "James", "lastName": "Smith",
+                  "countryCode": "US", "verificationCode": "",
+                  "deviceDetails": {"isRdm": False}, "action": "SignUp",
+              },
+          }
+          r2 = s.post(f"{MS}/risk/verify", json=body, headers=hdrs(rid), timeout=30)
+          print(f"HTTP: {r2.status_code}")
+          print(f"响应: {r2.text[:500]}")
+          print()
+          if "riskChallengeRequired" in r2.text:
+              print("★★★★★ GitHub Actions IP 能弹挑战！")
+          if "riskBlock" in r2.text:
+              print("❌ GitHub Actions IP 被 riskBlock")
+          PYEOF
