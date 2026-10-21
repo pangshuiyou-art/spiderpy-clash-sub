@@ -1,120 +1,95 @@
 # 住宅 socks4 代理（mihomo/Clash 不支持此类型，供 Python/curl 场景使用）
-# 节点数: 75
-# 生成时间: 2026-10-21 00:18:11 UTC
+# 节点数: 43
+# 生成时间: 2026-10-21 09:03:49 UTC
 # 测活: SOCKS4 CONNECT + TLS 握手，连续 3 轮通过
-121.46.226.221:10808  # CN ZHAOONE
+91.150.189.122:1080  # PL Skyware Sp. z o.o.
 202.5.50.151:1080  # BD BBTS-NEW
-109.254.26.27:2080  # UA Donbass Electronic Communications Ltd.
-77.238.79.111:5678  # BG Fiber 1 Ltd.
+171.245.71.144:1090  # VN Viettel Corporation
+167.250.137.129:1080  # BR DB3 SERVICOS DE TELECOMUNICACOES S.A
 183.106.215.208:1080  # KR Korea Telecom
-105.214.51.178:5678  # ZA MTN SA
-76.26.114.253:39593  # US Comcast Cable Communications, LLC
-171.245.71.236:1080  # VN Viettel Corporation
-131.0.245.82:60606  # BR supercore tecnologia e informatica eirelli
-177.85.65.177:4153  # BR ASE TELECOMUNICAÇÕES LTDA ME
-196.0.111.186:46048  # UG Uganda Telecom Ltd
-182.93.75.162:1080  # NP Subisu Cablenet
-171.245.71.144:1086  # VN Viettel Corporation
-165.99.90.3:1080  # BD Future Communication and Network
-165.99.90.1:1080  # BD Future Communication and Network
-213.149.154.213:5678  # BG VIM TV Ltd
-165.99.90.2:1080  # BD Future Communication and Network
-103.23.100.9:1080  # ID Universitas Negeri Semarang, y
-213.173.75.222:5678  # AT BK DAT
-105.27.180.194:1080  # ZA SEACOM Limited
-103.178.120.53:1080  # PK KK Networks (Pvt) Ltd.
-171.4.85.65:5678  # TH Triple T Broadband Public Company Limited
-45.118.77.67:1080  # KH Infolab
-103.137.148.253:1080  # IN Rainbow communications India Pvt Ltd
-185.244.158.4:3129  # UA Stargroup LLC
-92.255.190.64:4153  # RU CJSC "ER-Telecom Holding" Omsk branch
-109.69.211.18:1080  # CZ LAN servis s.r.o
-119.93.82.236:1080  # PH Philippine Long Distance Telephone Co.
-1.20.254.32:4153  # TH TOT Public Company Limited
-190.13.147.241:5678  # CL Telefonica del Sur S.A
-105.214.95.149:5678  # ZA MTN SA
-203.201.190.33:1080  # ID PT WIRA HASTA JITU
-163.61.245.53:1080  # ID PT NAOMI AURORA TEKNOLOGI
-190.89.104.48:5432  # BR Acessoline Telecomunicacoes Ltda
-187.19.127.246:8011  # BR Unidasnet Comunicacoes Ltda
-46.98.193.59:5678  # UA ISP "Fregat"
-50.234.24.129:32100  # US Comcast Cable Communications, LLC
-151.232.18.66:5678  # IR Iran Telecommunication Company PJS
-102.215.245.6:4153  # ZA Infinity Connect
-43.230.196.98:48200  # IN Precious netcom pvt ltd
-103.61.116.138:5678  # ID PT Media Televisi Indonesia
-114.108.177.104:60984  # KR LG DACOM KIDC
-182.53.96.56:4145  # TH TOT Public Company Limited
-171.245.71.217:1083  # VN Viettel Group
-103.18.47.79:4145  # ID PT. Fiber Networks Indonesia
-125.26.4.197:4145  # TH TOT Public Company Limited
-46.55.3.113:4145  # MD JSC "Moldtelecom" S.A
-185.32.4.126:4153  # PL AS Consulting Sp. z o. o.
-45.162.225.114:59341  # BR Rionet Tecnologia EM Internet Eireli - ME
-50.238.47.86:32100  # US Comcast Cable Communications, LLC
-198.0.198.132:54321  # US Comcast Cable Communications
-14.36.232.55:1080  # KR Korea Telecom
-123.231.230.58:31196  # ID PT Aplikanusa Lintasarta
-46.100.44.35:1085  # IR Iran Telecommunication Company PJS
-160.30.104.170:1080  # PK S. B Link Network
-187.188.131.169:1080  # MX TOTAL PLAY TELECOMUNICACIONES, S.A.P.I. DE C.V.
-109.72.100.113:48293  # ME Drustvo za telekomunikacije "MTEL" DOO
-160.187.0.89:1080  # VN ONLINE DATA COMPANY LIMITED
-171.249.163.170:1080  # VN Viettel Corporation
-50.233.111.162:32100  # US Comcast Cable Communications, LLC
-170.254.173.6:1080  # VE TELECOMUNICACIONES ROCARLI C.A (CIX BROADBAND)
-150.107.107.152:1080  # NP Vianet Communications Pvt. Ltd
-102.0.35.254:1080  # KE Airtel KE Mobile & Fixed Internet
-181.205.207.66:1080  # CO EPM Telecomunicaciones S.A. E.S.P.
-103.26.209.206:1080  # ID Neuviz
-200.105.252.170:5678  # EC Puntonet S.A
-181.129.182.138:5678  # CO EPM Telecomunicaciones S.A. E.S.P.
-41.223.234.116:37259  # BF Alink Telecom Faso v
+37.52.13.164:5678  # UA UKRTELECOM
+171.245.71.217:1081  # VN Viettel Corporation
+14.241.242.177:1080  # VN VNPT
+105.214.90.100:5678  # ZA MTN SA
+171.245.71.144:1083  # VN Viettel Group
 187.87.35.148:4153  # BR GD SERVIÇOS INTERNET LTDA
-177.73.77.19:4153  # BR Geeknet Provedor De Internet Ltda ME
-109.61.117.11:1080  # HU Dravanet
-103.53.110.45:10801  # IN Tycoon Computers Pvt. Ltd.
+165.99.90.3:1080  # BD Future Communication and Network
+103.23.100.9:1080  # ID Universitas Negeri Semarang, y
+96.9.88.130:4153  # KH S.I Group
+182.53.216.73:4145  # TH TOT Public Company Limited
+220.132.41.160:1088  # TW Chunghwa Telecom Co., Ltd.
+154.18.220.190:5678  # MM Next Tier Trading Company Limited
+119.93.82.236:1080  # PH Philippine Long Distance Telephone Co.
+159.224.243.185:61303  # UA Content Delivery Network LTD
+157.254.20.12:10808  # CN Vantiva USA Shared Services Inc.
+170.254.173.6:1080  # VE TELECOMUNICACIONES ROCARLI C.A (CIX BROADBAND)
+200.188.246.122:60606  # BR Empresa Catarinense de Tecnologia em Telecom. Ltda
+177.131.121.208:5432  # BR Acessoline Telecomunicacoes Ltda
+171.248.213.59:1080  # VN Viettel Corporation
+31.42.6.125:5678  # PL MARCIN MALOLEPSZY @ALFANET
+185.32.4.126:4153  # PL AS Consulting Sp. z o. o.
+213.150.221.198:4153  # ZA ClearAccess
+178.57.106.43:4145  # RU Sever Telecom JSC
+165.99.90.2:1080  # BD Future Communication and Network
+211.178.253.60:1080  # JP NHNCLOUD
+50.233.111.162:32100  # US Comcast Cable Communications, LLC
+213.173.75.222:5678  # AT BK DAT
+14.36.232.55:1080  # KR Korea Telecom
+121.46.226.221:10808  # CN ZHAOONE
+1.20.254.32:4153  # TH TOT Public Company Limited
+103.137.148.253:1080  # IN Rainbow communications India Pvt Ltd
+1.20.235.153:5678  # TH TOT Public Company Limited
+103.168.246.3:4153  # ID Dinas Komunikasi dan Informatika Kabupaten Lombok Tengah
+103.26.209.206:1080  # ID Neuviz
 103.172.71.204:1080  # ID AZNET
-176.236.37.132:1080  # TR Superonline Iletisim Hizmetleri A.S.
-186.194.234.18:4153  # BR Cabonnet Internet Ltda
-# 保留观察: 51 条（历史验证通过，非本轮测活结果）
+171.245.71.217:1083  # VN Viettel Group
+82.132.19.108:4153  # HR Croatian Academic and Research Network
+171.242.14.54:1080  # VN Viettel Corporation
+# 保留观察: 59 条（历史验证通过，非本轮测活结果）
 80.78.78.106:65530  # AL Vodafone Albania Sh.A. 验证:2026-10-20
-201.234.24.89:4153  # AR Level 3 Communications, Inc. 验证:2026-10-19
+198.12.37.25:1080  # AR Servicios y Telecomunicaciones S.A 验证:2026-10-20
 83.218.186.22:5678  # AT myNet GmbH 验证:2026-10-20
 103.115.255.225:36331  # BD Star Internet Service 验证:2026-10-18
+213.149.154.213:5678  # BG VIM TV Ltd 验证:2026-10-21
 31.13.239.4:5678  # BG Neterra Ltd. 验证:2026-10-20
 109.160.97.49:4145  # BG Kabelnet LTD 验证:2026-10-20
 143.255.109.76:1080  # BR MCD INFORMATICA E TELECOMUNICACOES LTDA - ME 验证:2026-10-20
+177.152.106.74:1080  # BR figueiredo provedores eireli 验证:2026-10-20
 170.80.221.192:4153  # BR LOCALLINK TELECOMUNICAÇÕES LTDA - ME 验证:2026-10-19
 177.93.72.82:4153  # BR JR LINK PROVEDOR DE INTERNET VIA RARIO LTDA 验证:2026-10-18
 187.86.153.254:30660  # BR VETORIALNET INF. E SERVIÇOS DE INTERNET LTDA 验证:2026-10-17
+186.194.234.18:4153  # BR Cabonnet Internet Ltda 验证:2026-10-21
 177.74.141.8:5432  # BR PONTOCOMNET SERVIÇOS DE INTERNET LTDA 验证:2026-10-19
 181.57.178.146:1080  # CO Telmex Colombia S.A. 验证:2026-10-20
 181.143.45.218:1080  # CO EPM Telecomunicaciones S.A. E.S.P. 验证:2026-10-20
 181.204.39.202:53740  # CO EPM Telecomunicaciones S.A. E.S.P. 验证:2026-10-19
+185.157.111.3:5678  # EE SkyLive Telecom ldt 验证:2026-10-19
 83.56.15.57:5678  # ES Telefonica de Espana SAU 验证:2026-10-19
 103.248.9.69:80  # ID PT Flashnet Inovasi Teknologi 验证:2026-10-20
-103.168.246.3:4153  # ID Dinas Komunikasi dan Informatika Kabupaten Lombok Tengah 验证:2026-10-20
 117.102.101.52:5678  # ID BIZNET 验证:2026-10-18
 103.175.80.77:1080  # ID PT Panglima Kamayo Media 验证:2026-10-17
 202.179.88.233:51951  # IN Ankhnet 验证:2026-10-20
+46.100.44.35:1085  # IR Iran Telecommunication Company PJS 验证:2026-10-21
+154.79.251.168:1080  # KE Airtel KE Mobile Broadband 验证:2026-10-20
 124.248.164.36:1080  # KH COGETEL Co., Ltd 验证:2026-10-17
-154.18.220.190:5678  # MM Next Tier Trading Company Limited 验证:2026-10-20
 160.119.159.98:1080  # MZ Voiptech Limitada 验证:2026-10-20
 102.36.231.77:1080  # NG Timeless Network Services Ltd 验证:2026-10-20
 202.70.80.153:5678  # NP Nepal Telecommunications Corporation 验证:2026-10-16
 103.167.187.4:1080  # NP Techminds Network Pvt. Ltd. 验证:2026-10-18
 161.49.100.131:1080  # PH Converge Information and Communications Technology Solutions 验证:2026-10-18
 202.142.170.115:1080  # PK ITI Karachi Multinet 验证:2026-10-17
-46.171.28.162:59311  # PL Orange Polska Spolka Akcyjna 验证:2026-10-18
+103.225.221.18:5678  # PK ConnecTel Internet Services 验证:2026-10-20
 109.68.189.22:54643  # RU OOO Suntel 验证:2026-10-19
-1.20.235.153:5678  # TH TOT Public Company Limited 验证:2026-10-20
+31.57.178.174:1080  # SG PT Perwira Media Solusi 验证:2026-10-19
+125.25.82.207:5678  # TH TOT Public Company Limited 验证:2026-10-20
+203.172.120.179:1080  # TH sinokor1 验证:2026-10-20
+182.53.96.56:4145  # TH TOT Public Company Limited 验证:2026-10-21
 88.247.31.164:4153  # TR Turk Telekomunikasyon A.S 验证:2026-10-20
-159.224.243.185:61303  # UA Content Delivery Network LTD 验证:2026-10-20
 91.247.92.63:5678  # UA Privately owned enterprise Alexsandrov Yuriy Viktorovich 验证:2026-10-20
 50.250.205.21:32100  # US Comcast Cable Communications, LLC 验证:2026-10-15
+96.36.50.99:39593  # US Spectrum 验证:2026-10-20
 47.176.213.210:39593  # US Verizon Business 验证:2026-10-20
-14.241.242.177:1080  # VN VNPT 验证:2026-10-20
+50.238.47.86:32100  # US Comcast Cable Communications, LLC 验证:2026-10-21
 113.161.134.128:1080  # VN VietNam Post and Telecom Corporation 验证:2026-10-20
 116.104.251.199:1080  # VN Viettel Group 验证:2026-10-15
 116.104.251.199:1041  # VN Viettel Group 验证:2026-10-18
@@ -125,7 +100,8 @@
 42.114.56.76:20001  # VN FPT Telecom Company 验证:2026-10-18
 42.114.62.147:20001  # VN FPT Telecom Company 验证:2026-10-18
 116.104.251.199:1081  # VN Viettel Group 验证:2026-10-16
-171.242.14.54:1080  # VN Viettel Corporation 验证:2026-10-19
+160.187.0.89:1080  # VN ONLINE DATA COMPANY LIMITED 验证:2026-10-21
+171.249.163.170:1080  # VN Viettel Corporation 验证:2026-10-21
 116.101.14.169:1119  # VN Viettel Group 验证:2026-10-14
 105.214.51.182:5678  # ZA MTN SA 验证:2026-10-18
 160.226.220.30:1080  # ZA Iclix (PTY) Ltd 验证:2026-10-19
