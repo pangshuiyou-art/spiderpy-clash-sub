@@ -66,8 +66,8 @@ pending_review:
     org: Cass Cable TV, Inc.
   AS1101:
     first_seen: 2026-10-16 18:59:49 UTC
-    hits: 38
-    last_seen: 2026-10-27 20:13:36 UTC
+    hits: 58
+    last_seen: 2026-10-28 09:59:57 UTC
     org: SURFnet III d
   AS11014:
     first_seen: 2026-09-30 16:48:07 UTC
@@ -109,6 +109,11 @@ pending_review:
     hits: 1
     last_seen: 2026-10-01 00:49:29 UTC
     org: Empresa Catarinense de Tecnologia em Telecom. Ltda
+  AS12148:
+    first_seen: 2026-10-28 09:59:57 UTC
+    hits: 1
+    last_seen: 2026-10-28 09:59:57 UTC
+    org: Clemson University
   AS12252:
     first_seen: 2026-09-30 10:09:01 UTC
     hits: 1
@@ -116,8 +121,8 @@ pending_review:
     org: America Movil Peru S.A.C.
   AS12389:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 49
-    last_seen: 2026-10-25 13:54:04 UTC
+    hits: 50
+    last_seen: 2026-10-28 09:59:57 UTC
     org: BALTNET
   AS12400:
     first_seen: 2026-09-30 16:48:07 UTC
@@ -356,8 +361,8 @@ pending_review:
     org: Elyzium Technologies Pvt. Ltd.
   AS134420:
     first_seen: 2026-10-02 01:04:06 UTC
-    hits: 41
-    last_seen: 2026-10-27 20:13:36 UTC
+    hits: 42
+    last_seen: 2026-10-28 09:59:57 UTC
     org: Chongqing Telecom
   AS134489:
     first_seen: 2026-10-01 00:49:29 UTC
@@ -376,8 +381,8 @@ pending_review:
     org: PT Tidar Lintas Nusa
   AS134760:
     first_seen: 2026-10-01 06:46:28 UTC
-    hits: 74
-    last_seen: 2026-10-27 20:13:36 UTC
+    hits: 75
+    last_seen: 2026-10-28 09:59:57 UTC
     org: Shijiazhuang IDC network, CHINANET Hebei province
   AS134877:
     first_seen: 2026-10-01 00:49:29 UTC
@@ -461,8 +466,8 @@ pending_review:
     org: Independent Univeristy, Bangladesh
   AS136188:
     first_seen: 2026-09-30 10:09:01 UTC
-    hits: 83
-    last_seen: 2026-10-27 20:13:36 UTC
+    hits: 84
+    last_seen: 2026-10-28 09:59:57 UTC
     org: China Telecom
   AS136290:
     first_seen: 2026-09-30 16:48:07 UTC
@@ -551,8 +556,8 @@ pending_review:
     org: PT Deneva
   AS138130:
     first_seen: 2026-10-01 00:49:29 UTC
-    hits: 68
-    last_seen: 2026-10-27 20:13:36 UTC
+    hits: 69
+    last_seen: 2026-10-28 09:59:57 UTC
     org: PT PHATRIA INTI PERSADA
   AS138296:
     first_seen: 2026-09-30 10:17:22 UTC
@@ -576,8 +581,8 @@ pending_review:
     org: PT GLOBAL MEDIA PRATAMA SOLUSINDO
   AS138995:
     first_seen: 2026-09-30 10:17:22 UTC
-    hits: 97
-    last_seen: 2026-10-27 20:13:36 UTC
+    hits: 99
+    last_seen: 2026-10-28 09:59:57 UTC
     org: Antbox Networks Limited
   AS139008:
     first_seen: 2026-09-30 10:07:16 UTC
@@ -1191,8 +1196,8 @@ pending_review:
     org: NSK Co., Ltd.
   AS17621:
     first_seen: 2026-10-03 18:49:16 UTC
-    hits: 30
-    last_seen: 2026-10-27 20:13:36 UTC
+    hits: 31
+    last_seen: 2026-10-28 09:59:57 UTC
     org: China Unicom Shanghai network
   AS17639:
     first_seen: 2026-09-30 16:48:07 UTC
@@ -1256,8 +1261,8 @@ pending_review:
     org: CtrlS
   AS18403:
     first_seen: 2026-09-30 10:09:01 UTC
-    hits: 73
-    last_seen: 2026-10-27 20:13:36 UTC
+    hits: 74
+    last_seen: 2026-10-28 09:59:57 UTC
     org: FPT Telecom Company
   AS18678:
     first_seen: 2026-09-30 10:09:01 UTC
@@ -1651,8 +1656,8 @@ pending_review:
     org: RCell LLC
   AS214743:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 114
-    last_seen: 2026-10-27 20:13:36 UTC
+    hits: 116
+    last_seen: 2026-10-28 09:59:57 UTC
     org: Cogento Backbone Limited
   AS21479:
     first_seen: 2026-09-30 10:09:01 UTC
@@ -1841,8 +1846,8 @@ pending_review:
     org: Amber IT Limited
   AS23969:
     first_seen: 2026-09-30 10:09:01 UTC
-    hits: 22
-    last_seen: 2026-10-27 20:13:36 UTC
+    hits: 23
+    last_seen: 2026-10-28 09:59:57 UTC
     org: TOT Public Company Limited
   AS23974:
     first_seen: 2026-10-20 00:37:28 UTC
@@ -1976,8 +1981,8 @@ pending_review:
     org: Multi Link S.A.
   AS262186:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 5
-    last_seen: 2026-10-01 16:07:50 UTC
+    hits: 6
+    last_seen: 2026-10-28 09:59:57 UTC
     org: TV AZTECA SUCURSAL COLOMBIA
   AS262202:
     first_seen: 2026-09-30 10:10:55 UTC
@@ -2306,8 +2311,8 @@ pending_review:
     org: Cogent Communications
   AS269806:
     first_seen: 2026-10-10 01:13:13 UTC
-    hits: 39
-    last_seen: 2026-10-27 20:13:36 UTC
+    hits: 40
+    last_seen: 2026-10-28 09:59:57 UTC
     org: Perez Tito Julio Cesar
   AS269832:
     first_seen: 2026-10-01 00:49:29 UTC
@@ -2346,8 +2351,8 @@ pending_review:
     org: Comunicación por Fibra SA de CV
   AS270158:
     first_seen: 2026-10-22 19:27:11 UTC
-    hits: 18
-    last_seen: 2026-10-27 00:47:10 UTC
+    hits: 19
+    last_seen: 2026-10-28 09:59:57 UTC
     org: Wantelco SAS de CV
   AS270207:
     first_seen: 2026-10-21 08:51:43 UTC
@@ -2512,13 +2517,13 @@ pending_review:
     org: Redes y Telecomunicaciones
   AS27947:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 58
-    last_seen: 2026-10-27 20:13:36 UTC
+    hits: 59
+    last_seen: 2026-10-28 09:59:57 UTC
     org: Telconet S.A
   AS27951:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 257
-    last_seen: 2026-10-27 20:13:36 UTC
+    hits: 260
+    last_seen: 2026-10-28 09:59:57 UTC
     org: Media Commerce Partners S.A
   AS27988:
     first_seen: 2026-09-30 10:09:01 UTC
@@ -2655,6 +2660,11 @@ pending_review:
     hits: 1
     last_seen: 2026-09-30 16:48:07 UTC
     org: GOLEM TECH s.r.o
+  AS30936:
+    first_seen: 2026-10-28 09:59:57 UTC
+    hits: 1
+    last_seen: 2026-10-28 09:59:57 UTC
+    org: RENET COM Ltd.
   AS30938:
     first_seen: 2026-10-17 08:01:25 UTC
     hits: 1
@@ -3502,8 +3512,8 @@ pending_review:
     org: Aussie Fibre Pty Ltd
   AS4766:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 125
-    last_seen: 2026-10-27 20:13:36 UTC
+    hits: 126
+    last_seen: 2026-10-28 09:59:57 UTC
     org: Korea Telecom
   AS4775:
     first_seen: 2026-09-30 16:48:07 UTC
@@ -3537,8 +3547,8 @@ pending_review:
     org: IP Khachaturova Susanna Rafaelievna
   AS4808:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 971
-    last_seen: 2026-10-27 20:13:36 UTC
+    hits: 980
+    last_seen: 2026-10-28 09:59:57 UTC
     org: China Unicom Beijing Province Network
   AS4812:
     first_seen: 2026-09-30 10:07:16 UTC
@@ -4397,8 +4407,8 @@ pending_review:
     org: Romtelecom
   AS9121:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 30
-    last_seen: 2026-10-27 09:19:16 UTC
+    hits: 31
+    last_seen: 2026-10-28 09:59:57 UTC
     org: Turk Telekomunikasyon A.S
   AS9125:
     first_seen: 2026-09-30 10:17:22 UTC
@@ -4515,5 +4525,5 @@ pending_review:
     hits: 1
     last_seen: 2026-09-30 10:07:16 UTC
     org: Myanma Post & Telecommunication
-updated: 2026-10-27 20:13:36 UTC
+updated: 2026-10-28 09:59:57 UTC
 version: 1
