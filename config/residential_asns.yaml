@@ -133,8 +133,8 @@ pending_review:
     org: Branch of Long Van System Solution JSC - Hanoi
   AS131516:
     first_seen: 2026-10-01 00:49:29 UTC
-    hits: 105
-    last_seen: 2026-11-14 01:43:30 UTC
+    hits: 106
+    last_seen: 2026-11-14 10:53:45 UTC
     org: JHWA
   AS131749:
     first_seen: 2026-11-05 01:45:40 UTC
@@ -258,8 +258,8 @@ pending_review:
     org: Independent Univeristy, Bangladesh
   AS136188:
     first_seen: 2026-09-30 10:09:01 UTC
-    hits: 103
-    last_seen: 2026-11-14 01:43:30 UTC
+    hits: 104
+    last_seen: 2026-11-14 10:53:45 UTC
     org: China Telecom
   AS136958:
     first_seen: 2026-11-02 11:39:19 UTC
@@ -398,8 +398,8 @@ pending_review:
     org: PT Wistel Teknologi Solusi
   AS141718:
     first_seen: 2026-11-11 22:14:17 UTC
-    hits: 6
-    last_seen: 2026-11-14 01:43:30 UTC
+    hits: 7
+    last_seen: 2026-11-14 10:53:45 UTC
     org: haoxiangyun
   AS141955:
     first_seen: 2026-10-18 18:16:07 UTC
@@ -736,11 +736,6 @@ pending_review:
     hits: 2
     last_seen: 2026-10-20 00:37:28 UTC
     org: Ondrej Vrana
-  AS203971:
-    first_seen: 2026-10-14 09:00:29 UTC
-    hits: 1
-    last_seen: 2026-10-14 09:00:29 UTC
-    org: AzFiberNet LLC
   AS20485:
     first_seen: 2026-10-16 08:29:13 UTC
     hits: 2
@@ -976,11 +971,6 @@ pending_review:
     hits: 2
     last_seen: 2026-11-13 21:35:58 UTC
     org: aamra networks limited,
-  AS24444:
-    first_seen: 2026-10-14 09:00:29 UTC
-    hits: 1
-    last_seen: 2026-10-14 09:00:29 UTC
-    org: Shandong Mobile Communication Company Limited
   AS24492:
     first_seen: 2026-10-01 00:49:29 UTC
     hits: 16
@@ -1183,13 +1173,13 @@ pending_review:
     org: Tecnoven Services C.A
   AS269806:
     first_seen: 2026-10-10 01:13:13 UTC
-    hits: 79
-    last_seen: 2026-11-14 01:43:30 UTC
+    hits: 80
+    last_seen: 2026-11-14 10:53:45 UTC
     org: Perez Tito Julio Cesar
   AS269853:
     first_seen: 2026-10-29 20:33:16 UTC
-    hits: 39
-    last_seen: 2026-11-14 01:43:30 UTC
+    hits: 40
+    last_seen: 2026-11-14 10:53:45 UTC
     org: CBVISION S.A.
   AS269920:
     first_seen: 2026-09-30 10:07:16 UTC
@@ -1228,8 +1218,8 @@ pending_review:
     org: MAYSNET S.A. de C.V
   AS270158:
     first_seen: 2026-10-22 19:27:11 UTC
-    hits: 31
-    last_seen: 2026-11-12 21:54:24 UTC
+    hits: 32
+    last_seen: 2026-11-14 10:53:45 UTC
     org: Wantelco SAS de CV
   AS270207:
     first_seen: 2026-10-21 08:51:43 UTC
@@ -1718,8 +1708,8 @@ pending_review:
     org: Aussie Fibre Pty Ltd
   AS4766:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 154
-    last_seen: 2026-11-14 01:43:30 UTC
+    hits: 155
+    last_seen: 2026-11-14 10:53:45 UTC
     org: Korea Telecom
   AS4775:
     first_seen: 2026-09-30 16:48:07 UTC
@@ -1738,8 +1728,8 @@ pending_review:
     org: Ltd "Alfa Net Telecom"
   AS4808:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 1641
-    last_seen: 2026-11-14 01:43:30 UTC
+    hits: 1642
+    last_seen: 2026-11-14 10:53:45 UTC
     org: China Unicom Beijing Province Network
   AS4812:
     first_seen: 2026-09-30 10:07:16 UTC
@@ -1881,10 +1871,15 @@ pending_review:
     hits: 1
     last_seen: 2026-11-02 11:39:19 UTC
     org: Siamdata Communication Co.,Ltd.
+  AS56377:
+    first_seen: 2026-11-14 10:53:45 UTC
+    hits: 1
+    last_seen: 2026-11-14 10:53:45 UTC
+    org: JSC "ER-Telecom Holding"
   AS56534:
     first_seen: 2026-10-03 00:43:05 UTC
-    hits: 10
-    last_seen: 2026-11-03 11:18:25 UTC
+    hits: 11
+    last_seen: 2026-11-14 10:53:45 UTC
     org: Comfortel Ltd.
   AS57093:
     first_seen: 2026-10-24 08:23:05 UTC
@@ -2113,8 +2108,8 @@ pending_review:
     org: Telia Lietuva, AB
   AS9121:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 77
-    last_seen: 2026-11-14 01:43:30 UTC
+    hits: 78
+    last_seen: 2026-11-14 10:53:45 UTC
     org: Turk Telekomunikasyon A.S
   AS9299:
     first_seen: 2026-09-30 10:07:16 UTC
@@ -2151,5 +2146,5 @@ pending_review:
     hits: 1
     last_seen: 2026-10-20 00:37:28 UTC
     org: Sejong Networks
-updated: 2026-11-14 01:43:30 UTC
+updated: 2026-11-14 10:53:45 UTC
 version: 1
