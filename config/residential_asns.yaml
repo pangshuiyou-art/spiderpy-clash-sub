@@ -133,8 +133,8 @@ pending_review:
     org: Branch of Long Van System Solution JSC - Hanoi
   AS131516:
     first_seen: 2026-10-01 00:49:29 UTC
-    hits: 106
-    last_seen: 2026-11-14 10:53:45 UTC
+    hits: 107
+    last_seen: 2026-11-15 01:17:12 UTC
     org: JHWA
   AS131749:
     first_seen: 2026-11-05 01:45:40 UTC
@@ -188,8 +188,8 @@ pending_review:
     org: BUSINESSNETWORK
   AS134420:
     first_seen: 2026-10-02 01:04:06 UTC
-    hits: 62
-    last_seen: 2026-11-14 01:43:30 UTC
+    hits: 63
+    last_seen: 2026-11-15 01:17:12 UTC
     org: Chongqing Telecom
   AS134648:
     first_seen: 2026-11-04 21:28:38 UTC
@@ -258,8 +258,8 @@ pending_review:
     org: Independent Univeristy, Bangladesh
   AS136188:
     first_seen: 2026-09-30 10:09:01 UTC
-    hits: 105
-    last_seen: 2026-11-14 20:03:50 UTC
+    hits: 106
+    last_seen: 2026-11-15 01:17:12 UTC
     org: China Telecom
   AS136958:
     first_seen: 2026-11-02 11:39:19 UTC
@@ -313,8 +313,8 @@ pending_review:
     org: PT. DIGITAL NETWORK SETIAWAN
   AS138995:
     first_seen: 2026-09-30 10:17:22 UTC
-    hits: 140
-    last_seen: 2026-11-14 20:03:50 UTC
+    hits: 142
+    last_seen: 2026-11-15 01:17:12 UTC
     org: Antbox Networks Limited
   AS139201:
     first_seen: 2026-10-15 23:49:32 UTC
@@ -398,8 +398,8 @@ pending_review:
     org: PT Wistel Teknologi Solusi
   AS141718:
     first_seen: 2026-11-11 22:14:17 UTC
-    hits: 7
-    last_seen: 2026-11-14 10:53:45 UTC
+    hits: 8
+    last_seen: 2026-11-15 01:17:12 UTC
     org: haoxiangyun
   AS141955:
     first_seen: 2026-10-18 18:16:07 UTC
@@ -658,8 +658,8 @@ pending_review:
     org: Data Hub Pvt. Ltd.
   AS18229:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 59
-    last_seen: 2026-11-05 21:33:15 UTC
+    hits: 60
+    last_seen: 2026-11-15 01:17:12 UTC
     org: CtrlS
   AS18403:
     first_seen: 2026-09-30 10:09:01 UTC
@@ -848,8 +848,8 @@ pending_review:
     org: U1 Digital Services Ltd
   AS213887:
     first_seen: 2026-10-17 13:10:05 UTC
-    hits: 1
-    last_seen: 2026-10-17 13:10:05 UTC
+    hits: 2
+    last_seen: 2026-11-15 01:17:12 UTC
     org: WAIcore Ltd
   AS214707:
     first_seen: 2026-09-30 10:07:16 UTC
@@ -958,8 +958,8 @@ pending_review:
     org: Viettel Group
   AS24323:
     first_seen: 2026-11-11 22:14:17 UTC
-    hits: 2
-    last_seen: 2026-11-13 21:35:58 UTC
+    hits: 3
+    last_seen: 2026-11-15 01:17:12 UTC
     org: aamra networks limited,
   AS24492:
     first_seen: 2026-10-01 00:49:29 UTC
@@ -983,8 +983,8 @@ pending_review:
     org: JSC Severen-Telecom
   AS24835:
     first_seen: 2026-10-02 10:02:09 UTC
-    hits: 28
-    last_seen: 2026-11-08 19:55:51 UTC
+    hits: 29
+    last_seen: 2026-11-15 01:17:12 UTC
     org: Vodafone Data - Egypt
   AS24863:
     first_seen: 2026-09-30 10:09:01 UTC
@@ -1163,13 +1163,13 @@ pending_review:
     org: Tecnoven Services C.A
   AS269806:
     first_seen: 2026-10-10 01:13:13 UTC
-    hits: 81
-    last_seen: 2026-11-14 20:03:50 UTC
+    hits: 82
+    last_seen: 2026-11-15 01:17:12 UTC
     org: Perez Tito Julio Cesar
   AS269853:
     first_seen: 2026-10-29 20:33:16 UTC
-    hits: 41
-    last_seen: 2026-11-14 20:03:50 UTC
+    hits: 42
+    last_seen: 2026-11-15 01:17:12 UTC
     org: CBVISION S.A.
   AS269920:
     first_seen: 2026-09-30 10:07:16 UTC
@@ -1231,11 +1231,6 @@ pending_review:
     hits: 17
     last_seen: 2026-10-30 10:26:07 UTC
     org: CENTRIC MOBILITY (CEMO), S.R.L
-  AS272405:
-    first_seen: 2026-10-15 00:04:41 UTC
-    hits: 1
-    last_seen: 2026-10-15 00:04:41 UTC
-    org: Jair Lozano / Intercom Internet
   AS272801:
     first_seen: 2026-11-04 21:28:38 UTC
     hits: 2
@@ -1356,11 +1351,6 @@ pending_review:
     hits: 1
     last_seen: 2026-10-21 08:51:43 UTC
     org: Conexxia Guinea Equatorial, S.L
-  AS328490:
-    first_seen: 2026-10-15 00:04:41 UTC
-    hits: 1
-    last_seen: 2026-10-15 00:04:41 UTC
-    org: Unwired Communications Ltd
   AS328882:
     first_seen: 2026-10-12 22:35:09 UTC
     hits: 13
@@ -1438,8 +1428,8 @@ pending_review:
     org: Office National des Postes et Telecommunications ONPT (Maroc Telecom) / IAM
   AS36992:
     first_seen: 2026-10-01 00:49:29 UTC
-    hits: 24
-    last_seen: 2026-11-14 01:43:30 UTC
+    hits: 25
+    last_seen: 2026-11-15 01:17:12 UTC
     org: Etisalat
   AS37284:
     first_seen: 2026-11-03 21:13:51 UTC
@@ -1688,8 +1678,8 @@ pending_review:
     org: Aussie Fibre Pty Ltd
   AS4766:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 155
-    last_seen: 2026-11-14 10:53:45 UTC
+    hits: 156
+    last_seen: 2026-11-15 01:17:12 UTC
     org: Korea Telecom
   AS4775:
     first_seen: 2026-09-30 16:48:07 UTC
@@ -1708,8 +1698,8 @@ pending_review:
     org: Ltd "Alfa Net Telecom"
   AS4808:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 1643
-    last_seen: 2026-11-14 20:03:50 UTC
+    hits: 1646
+    last_seen: 2026-11-15 01:17:12 UTC
     org: China Unicom Beijing Province Network
   AS4812:
     first_seen: 2026-09-30 10:07:16 UTC
@@ -1991,11 +1981,6 @@ pending_review:
     hits: 2
     last_seen: 2026-10-31 09:56:19 UTC
     org: Compañía Dominicana de Teléfonos S. A.
-  AS64450:
-    first_seen: 2026-10-14 14:39:13 UTC
-    hits: 3
-    last_seen: 2026-10-15 00:04:41 UTC
-    org: GK YADRO LLC
   AS6697:
     first_seen: 2026-11-12 21:54:24 UTC
     hits: 1
@@ -2088,8 +2073,8 @@ pending_review:
     org: Telia Lietuva, AB
   AS9121:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 79
-    last_seen: 2026-11-14 20:03:50 UTC
+    hits: 80
+    last_seen: 2026-11-15 01:17:12 UTC
     org: Turk Telekomunikasyon A.S
   AS9299:
     first_seen: 2026-09-30 10:07:16 UTC
@@ -2108,8 +2093,8 @@ pending_review:
     org: Konkuk University
   AS963:
     first_seen: 2026-10-10 18:26:44 UTC
-    hits: 55
-    last_seen: 2026-11-14 20:03:50 UTC
+    hits: 56
+    last_seen: 2026-11-15 01:17:12 UTC
     org: N963
   AS967:
     first_seen: 2026-10-21 08:51:43 UTC
@@ -2126,5 +2111,5 @@ pending_review:
     hits: 1
     last_seen: 2026-10-20 00:37:28 UTC
     org: Sejong Networks
-updated: 2026-11-14 20:03:50 UTC
+updated: 2026-11-15 01:17:12 UTC
 version: 1
