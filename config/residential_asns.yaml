@@ -166,11 +166,6 @@ pending_review:
     hits: 2
     last_seen: 2026-10-25 13:54:04 UTC
     org: Antaranga Networks
-  AS132445:
-    first_seen: 2026-10-01 00:49:29 UTC
-    hits: 2
-    last_seen: 2026-10-16 14:12:42 UTC
-    org: Khetan Cable Network Pvt. Limited
   AS132649:
     first_seen: 2026-11-05 11:28:31 UTC
     hits: 1
@@ -263,19 +258,14 @@ pending_review:
     org: Independent Univeristy, Bangladesh
   AS136188:
     first_seen: 2026-09-30 10:09:01 UTC
-    hits: 108
-    last_seen: 2026-11-16 12:00:14 UTC
+    hits: 109
+    last_seen: 2026-11-16 23:49:35 UTC
     org: China Telecom
   AS136958:
     first_seen: 2026-11-02 11:39:19 UTC
     hits: 1
     last_seen: 2026-11-02 11:39:19 UTC
     org: CNC Group CHINA169 Guangdong Province Network
-  AS136969:
-    first_seen: 2026-10-16 18:59:49 UTC
-    hits: 1
-    last_seen: 2026-10-16 18:59:49 UTC
-    org: KK Networks (Pvt) Ltd.
   AS137074:
     first_seen: 2026-10-25 18:32:31 UTC
     hits: 1
@@ -283,8 +273,8 @@ pending_review:
     org: Responsible Internet Sustainability Effort
   AS138079:
     first_seen: 2026-10-01 00:49:29 UTC
-    hits: 76
-    last_seen: 2026-11-16 12:00:14 UTC
+    hits: 77
+    last_seen: 2026-11-16 23:49:35 UTC
     org: Fastama
   AS138089:
     first_seen: 2026-09-30 10:07:16 UTC
@@ -298,8 +288,8 @@ pending_review:
     org: PT Deneva
   AS138130:
     first_seen: 2026-10-01 00:49:29 UTC
-    hits: 117
-    last_seen: 2026-11-16 01:21:25 UTC
+    hits: 118
+    last_seen: 2026-11-16 23:49:35 UTC
     org: PT PHATRIA INTI PERSADA
   AS138836:
     first_seen: 2026-10-31 19:31:45 UTC
@@ -318,8 +308,8 @@ pending_review:
     org: PT. DIGITAL NETWORK SETIAWAN
   AS138995:
     first_seen: 2026-09-30 10:17:22 UTC
-    hits: 148
-    last_seen: 2026-11-16 12:00:14 UTC
+    hits: 149
+    last_seen: 2026-11-16 23:49:35 UTC
     org: Antbox Networks Limited
   AS139201:
     first_seen: 2026-10-15 23:49:32 UTC
@@ -811,11 +801,6 @@ pending_review:
     hits: 7
     last_seen: 2026-10-23 14:24:45 UTC
     org: PT Perwira Media Solusi
-  AS212336:
-    first_seen: 2026-10-16 18:59:49 UTC
-    hits: 1
-    last_seen: 2026-10-16 18:59:49 UTC
-    org: ByteVirt LLC
   AS212552:
     first_seen: 2026-09-30 16:48:07 UTC
     hits: 5
@@ -863,8 +848,8 @@ pending_review:
     org: RCell LLC
   AS214743:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 146
-    last_seen: 2026-11-12 21:54:24 UTC
+    hits: 147
+    last_seen: 2026-11-16 23:49:35 UTC
     org: Cogento Backbone Limited
   AS214822:
     first_seen: 2026-09-30 10:09:01 UTC
@@ -1163,8 +1148,8 @@ pending_review:
     org: Tecnoven Services C.A
   AS269806:
     first_seen: 2026-10-10 01:13:13 UTC
-    hits: 86
-    last_seen: 2026-11-16 12:00:14 UTC
+    hits: 87
+    last_seen: 2026-11-16 23:49:35 UTC
     org: Perez Tito Julio Cesar
   AS269853:
     first_seen: 2026-10-29 20:33:16 UTC
@@ -1198,8 +1183,8 @@ pending_review:
     org: Cogent Communications
   AS270111:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 56
-    last_seen: 2026-11-14 01:43:30 UTC
+    hits: 57
+    last_seen: 2026-11-16 23:49:35 UTC
     org: Comunicación por Fibra SA de CV
   AS270143:
     first_seen: 2026-11-11 11:25:35 UTC
@@ -1656,11 +1641,6 @@ pending_review:
     hits: 3
     last_seen: 2026-11-04 01:38:06 UTC
     org: Olimp-Telecom26 LLC
-  AS47478:
-    first_seen: 2026-10-16 14:12:42 UTC
-    hits: 1
-    last_seen: 2026-10-16 14:12:42 UTC
-    org: Mstn Cjsc
   AS47551:
     first_seen: 2026-11-02 11:39:19 UTC
     hits: 3
@@ -1678,8 +1658,8 @@ pending_review:
     org: Aussie Fibre Pty Ltd
   AS4766:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 160
-    last_seen: 2026-11-16 12:00:14 UTC
+    hits: 161
+    last_seen: 2026-11-16 23:49:35 UTC
     org: Korea Telecom
   AS4775:
     first_seen: 2026-09-30 16:48:07 UTC
@@ -1698,8 +1678,8 @@ pending_review:
     org: Ltd "Alfa Net Telecom"
   AS4808:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 1663
-    last_seen: 2026-11-16 12:00:14 UTC
+    hits: 1672
+    last_seen: 2026-11-16 23:49:35 UTC
     org: China Unicom Beijing Province Network
   AS4812:
     first_seen: 2026-09-30 10:07:16 UTC
@@ -1763,8 +1743,8 @@ pending_review:
     org: PJSC MegaFon
   AS51004:
     first_seen: 2026-10-14 00:35:29 UTC
-    hits: 3
-    last_seen: 2026-11-07 01:10:03 UTC
+    hits: 4
+    last_seen: 2026-11-16 23:49:35 UTC
     org: Sakhalin Cable Telesystems Ltd
   AS51015:
     first_seen: 2026-10-11 06:16:21 UTC
@@ -1866,11 +1846,6 @@ pending_review:
     hits: 6
     last_seen: 2026-10-20 00:37:28 UTC
     org: Radist LTD
-  AS57935:
-    first_seen: 2026-10-05 10:50:00 UTC
-    hits: 6
-    last_seen: 2026-10-16 18:59:49 UTC
-    org: Nrp Teknoloji Limited Sirketi
   AS58224:
     first_seen: 2026-11-06 01:47:13 UTC
     hits: 1
@@ -1916,11 +1891,6 @@ pending_review:
     hits: 7
     last_seen: 2026-10-27 15:31:48 UTC
     org: ESTOXY OU
-  AS61276:
-    first_seen: 2026-10-16 14:12:42 UTC
-    hits: 1
-    last_seen: 2026-10-16 14:12:42 UTC
-    org: Vichislitelniy Centr Ltd.
   AS6134:
     first_seen: 2026-10-09 20:19:07 UTC
     hits: 14
@@ -2003,8 +1973,8 @@ pending_review:
     org: Chinese Science & Technology Network
   AS7552:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 199
-    last_seen: 2026-11-16 12:00:14 UTC
+    hits: 200
+    last_seen: 2026-11-16 23:49:35 UTC
     org: Viettel Group
   AS7713:
     first_seen: 2026-09-30 10:07:16 UTC
@@ -2063,13 +2033,13 @@ pending_review:
     org: Telia Lietuva, AB
   AS9121:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 84
-    last_seen: 2026-11-16 12:00:14 UTC
+    hits: 85
+    last_seen: 2026-11-16 23:49:35 UTC
     org: Turk Telekomunikasyon A.S
   AS9299:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 42
-    last_seen: 2026-11-16 01:21:25 UTC
+    hits: 43
+    last_seen: 2026-11-16 23:49:35 UTC
     org: Philippine Long Distance Telephone Co.
   AS9304:
     first_seen: 2026-10-16 18:59:49 UTC
@@ -2101,5 +2071,5 @@ pending_review:
     hits: 1
     last_seen: 2026-10-20 00:37:28 UTC
     org: Sejong Networks
-updated: 2026-11-16 12:00:14 UTC
+updated: 2026-11-16 23:49:35 UTC
 version: 1
