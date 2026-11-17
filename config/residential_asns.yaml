@@ -188,8 +188,8 @@ pending_review:
     org: BUSINESSNETWORK
   AS134420:
     first_seen: 2026-10-02 01:04:06 UTC
-    hits: 66
-    last_seen: 2026-11-16 12:00:14 UTC
+    hits: 67
+    last_seen: 2026-11-17 12:25:00 UTC
     org: Chongqing Telecom
   AS134648:
     first_seen: 2026-11-04 21:28:38 UTC
@@ -216,11 +216,6 @@ pending_review:
     hits: 4
     last_seen: 2026-11-09 12:04:35 UTC
     org: China Unicom Guangdong IP network
-  AS135407:
-    first_seen: 2026-10-17 08:01:25 UTC
-    hits: 1
-    last_seen: 2026-10-17 08:01:25 UTC
-    org: Trans World Enterprise Services (Private) Limited
   AS135746:
     first_seen: 2026-11-05 01:45:40 UTC
     hits: 1
@@ -258,8 +253,8 @@ pending_review:
     org: Independent Univeristy, Bangladesh
   AS136188:
     first_seen: 2026-09-30 10:09:01 UTC
-    hits: 109
-    last_seen: 2026-11-16 23:49:35 UTC
+    hits: 110
+    last_seen: 2026-11-17 12:25:00 UTC
     org: China Telecom
   AS136958:
     first_seen: 2026-11-02 11:39:19 UTC
@@ -281,11 +276,6 @@ pending_review:
     hits: 4
     last_seen: 2026-10-23 08:49:16 UTC
     org: PT.Global Media Data Prima
-  AS138115:
-    first_seen: 2026-10-17 08:01:25 UTC
-    hits: 1
-    last_seen: 2026-10-17 08:01:25 UTC
-    org: PT Deneva
   AS138130:
     first_seen: 2026-10-01 00:49:29 UTC
     hits: 118
@@ -308,8 +298,8 @@ pending_review:
     org: PT. DIGITAL NETWORK SETIAWAN
   AS138995:
     first_seen: 2026-09-30 10:17:22 UTC
-    hits: 149
-    last_seen: 2026-11-16 23:49:35 UTC
+    hits: 151
+    last_seen: 2026-11-17 12:25:00 UTC
     org: Antbox Networks Limited
   AS139201:
     first_seen: 2026-10-15 23:49:32 UTC
@@ -393,8 +383,8 @@ pending_review:
     org: PT Wistel Teknologi Solusi
   AS141718:
     first_seen: 2026-11-11 22:14:17 UTC
-    hits: 11
-    last_seen: 2026-11-16 01:21:25 UTC
+    hits: 12
+    last_seen: 2026-11-17 12:25:00 UTC
     org: haoxiangyun
   AS141955:
     first_seen: 2026-10-18 18:16:07 UTC
@@ -826,11 +816,6 @@ pending_review:
     hits: 1
     last_seen: 2026-11-03 21:13:51 UTC
     org: Snowd Security OU
-  AS213520:
-    first_seen: 2026-10-12 22:35:09 UTC
-    hits: 2
-    last_seen: 2026-10-17 08:01:25 UTC
-    org: Senko Digital LLC
   AS213877:
     first_seen: 2026-11-04 11:32:04 UTC
     hits: 3
@@ -1006,11 +991,6 @@ pending_review:
     hits: 1
     last_seen: 2026-11-08 00:54:06 UTC
     org: PJSC Moscow city telephone network
-  AS25540:
-    first_seen: 2026-10-16 23:51:26 UTC
-    hits: 2
-    last_seen: 2026-10-17 08:01:25 UTC
-    org: Alphalink SASU
   AS25549:
     first_seen: 2026-10-15 19:21:55 UTC
     hits: 3
@@ -1031,11 +1011,6 @@ pending_review:
     hits: 1
     last_seen: 2026-10-28 20:31:27 UTC
     org: Mega Cable, S.A. de C.V.
-  AS263238:
-    first_seen: 2026-10-01 00:49:29 UTC
-    hits: 3
-    last_seen: 2026-10-17 08:01:25 UTC
-    org: Eliana Vanessa Morocho Oña
   AS263702:
     first_seen: 2026-09-30 16:48:07 UTC
     hits: 3
@@ -1101,11 +1076,6 @@ pending_review:
     hits: 4
     last_seen: 2026-11-10 11:43:22 UTC
     org: Sistemas Informaticos S.A.S.
-  AS266853:
-    first_seen: 2026-10-16 23:51:26 UTC
-    hits: 1
-    last_seen: 2026-10-16 23:51:26 UTC
-    org: Comunicaciones Metropolitanas METROCOM, S.A.
   AS266891:
     first_seen: 2026-11-05 11:28:31 UTC
     hits: 1
@@ -1148,8 +1118,8 @@ pending_review:
     org: Tecnoven Services C.A
   AS269806:
     first_seen: 2026-10-10 01:13:13 UTC
-    hits: 87
-    last_seen: 2026-11-16 23:49:35 UTC
+    hits: 88
+    last_seen: 2026-11-17 12:25:00 UTC
     org: Perez Tito Julio Cesar
   AS269853:
     first_seen: 2026-10-29 20:33:16 UTC
@@ -1203,8 +1173,8 @@ pending_review:
     org: Cogent Communications
   AS271795:
     first_seen: 2026-10-12 00:43:10 UTC
-    hits: 20
-    last_seen: 2026-11-10 11:43:22 UTC
+    hits: 21
+    last_seen: 2026-11-17 12:25:00 UTC
     org: Servitelconet Cia. Ltda.
   AS271846:
     first_seen: 2026-10-23 23:58:27 UTC
@@ -1296,11 +1266,6 @@ pending_review:
     hits: 2
     last_seen: 2026-11-05 11:28:31 UTC
     org: RENET COM Ltd.
-  AS30938:
-    first_seen: 2026-10-17 08:01:25 UTC
-    hits: 1
-    last_seen: 2026-10-17 08:01:25 UTC
-    org: ahbr company limited
   AS3215:
     first_seen: 2026-10-18 08:19:01 UTC
     hits: 2
@@ -1526,11 +1491,6 @@ pending_review:
     hits: 1
     last_seen: 2026-11-15 11:27:42 UTC
     org: Ace Data Centers II, L.L.C.
-  AS401243:
-    first_seen: 2026-10-16 23:51:26 UTC
-    hits: 1
-    last_seen: 2026-10-16 23:51:26 UTC
-    org: Komi LLC
   AS401443:
     first_seen: 2026-10-20 14:28:18 UTC
     hits: 18
@@ -1646,11 +1606,6 @@ pending_review:
     hits: 3
     last_seen: 2026-11-03 11:18:25 UTC
     org: mayak Network LLC
-  AS4760:
-    first_seen: 2026-09-30 16:48:07 UTC
-    hits: 2
-    last_seen: 2026-10-16 23:51:26 UTC
-    org: Hong Kong Telecommunications (HKT) Limited Business Internet
   AS4764:
     first_seen: 2026-10-01 00:49:29 UTC
     hits: 3
@@ -1658,8 +1613,8 @@ pending_review:
     org: Aussie Fibre Pty Ltd
   AS4766:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 161
-    last_seen: 2026-11-16 23:49:35 UTC
+    hits: 162
+    last_seen: 2026-11-17 12:25:00 UTC
     org: Korea Telecom
   AS4775:
     first_seen: 2026-09-30 16:48:07 UTC
@@ -1678,8 +1633,8 @@ pending_review:
     org: Ltd "Alfa Net Telecom"
   AS4808:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 1672
-    last_seen: 2026-11-16 23:49:35 UTC
+    hits: 1679
+    last_seen: 2026-11-17 12:25:00 UTC
     org: China Unicom Beijing Province Network
   AS4812:
     first_seen: 2026-09-30 10:07:16 UTC
@@ -1973,8 +1928,8 @@ pending_review:
     org: Chinese Science & Technology Network
   AS7552:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 200
-    last_seen: 2026-11-16 23:49:35 UTC
+    hits: 202
+    last_seen: 2026-11-17 12:25:00 UTC
     org: Viettel Group
   AS7713:
     first_seen: 2026-09-30 10:07:16 UTC
@@ -2033,8 +1988,8 @@ pending_review:
     org: Telia Lietuva, AB
   AS9121:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 85
-    last_seen: 2026-11-16 23:49:35 UTC
+    hits: 86
+    last_seen: 2026-11-17 12:25:00 UTC
     org: Turk Telekomunikasyon A.S
   AS9299:
     first_seen: 2026-09-30 10:07:16 UTC
@@ -2071,5 +2026,5 @@ pending_review:
     hits: 1
     last_seen: 2026-10-20 00:37:28 UTC
     org: Sejong Networks
-updated: 2026-11-16 23:49:35 UTC
+updated: 2026-11-17 12:25:00 UTC
 version: 1
