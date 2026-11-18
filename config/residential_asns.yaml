@@ -88,8 +88,8 @@ pending_review:
     org: Clemson University
   AS12389:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 68
-    last_seen: 2026-11-09 01:11:51 UTC
+    hits: 70
+    last_seen: 2026-11-18 12:12:16 UTC
     org: BALTNET
   AS12578:
     first_seen: 2026-10-09 10:53:33 UTC
@@ -101,11 +101,6 @@ pending_review:
     hits: 3
     last_seen: 2026-10-20 08:51:44 UTC
     org: Digital Network JSC
-  AS12714:
-    first_seen: 2026-09-30 10:10:55 UTC
-    hits: 8
-    last_seen: 2026-10-18 08:19:01 UTC
-    org: Net By Net Holding LLC (Belgorod)
   AS13036:
     first_seen: 2026-11-09 23:54:21 UTC
     hits: 1
@@ -273,8 +268,8 @@ pending_review:
     org: PT.Global Media Data Prima
   AS138130:
     first_seen: 2026-10-01 00:49:29 UTC
-    hits: 118
-    last_seen: 2026-11-16 23:49:35 UTC
+    hits: 119
+    last_seen: 2026-11-18 12:12:16 UTC
     org: PT PHATRIA INTI PERSADA
   AS138836:
     first_seen: 2026-10-31 19:31:45 UTC
@@ -316,6 +311,11 @@ pending_review:
     hits: 2
     last_seen: 2026-11-11 01:27:45 UTC
     org: IRT-GARAPAN
+  AS139549:
+    first_seen: 2026-11-18 12:12:16 UTC
+    hits: 1
+    last_seen: 2026-11-18 12:12:16 UTC
+    org: Shirsty Internet Services Pvt Ltd
   AS139963:
     first_seen: 2026-11-09 01:11:51 UTC
     hits: 1
@@ -791,11 +791,6 @@ pending_review:
     hits: 5
     last_seen: 2026-10-27 00:47:10 UTC
     org: BitCommand LLC
-  AS21277:
-    first_seen: 2026-10-10 20:07:34 UTC
-    hits: 4
-    last_seen: 2026-10-17 23:22:52 UTC
-    org: Allay Nawroz Telecom Company for Communication/Ltd.
   AS212975:
     first_seen: 2026-09-30 10:17:22 UTC
     hits: 2
@@ -888,8 +883,8 @@ pending_review:
     org: COGETEL Co
   AS23688:
     first_seen: 2026-09-30 16:48:07 UTC
-    hits: 11
-    last_seen: 2026-11-15 11:27:42 UTC
+    hits: 12
+    last_seen: 2026-11-18 12:12:16 UTC
     org: Link3 Technologies Limited
   AS23700:
     first_seen: 2026-10-01 00:49:29 UTC
@@ -1081,11 +1076,6 @@ pending_review:
     hits: 5
     last_seen: 2026-11-14 20:03:50 UTC
     org: Link NET
-  AS267470:
-    first_seen: 2026-10-17 13:10:05 UTC
-    hits: 4
-    last_seen: 2026-10-18 08:19:01 UTC
-    org: CX Pro
   AS267628:
     first_seen: 2026-10-25 08:42:30 UTC
     hits: 2
@@ -1108,8 +1098,8 @@ pending_review:
     org: Tecnoven Services C.A
   AS269806:
     first_seen: 2026-10-10 01:13:13 UTC
-    hits: 88
-    last_seen: 2026-11-17 12:25:00 UTC
+    hits: 89
+    last_seen: 2026-11-18 12:12:16 UTC
     org: Perez Tito Julio Cesar
   AS269853:
     first_seen: 2026-10-29 20:33:16 UTC
@@ -1318,8 +1308,8 @@ pending_review:
     org: Chunghwa Telecom Co., Ltd.
   AS34757:
     first_seen: 2026-11-15 11:27:42 UTC
-    hits: 1
-    last_seen: 2026-11-15 11:27:42 UTC
+    hits: 3
+    last_seen: 2026-11-18 12:12:16 UTC
     org: Sibirskie Seti Ltd.
   AS34858:
     first_seen: 2026-10-11 06:16:21 UTC
@@ -1603,8 +1593,8 @@ pending_review:
     org: Aussie Fibre Pty Ltd
   AS4766:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 163
-    last_seen: 2026-11-17 23:07:59 UTC
+    hits: 164
+    last_seen: 2026-11-18 12:12:16 UTC
     org: Korea Telecom
   AS4775:
     first_seen: 2026-09-30 16:48:07 UTC
@@ -1623,8 +1613,8 @@ pending_review:
     org: Ltd "Alfa Net Telecom"
   AS4808:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 1686
-    last_seen: 2026-11-17 23:07:59 UTC
+    hits: 1693
+    last_seen: 2026-11-18 12:12:16 UTC
     org: China Unicom Beijing Province Network
   AS4812:
     first_seen: 2026-09-30 10:07:16 UTC
@@ -1936,11 +1926,6 @@ pending_review:
     hits: 4
     last_seen: 2026-11-05 21:33:15 UTC
     org: Uninet S.A. de C.V
-  AS8245:
-    first_seen: 2026-10-17 23:22:52 UTC
-    hits: 1
-    last_seen: 2026-10-17 23:22:52 UTC
-    org: Video-Broadcast GmbH
   AS8369:
     first_seen: 2026-10-11 05:07:35 UTC
     hits: 8
@@ -1978,8 +1963,8 @@ pending_review:
     org: Telia Lietuva, AB
   AS9121:
     first_seen: 2026-09-30 10:07:16 UTC
-    hits: 87
-    last_seen: 2026-11-17 23:07:59 UTC
+    hits: 88
+    last_seen: 2026-11-18 12:12:16 UTC
     org: Turk Telekomunikasyon A.S
   AS9299:
     first_seen: 2026-09-30 10:07:16 UTC
@@ -2016,5 +2001,5 @@ pending_review:
     hits: 1
     last_seen: 2026-10-20 00:37:28 UTC
     org: Sejong Networks
-updated: 2026-11-17 23:07:59 UTC
+updated: 2026-11-18 12:12:16 UTC
 version: 1
