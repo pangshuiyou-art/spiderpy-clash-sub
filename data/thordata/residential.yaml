@@ -1,19 +1,15 @@
 # 住宅节点（注册场景）
-# 生成时间: 2026-11-22 21:22:37 UTC
-# 节点数: 48
+# 生成时间: 2026-11-23 02:06:13 UTC
+# 节点数: 51
 # 测活: mihomo 连续 3 轮通过
 # 数据来源: config/aggregator_sources.yaml（代理池源，住宅判定已放宽）
 # 保留组: 7 条（历史验证通过、本轮未重考通过，仅供参考）
-# 置信度构成: medium 40, high 8
+# 置信度构成: medium 39, high 12
 mixed-port: 7890
 allow-lan: false
 mode: rule
 log-level: warning
 proxies:
-- name: '[R]JP-3929'
-  type: socks5
-  server: 103.13.19.219
-  port: 10808
 - name: '[R]CM-3778'
   type: http
   server: 102.244.78.61
@@ -22,6 +18,14 @@ proxies:
   type: http
   server: 102.244.78.61
   port: 8089
+- name: '[R]CM-3786'
+  type: http
+  server: 102.244.78.61
+  port: 8082
+- name: '[R]CM-3781'
+  type: http
+  server: 102.244.78.61
+  port: 8084
 - name: '[R]CM-3782'
   type: http
   server: 102.244.78.61
@@ -34,14 +38,18 @@ proxies:
   type: http
   server: 102.244.78.61
   port: 8090
-- name: '[R]CM-3786'
-  type: http
-  server: 102.244.78.61
-  port: 8082
 - name: '[R]CM-3780'
   type: http
   server: 102.244.78.61
   port: 8083
+- name: '[R]SG-3994'
+  type: socks5
+  server: 162.4.172.157
+  port: 5555
+- name: '[R]US-3877'
+  type: http
+  server: 50.238.106.26
+  port: 3128
 - name: '[R]HK-0103'
   type: socks5
   server: 45.194.33.12
@@ -50,10 +58,6 @@ proxies:
   type: socks5
   server: 45.194.33.12
   port: 30002
-- name: '[R]US-3877'
-  type: http
-  server: 50.238.106.26
-  port: 3128
 - name: '[R]ID-3845'
   type: http
   server: 103.163.80.181
@@ -62,150 +66,154 @@ proxies:
   type: http
   server: 216.125.18.67
   port: 3128
-- name: '[R]CO-3989'
+- name: '[R]BD-3719'
   type: http
-  server: 131.221.42.249
-  port: 4040
-- name: '[R]CN-3990'
+  server: 27.147.155.206
+  port: 12051
+- name: '[R]VE-3706'
   type: http
-  server: 123.121.139.50
-  port: 8888
-- name: '[R]CN-3696'
+  server: 154.3.76.16
+  port: 999
+- name: '[R]UZ-3746'
   type: http
-  server: 114.246.207.179
-  port: 8888
-- name: '[R]CN-3991'
+  server: 195.158.8.123
+  port: 3128
+- name: '[R]MX-3768'
   type: http
-  server: 123.121.135.244
+  server: 189.51.168.164
+  port: 999
+- name: '[R]KH-3942'
+  type: http
+  server: 49.156.44.116
+  port: 8080
+- name: '[R]CN-4013'
+  type: http
+  server: 123.113.155.9
   port: 8888
 - name: '[R]CN-3992'
   type: http
   server: 123.121.135.227
   port: 8888
-- name: '[R]CN-3993'
+- name: '[R]CN-4014'
   type: http
-  server: 111.192.56.154
+  server: 123.113.172.209
   port: 8888
-- name: '[R]SG-3994'
-  type: socks5
-  server: 162.4.172.157
-  port: 5555
-- name: '[R]CN-3102'
-  type: http
-  server: 123.121.113.161
-  port: 8888
-- name: '[R]CN-3995'
-  type: http
-  server: 123.121.137.18
-  port: 8888
-- name: '[R]CN-3996'
-  type: http
-  server: 114.246.198.68
-  port: 8888
-- name: '[R]CN-3997'
-  type: http
-  server: 123.121.127.248
-  port: 8888
-- name: '[R]CN-3998'
-  type: http
-  server: 114.246.204.140
-  port: 8888
-- name: '[R]CO-3999'
-  type: http
-  server: 45.65.138.48
-  port: 999
-- name: '[R]CN-3854'
-  type: http
-  server: 114.253.67.30
-  port: 8888
-- name: '[R]CN-4000'
-  type: http
-  server: 123.121.124.28
-  port: 8888
-- name: '[R]CN-4001'
-  type: http
-  server: 123.121.130.181
-  port: 8888
-- name: '[R]ID-3911'
-  type: http
-  server: 121.101.132.38
-  port: 8090
 - name: '[R]CN-3286'
   type: http
   server: 123.121.101.115
   port: 8888
-- name: '[R]CN-4002'
+- name: '[R]US-3465'
   type: http
-  server: 114.249.221.91
+  server: 52.128.238.98
+  port: 18080
+- name: '[R]VN-3748'
+  type: http
+  server: 103.28.37.131
+  port: 3128
+- name: '[R]CN-3997'
+  type: http
+  server: 123.121.127.248
   port: 8888
-- name: '[R]IN-3940'
+- name: '[R]RU-4015'
+  type: socks5
+  server: 46.241.57.29
+  port: 1080
+- name: '[R]CN-4000'
   type: http
-  server: 45.194.41.231
+  server: 123.121.124.28
+  port: 8888
+- name: '[R]CN-4016'
+  type: http
+  server: 123.121.126.175
+  port: 8888
+- name: '[R]CM-3793'
+  type: http
+  server: 102.244.78.61
   port: 8080
+- name: '[R]VN-4017'
+  type: http
+  server: 14.225.205.152
+  port: 3128
+- name: '[R]CN-4018'
+  type: socks5
+  server: 49.87.33.12
+  port: 8989
+- name: '[R]CN-3991'
+  type: http
+  server: 123.121.135.244
+  port: 8888
 - name: '[R]CM-3934'
   type: http
   server: 102.244.78.61
   port: 8087
+- name: '[R]CN-4019'
+  type: http
+  server: 111.192.63.78
+  port: 8888
 - name: '[R]HK-3423'
   type: http
   server: 45.155.226.177
   port: 3128
-- name: '[R]CN-4003'
+- name: '[R]CN-3208'
   type: http
-  server: 123.115.235.98
+  server: 123.121.122.125
   port: 8888
-- name: '[R]CN-3903'
+- name: '[R]CN-3769'
   type: http
-  server: 114.249.239.62
+  server: 114.248.85.85
   port: 8888
-- name: '[R]CN-3909'
+- name: '[R]CN-3791'
   type: http
-  server: 114.244.211.247
+  server: 111.192.28.24
   port: 8888
-- name: '[R]CN-4004'
-  type: http
-  server: 111.201.98.99
-  port: 8888
-- name: '[R]IN-4005'
-  type: http
-  server: 45.194.41.16
-  port: 8080
-- name: '[R]EG-3801'
-  type: http
-  server: 213.131.85.28
-  port: 1976
-- name: '[R]NL-3817'
-  type: http
-  server: 145.220.227.24
-  port: 8080
-- name: '[R]EC-0952'
-  type: http
-  server: 45.186.6.104
-  port: 3128
-- name: '[R]TR-1761'
-  type: http
-  server: 78.186.146.140
-  port: 3310
-- name: '[R]KR-3255'
-  type: socks5
-  server: 183.106.215.208
-  port: 1080
-- name: '[R]ID-0529'
-  type: http
-  server: 103.133.26.73
-  port: 3128
 - name: '[R]CN-3823'
   type: http
   server: 123.115.143.194
   port: 8888
-- name: '[R]CO-3824'
+- name: '[R]EG-3954'
   type: http
-  server: 190.7.138.78
+  server: 213.131.85.28
+  port: 1981
+- name: '[R]EC-0952'
+  type: http
+  server: 45.186.6.104
+  port: 3128
+- name: '[R]JP-3929'
+  type: socks5
+  server: 103.13.19.219
+  port: 10808
+- name: '[R]KR-3255'
+  type: socks5
+  server: 183.106.215.208
+  port: 1080
+- name: '[R]NL-3817'
+  type: http
+  server: 145.220.227.24
   port: 8080
-- name: '[R]BD-3719'
+- name: '[R]TR-1761'
   type: http
-  server: 27.147.155.206
-  port: 12051
+  server: 78.186.146.140
+  port: 3310
+- name: '[R]ID-0529'
+  type: http
+  server: 103.133.26.73
+  port: 3128
+- name: '[R]CN-3695'
+  type: http
+  server: 222.128.174.236
+  port: 8888
+- name: '[R]CN-3696'
+  type: http
+  server: 114.246.207.179
+  port: 8888
+- name: '[R]ID-3790'
+  type: http
+  server: 103.255.109.166
+  port: 8082
+- name: '[R]PH-2257'
+  type: http
+  server: 122.2.48.121
+  port: 8080
 - name: '[R]CN-1986'
   type: http
   server: 123.121.140.72
@@ -218,9 +226,13 @@ proxies:
   type: http
   server: 111.192.19.3
   port: 8888
-- name: '[R]CN-3769'
+- name: '[R]CN-3784'
   type: http
-  server: 114.248.85.85
+  server: 114.244.212.147
+  port: 8888
+- name: '[R]CN-3909'
+  type: http
+  server: 114.244.211.247
   port: 8888
 - name: '[R]EC-3691'
   type: http
@@ -237,65 +249,68 @@ proxy-groups:
   interval: 300
   tolerance: 200
   proxies: &id001
-  - '[R]JP-3929'
   - '[R]CM-3778'
   - '[R]CM-3779'
+  - '[R]CM-3786'
+  - '[R]CM-3781'
   - '[R]CM-3782'
   - '[R]CM-3787'
   - '[R]CM-3783'
-  - '[R]CM-3786'
   - '[R]CM-3780'
+  - '[R]SG-3994'
+  - '[R]US-3877'
   - '[R]HK-0103'
   - '[R]HK-0005'
-  - '[R]US-3877'
   - '[R]ID-3845'
   - '[R]US-3822'
-  - '[R]CO-3989'
-  - '[R]CN-3990'
-  - '[R]CN-3696'
-  - '[R]CN-3991'
+  - '[R]BD-3719'
+  - '[R]VE-3706'
+  - '[R]UZ-3746'
+  - '[R]MX-3768'
+  - '[R]KH-3942'
+  - '[R]CN-4013'
   - '[R]CN-3992'
-  - '[R]CN-3993'
-  - '[R]SG-3994'
-  - '[R]CN-3102'
-  - '[R]CN-3995'
-  - '[R]CN-3996'
-  - '[R]CN-3997'
-  - '[R]CN-3998'
-  - '[R]CO-3999'
-  - '[R]CN-3854'
-  - '[R]CN-4000'
-  - '[R]CN-4001'
-  - '[R]ID-3911'
+  - '[R]CN-4014'
   - '[R]CN-3286'
-  - '[R]CN-4002'
-  - '[R]IN-3940'
+  - '[R]US-3465'
+  - '[R]VN-3748'
+  - '[R]CN-3997'
+  - '[R]RU-4015'
+  - '[R]CN-4000'
+  - '[R]CN-4016'
+  - '[R]CM-3793'
+  - '[R]VN-4017'
+  - '[R]CN-4018'
+  - '[R]CN-3991'
   - '[R]CM-3934'
+  - '[R]CN-4019'
   - '[R]HK-3423'
-  - '[R]CN-4003'
-  - '[R]CN-3903'
-  - '[R]CN-3909'
-  - '[R]CN-4004'
-  - '[R]IN-4005'
-  - '[R]EG-3801'
-  - '[R]NL-3817'
-  - '[R]EC-0952'
-  - '[R]TR-1761'
-  - '[R]KR-3255'
-  - '[R]ID-0529'
+  - '[R]CN-3208'
+  - '[R]CN-3769'
+  - '[R]CN-3791'
   - '[R]CN-3823'
-  - '[R]CO-3824'
+  - '[R]EG-3954'
+  - '[R]EC-0952'
+  - '[R]JP-3929'
+  - '[R]KR-3255'
+  - '[R]NL-3817'
+  - '[R]TR-1761'
+  - '[R]ID-0529'
+  - '[R]CN-3695'
+  - '[R]CN-3696'
+  - '[R]ID-3790'
+  - '[R]PH-2257'
 - name: 住宅-手动
   type: select
   proxies: *id001
 - name: 住宅-保留
   type: select
   proxies:
-  - '[R]BD-3719'
   - '[R]CN-1986'
   - '[R]CN-3115'
   - '[R]CN-3477'
-  - '[R]CN-3769'
+  - '[R]CN-3784'
+  - '[R]CN-3909'
   - '[R]EC-3691'
   - '[R]NL-3446'
 rules:
